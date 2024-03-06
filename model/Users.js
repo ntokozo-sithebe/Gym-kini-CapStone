@@ -1,4 +1,4 @@
-import {connection as db} from "../config/index.js"
+import {connection as db} from "../config/config.js"
 import { hashSync, compare } from "bcrypt"
 import { createToken } from "../middleware/AuthenticateUser"
 import {query} from "express"
