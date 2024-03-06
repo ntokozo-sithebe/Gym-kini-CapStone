@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Gym'kinis Endpoint</title>
+</head>
+<body>
+    <table>
+        <caption>
+            <h2>General Information for Users and Products</h2>
+        </caption>
+            <thead>
+                <th>Path</th>
+                <th>HTTP Methods</th>
+                <th>Description</th>
+            </thead>
+        <tbody>
+            <tr>
+                <td>/</td>
+                <td>GET</td>
+                <td>Retrieving products</td>
+            </tr>
+        </tbody>
+    </table> 
+    
+      <br>
+    
+    <table>
+        <Caption>
+            <h2>Users Tables</h2>
+        </Caption>
+            <thead>
+                <th>Path</th>
+                <th>HTTP Methods</th>
+                <th>Description</th>
+            </thead>
+        <tbody>
+            <tr>
+                <td>/</td>
+                <td>GET</td>
+                <td>Retrieving users</td>
+            </tr>
+            <tr>
+                <td>/:id</td>
+                <td>GET</td>
+                <td>Retrieving user by ID</td>
+            </tr>
+            <tr>
+                <th>/addUser</th>
+                <th>POST</th>
+                <th>Registering the user</th>
+            </tr>
+            <tr>
+                <th>/register</th>
+                <th>PATCH</th>
+                <th>Updates the user</th>
+            </tr>
+            <tr>
+                <th>/delete</th>
+                <th>DELETE</th>
+                <th>Delete the user</th>
+            </tr>
+        </tbody>
+    </table>
+    
+    <br>
+    
+    <table>
+        <Caption>
+            <h2>Products Table</h2></Caption>
+        <th>Path</th>
+        <th>HTTP Methods</th>
+        <th>Description</th>
+        <tbody>
+            <tr>
+                <td>/</td>
+                <td>GET</td>
+                <td>Fetching Products</td>
+            </tr>
+            <tr>
+                <th>/:id</th>
+                <th>GET</th>
+                <th>Fetching Product</th>
+            </tr>
+            <tr>
+                <th>/addProduct</th>
+                <th>POST</th>
+                <th>Adding a product</th>
+            </tr>
+            <tr>
+                <th>/updateProduct</th>
+                <th>PATCH</th>
+                <th>Updating a product</th>
+            </tr>
+            <tr>
+                <th>/delete</th>
+                <th>DELETE</th>
+                <th>Deleting a product</th>
+            </tr>
+        </tbody>
+    </table>
+    <Caption>
+        <h2>Need to decide about a cart table - it should add, delete, patch(quantity) and allow products to post</h2>
+    </Caption>
+    <td colspan="3"></td>
+    
+</body>
+</html>
