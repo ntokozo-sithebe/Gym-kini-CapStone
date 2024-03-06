@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { Products } from '../model/Products'
+import { Products } from '../model/Products.js'
 
 const productRouter = express.Router()
 

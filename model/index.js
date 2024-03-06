@@ -1,6 +1,6 @@
-import { Users } from "./Users";
-import { Products } from "./Products";
-import { verifyAToken } from "../middleware/AuthenticateUser";
+import { Users } from "./Users.js";
+import { Products } from "./Products.js";
+import { verifyAToken } from "../middleware/AuthenticateUser.js";
 
 
 
