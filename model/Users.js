@@ -1,6 +1,6 @@
 import {connection as db} from "../config/config.js"
 import { hashSync, compare } from "bcrypt"
-import { createToken } from "../middleware/AuthenticateUser"
+import { createToken } from "../middleware/AuthenticateUser.js"
 import {query} from "express"
 
 
