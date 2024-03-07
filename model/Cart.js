@@ -1,10 +1,10 @@
-import { Products } from "./Products";
-import { Users } from "./Users";
+// import { Products } from "./Products.js";
+// import { Users } from "./Users.js";
 
 class Cart{
     fetchProduct(req,res){
 
-        const {prodID, prodName, prodQuantity, prodAmount, userID } = req.body;
+        // const {prodID, prodName, prodQuantity, prodAmount, userID } = req.body;
 
         const query = `SELECT prodID, prodName prodQuantity, prodAmount, userID
         FROM Products , Users;`
@@ -19,7 +19,7 @@ class Cart{
     }
     deleteProduct(req,res){
         const query = `
-        DELETE FROM Users
+        DELETE FROM Products
         WHERE prodID = ${req.params.id};`
 
         db.query(query, (err)=>{

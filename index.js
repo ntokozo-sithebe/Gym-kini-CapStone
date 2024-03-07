@@ -5,6 +5,7 @@ import cors from 'cors'
 import { errorHandling } from "./middleware/ErrorHandling.js";
 import path from "path";
 import { config } from "dotenv";
+import { cartRouter } from "./controller/CartController.js";
 config()
 
 
@@ -36,8 +37,9 @@ app.get('^/$|/gym\'kini', (req,res)=>{
     res.status(200).sendFile(path.join(_dirname, './static/index.html'))
 })
 
-app.use('/users',userRouter)
+app.use('/users', userRouter)
 app.use('/products', productRouter)
+app.use('/cart',cartRouter)
 app.use(errorHandling)
 app.listen(port, ()=>{
     console.log(`Gym'kini server is running on port ${port}`);
