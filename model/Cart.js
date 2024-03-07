@@ -4,7 +4,7 @@ import { Users } from "./Users";
 class Cart{
     fetchProduct(req,res){
 
-        const {prodID, prodName, prodQuantity, prodAmount, userID } = req.body;
+        // const {prodID, prodName, prodQuantity, prodAmount, userID } = req.body;
 
         const query = `SELECT prodID, prodName prodQuantity, prodAmount, userID
         FROM Products , Users;`
