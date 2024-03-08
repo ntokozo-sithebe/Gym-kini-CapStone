@@ -1,5 +1,6 @@
 import { connection as db } from "../config/config.js"
 
+config();
 
 class Products{
     fetchProducts(req,res){
