@@ -3,7 +3,7 @@ import { connection as db } from "../config/config.js"
 
 class Products{
     fetchProducts(req,res){
-        const query = `SELECT prodID, prodName, prodQuantity, prodAmount, userID
+        const query = `SELECT prodID, prodName, prodQuantity, prodAmount, userID, prodUrl
         FROM Products;`
 
         db.query(query,(err,results)=>{
@@ -16,7 +16,7 @@ class Products{
     }
     fetchProduct(req,res){
         const query = `
-        SELECT prodID, prodName, prodQuantity, prodAmount, userID
+        SELECT prodID, prodName, prodQuantity, prodAmount, userID, prodUrl
         FROM Products
         WHERE prodID = ${req.params.id}`
 
@@ -38,6 +38,21 @@ class Products{
             res.json({
                 status:res.statusCode,
                 msg: 'New Product was added'
+            })
+        })
+    }
+    deleteProduct(req,res){
+        const query = `
+        DELETE prodID
+        FROM Products 
+        WHERE prodID = ${req.params.id}
+        `
+
+        db.query(query,[req.body], (err)=>{
+            if(err) throw err
+            res.json({
+                status:res.statusCode,
+                msg: 'Product was deleted'
             })
         })
     }
