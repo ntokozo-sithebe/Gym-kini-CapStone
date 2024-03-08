@@ -4,6 +4,10 @@ import { Products } from '../model/Products.js'
 
 const productRouter = express.Router()
 
+productRouter.use(bodyParser.json()) //
+
+// fetching all products
+
 productRouter.get('/', (req,res)=>{
     try{
         products.fetchProducts(req,res)
@@ -14,6 +18,9 @@ productRouter.get('/', (req,res)=>{
         })
     }
 })
+
+// getting product by the ID
+
 productRouter.get('/:id', (req,res)=>{
     try{
         products.fetchProduct(req,res)
@@ -24,23 +31,39 @@ productRouter.get('/:id', (req,res)=>{
         })
     }
 })
-productRouter.post('/addProduct', bodyParser.json(),(req,res)=>{
+// adding
+productRouter.post('/product/:id', bodyParser.json(),(req,res)=>{
     try{
-        products.Update(req,res)
+        products.addProduct(req,res)
     }catch(e){
         res.json({
             status: req.statusCode,
-            msg: 'Failed to update user'
+            msg: 'Failed to add Product'
         })
     }
 })
-productRouter.patch('/updateProduct', bodyParser.json(),(req,res)=>{
+
+// updating the product 
+productRouter.patch('/product/:id', bodyParser.json(),(req,res)=>{
     try{
-        products.Update(req,res)
+        products.updateProduct(req,res)
     }catch(e){
         res.json({
             status: res.statusCode,
             msg: 'Failed to Update product'
+        })
+    }
+})
+// deleting the product 
+
+productRouter.delete('/product/:id', bodyParser.json(), (req,res)=>{
+    try{
+        products.deleteProducts(req,res)
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to remove product'
+
         })
     }
 })
