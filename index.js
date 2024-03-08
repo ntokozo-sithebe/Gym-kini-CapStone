@@ -34,13 +34,17 @@ app.use(
 )
 
 app.get('^/$|/gym\'kini', (req,res)=>{
-    res.status(200).sendFile(path.join(_dirname, './static/index.html'))
+    res.status(200).sendFile(path.join(__dirname, './static/index.html'))
 })
 
 app.use('/users', userRouter)
 app.use('/products', productRouter)
 app.use('/cart',cartRouter)
 app.use(errorHandling)
+
+
+console.log( process.env.DB_HOST )
+
 app.listen(port, ()=>{
     console.log(`Gym'kini server is running on port ${port}`);
 })
