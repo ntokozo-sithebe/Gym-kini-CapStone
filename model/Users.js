@@ -1,5 +1,5 @@
 import { connection as db } from "../config/config.js";
-import { hashSync, compare } from "bcrypt";
+import { hash, compare } from "bcrypt";
 import { createToken } from "../middleware/AuthenticateUser.js";
 // import {query} from "express"
 
@@ -37,9 +37,14 @@ class Users {
       emailAdd: data.emailAdd,
       userPassword: data.userPassword,
     };
-    const query = `
-        INSERT INTO Users
-        SET ?;`;
+    
+     const query =
+    // = `SELECT userID, firstName, lastName,gender, emailAddress, userPassword, userRole
+    //     FROM Users;`
+
+    
+        `INSERT INTO Users
+        SET ?;`
 
     db.query(query, [data], (err) => {
       if (err) {
@@ -88,7 +93,7 @@ class Users {
       });
     });
   }
-  login(req, res) {
+  userLogin(req, res) {
     const { emailAdd, userPassword } = req.body;
     const query = `
         SELECT userID, firstName, lastName, userAge, gender, emailAddress, userPassword, userRole

@@ -34,7 +34,7 @@ productRouter.post('/addProduct', bodyParser.json(),(req,res)=>{
         })
     }
 })
-productRouter.patch('/UpdateProduct', bodyParser.json(),(req,res)=>{
+productRouter.patch('/updateProduct', bodyParser.json(),(req,res)=>{
     try{
         products.Update(req,res)
     }catch(e){

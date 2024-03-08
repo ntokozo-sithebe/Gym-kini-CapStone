@@ -1,9 +1,9 @@
 // 2 functions -to create token and verify token
 import {config} from "dotenv"
 config()
-import  pkg  from "jsonwebtoken"
-const { jwt } = pkg
-// const {sign, verify} = jwt
+import  jwt  from "jsonwebtoken"
+// const { jwt } = pkg
+ const {sign, verify} = jwt
 
 // remember that the sign is for the payload
 
