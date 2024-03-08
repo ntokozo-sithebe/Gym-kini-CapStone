@@ -1,6 +1,7 @@
 import { connection as db } from "../config/config.js";
 import { hash, compare } from "bcrypt"; // for the password encryption
 import { createToken } from "../middleware/AuthenticateUser.js";
+import { config } from "dotenv";
 // import {query} from "express"
 
 config();
