@@ -6,8 +6,8 @@ import { errorHandling } from "./middleware/ErrorHandling.js";
 import path from "path";
 import { config } from "dotenv";
 import { cartRouter } from "./controller/CartController.js";
-config()
 
+config();
 
 const app = express()
 const port = +process.env.port || 5000

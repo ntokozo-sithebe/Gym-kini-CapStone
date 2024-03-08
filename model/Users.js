@@ -3,6 +3,8 @@ import { hash, compare } from "bcrypt"; // for the password encryption
 import { createToken } from "../middleware/AuthenticateUser.js";
 // import {query} from "express"
 
+config();
+
 class Users {
   fetchUsers(req, res) {
     const query = `SELECT userID, firstName, lastName,gender, emailAddress, userPassword, userRole
