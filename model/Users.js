@@ -1,5 +1,5 @@
 import { connection as db } from "../config/config.js";
-import { hash, compare } from "bcrypt";
+import { hash, compare } from "bcrypt"; // for the password encryption
 import { createToken } from "../middleware/AuthenticateUser.js";
 // import {query} from "express"
 
@@ -31,18 +31,15 @@ class Users {
     });
   }
   async createUser(req, res) {
+    // this is for the payload - from user
     let data = req.body;
     data.userPassword = await hash(data?.userPassword, 10);
     let user = {
-      emailAdd: data.emailAdd,
+      emailAdd: data.emailAddress,
       userPassword: data.userPassword,
     };
     
      const query =
-    // = `SELECT userID, firstName, lastName,gender, emailAddress, userPassword, userRole
-    //     FROM Users;`
-
-    
         `INSERT INTO Users
         SET ?;`
 
@@ -81,12 +78,18 @@ class Users {
     });
   }
   deleteUser(req, res) {
+    const userID = req.params.id;
+    if(userID){
+      return res.status(400).json({
+        msg: 'User identification is required'
+      })
+    }
     const query = `
         DELETE FROM Users
         WHERE userID = ${req.params.id};`;
 
     db.query(query, (err) => {
-      if (err) throw err;
+      if (err) throw err
       res.json({
         status: res.statusCode,
         msg: `User information has been removed`,
@@ -108,6 +111,7 @@ class Users {
           msg: "You provided a wrong email address",
         });
       } else {
+        // to validate the password
         const properPass = await compare(userPassword, result[0].userPassword);
         if (validPass) {
           const token = createToken({
