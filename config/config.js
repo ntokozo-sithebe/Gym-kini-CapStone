@@ -8,7 +8,7 @@ let connection = createPool({
   user: process.env.DB_User,
   password: process.env.DB_UserPassword,
   multipleStatements: true,
-  connectionLimit: 30
+  connectionLimit: 30,
 
 })
 
