@@ -32,7 +32,7 @@ productRouter.get('/:id', (req,res)=>{
     }
 })
 // adding
-productRouter.post('/product/add', bodyParser.json(),(req,res)=>{
+productRouter.post('/product', bodyParser.json(),(req,res)=>{
     try{
         products.addProduct(req,res)
     }catch(e){
