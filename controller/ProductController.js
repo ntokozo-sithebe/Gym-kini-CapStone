@@ -37,7 +37,7 @@ productRouter.post('/product/add', bodyParser.json(),(req,res)=>{
         products.addProduct(req,res)
     }catch(e){
         res.json({
-            status: req.statusCode,
+            status: res.statusCode,
             msg: 'Failed to add Product'
         })
     }
