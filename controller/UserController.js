@@ -30,7 +30,7 @@ userRouter.get('/id',(req,res)=>{
         })
     }
 })
-
+// adding a user
 userRouter.post('/register', bodyParser.json(),(req,res)=>{
     try{
         users.createUser(req,res)
@@ -43,10 +43,23 @@ userRouter.post('/register', bodyParser.json(),(req,res)=>{
 
     }
 })
+// updating a user
+userRouter.patch('/update/:id', bodyParser.json(),(req,res)=>{
+    try{
+        users.updateUser(req,res)
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to update user'
+            
+        })
+
+    }
+})
 
 // deleting the product
 
-userRouter.delete('/user/:id', bodyParser.json(),(req,res)=>{
+userRouter.delete('/delete/:id', bodyParser.json(),(req,res)=>{
     try{
         users.deleteUser(req,res)
     }catch(e){
