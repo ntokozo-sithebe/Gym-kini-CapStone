@@ -69,7 +69,8 @@ productRouter.delete('/product/:id', bodyParser.json(), (req,res)=>{
 })
 
 export{
-    productRouter
+    productRouter,
+    express
 }
 
 
