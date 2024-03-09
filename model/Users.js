@@ -86,18 +86,19 @@ class Users {
       return res.status(400).json({
         msg: 'User identification is required'
       })
-    }
-    const query = `
-        DELETE FROM Users
-        WHERE userID = ${req.params.id};`;
-
-    db.query(query, (err) => {
-      if (err) throw err
-      res.json({
-        status: res.statusCode,
-        msg: `User information has been removed`,
+    }else{
+      const query = `
+          DELETE FROM Users
+          WHERE userID = ${req.params.id};`;
+  
+      db.query(query, (err) => {
+        if (err) throw err
+        res.json({
+          status: res.statusCode,
+          msg: `User information has been removed`,
+        });
       });
-    });
+    }
   }
   userLogin(req, res) {
     const { emailAdd, userPassword } = req.body;
