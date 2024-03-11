@@ -8,7 +8,7 @@ class Users {
         FROM Users;`;
 
     db.query(query, (err, results) => {
-      if (err) throw err
+      if (err) throw err;
       res.json({
         status: res.statusCode,
         results,
@@ -18,6 +18,7 @@ class Users {
   fetchUser(req, res) {
     const query = `
         SELECT userID, firstName, lastName, gender, emailAddress, userPassword, userRole
+        FROM Users
         WHERE userID = ${req.params.id};
         `;
 
@@ -34,13 +35,12 @@ class Users {
     let data = req.body;
     data.userPassword = await hash(data?.userPassword, 10);
     let user = {
-      emailAdd: data.emailAddress,
+      emailAddress: data.emailAddress,
       userPassword: data.userPassword,
     };
-    
-     const query =
-        `INSERT INTO Users
-        SET ?;`
+
+    const query = `INSERT INTO Users
+        SET ?;`;
 
     db.query(query, [data], (err) => {
       if (err) {
@@ -78,17 +78,17 @@ class Users {
   }
   deleteUser(req, res) {
     const userID = req.params.id;
-    if(userID){
+    if (userID) {
       return res.status(400).json({
-        msg: 'User identification is required'
-      })
-    }else{
+        msg: "User identification is required",
+      });
+    } else {
       const query = `
           DELETE FROM Users
           WHERE userID = ${req.params.id};`;
-  
+
       db.query(query, (err) => {
-        if (err) throw err
+        if (err) throw err;
         res.json({
           status: res.statusCode,
           msg: `User information has been removed`,
@@ -97,7 +97,7 @@ class Users {
     }
   }
   userLogin(req, res) {
-    const { emailAdd, userPassword } = req.body;
+    const { emailAddress, userPassword } = req.body;
     const query = `
         SELECT userID, firstName, lastName, userAge, gender, emailAddress, userPassword, userRole
         FROM Users
@@ -115,7 +115,7 @@ class Users {
         const properPass = await compare(userPassword, result[0].userPassword);
         if (validPass) {
           const token = createToken({
-            emailAdd,
+            emailAddress,
             userPassword,
           });
           res.json({

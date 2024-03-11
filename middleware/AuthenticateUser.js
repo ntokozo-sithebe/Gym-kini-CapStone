@@ -9,7 +9,7 @@ import  jwt  from "jsonwebtoken"
 
 function createToken(user){
     return sign({
-        emailAdd: user.emailAdd,
+        emailAddress: user.emailAddress,
         UserPassword: user.userPassword
     },
     process.env.SECRET_KEY,

@@ -20,7 +20,7 @@ userRouter.get('/',(req,res)=>{
 
 // fetching user by Id
 
-userRouter.get('/id',(req,res)=>{
+userRouter.get('/:id',(req,res)=>{
     try{
         users.fetchUser(req,res)
     }catch(e){
@@ -81,6 +81,8 @@ userRouter.post('/login', bodyParser.json(), (req,res)=>{
         })
     }
 })
+
+// need to create a path for how a user cat delete, add, update a cart --- so delete cart controller
 
 export {
     userRouter,
