@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios';
-import { SweetAlert } from 'sweetalert';
+import { sweet } from 'sweetalert';
 const myURL = 'https://gym-kini-capstone.onrender.com'
 
 export default createStore({
@@ -39,7 +39,7 @@ export default createStore({
           context.commit("setUsers", results)
         }
       }catch(e){
-        SweetAlert({
+        sweet({
           title: "Error",
           text: "An error whilst retrieving the users",
           icon: "error",
@@ -53,7 +53,7 @@ export default createStore({
         if (result){
           context.commit("setUser",result);
         }else{
-          SweetAlert({
+          sweet({
             title: "Retrieving a single user",
             text: " User was not found",
             icon: "userInfo",
@@ -61,7 +61,7 @@ export default createStore({
           })
         }
       }catch(e){
-        SweetAlert({
+        sweet({
           title: "Error",
           text: "A user was not found",
           icon:"error",
@@ -75,7 +75,7 @@ export default createStore({
         if (result){
           context.dispatch("setUser",result);
         }else{
-          SweetAlert({
+          sweet({
             title: "Adding a single user",
             text: " User was not added",
             icon: "userInfo",
@@ -83,9 +83,31 @@ export default createStore({
           })
         }
       }catch(e){
-        SweetAlert({
+        sweet({
           title: "Error",
           text: "A user was not added",
+          icon:"error",
+          timer: 2000,
+        })
+      }
+    },
+    async updateUser(context, userInfo){
+      try{
+        let {result} = (await axios.patch(`${myURL}.users/${userInfo.id}`)).data
+        if (result){
+          context.dispatch("setUser",result);
+        }else{
+          sweet({
+            title: "Updated a single user",
+            text: " User was not Updated",
+            icon: "userInfo",
+            timer: 2000,
+          })
+        }
+      }catch(e){
+        sweet({
+          title: "Error",
+          text: "A user was not Updated",
           icon:"error",
           timer: 2000,
         })
@@ -97,7 +119,7 @@ export default createStore({
         if (result){
           context.dispatch("setUser",result);
         }else{
-          SweetAlert({
+          sweet({
             title: "Deleting a single user",
             text: " User was not deleted",
             icon: "userInfo",
@@ -105,14 +127,52 @@ export default createStore({
           })
         }
       }catch(e){
-        SweetAlert({
+        sweet({ 
           title: "Error",
           text: "A user was not deleted",
           icon:"error",
           timer: 2000,
         })
       }
-    }
+    },
+    async fetchProducts(context){
+      try{
+        let {results} = (await axios.get(`${myURL}products`)).data
+        if (results){
+          context.commit("setProducts", results);
+        }
+      }catch(e){
+        sweet({
+          title: "Error",
+          text: "An error occurred when retrieving the products",
+          icon: "userInfo",
+          timer: 2000,
+        });
+      }
+    },
+    async fetchProduct(context, userInfo){
+      try{
+        let {result} = (await axios.get(`${myURL}products/${userInfo.id}`)).data;
+        if (result){
+          context.commit("setProducts", result);
+        }else{
+          sweet({
+            
+          })
+        }
+      }catch(e){
+        sweet({
+          title: "Error",
+          text: "An error occurred when retrieving the products",
+          icon: "userInfo",
+          timer: 2000,
+        });
+      }
+    },
+
+
+
+
     
 
   },
