@@ -2,6 +2,7 @@ import { connection as db } from "../config/config.js";
 import { hash, compare } from "bcrypt"; // for the password encryption
 import { createToken } from "../middleware/AuthenticateUser.js";
 
+
 class Users {
   fetchUsers(req, res) {
     const query = `SELECT userID, firstName, lastName,gender, emailAddress, userPassword, userRole
@@ -69,8 +70,8 @@ class Users {
         WHERE userID = ${req.params.id}`;
 
     db.query(query, [data], (err) => {
-      if (err)
-        throw err.res.json({
+      if (err) throw err
+      res.json({
           status: res.statusCode,
           msg: "The user information is updated",
         });
@@ -132,6 +133,14 @@ class Users {
       }
     });
   }
+  
+
+
+
+
 }
 
-export { Users };
+export { 
+  Users,
+
+ };

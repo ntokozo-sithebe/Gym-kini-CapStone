@@ -2,9 +2,13 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import {users} from '../model/index.js'
 import { verifyAToken } from '../middleware/AuthenticateUser.js'
+import { cart } from '../model/index.js'
 
 
 const userRouter = express.Router()
+const cartRouter = express.Router()
+
+
 
 // fetching all users
 userRouter.get('/',(req,res)=>{
@@ -31,7 +35,7 @@ userRouter.get('/:id',(req,res)=>{
     }
 })
 // adding a user
-userRouter.post('/register', bodyParser.json(),(req,res)=>{
+userRouter.post('/register',verifyAToken, bodyParser.json(),(req,res)=>{
     try{
         users.createUser(req,res)
     }catch(e){
@@ -53,7 +57,7 @@ userRouter.patch('/update/:id', bodyParser.json(),(req,res)=>{
             msg: 'Failed to update user'
             
         })
-
+ 
     }
 })
 
@@ -71,7 +75,7 @@ userRouter.delete('/delete/:id', bodyParser.json(),(req,res)=>{
 })
 
 // login for user
-userRouter.post('/login', bodyParser.json(), (req,res)=>{
+userRouter.post('/login',verifyAToken, bodyParser.json(), (req,res)=>{
     try{
         users.login(req,res)
     }catch(e){
@@ -82,9 +86,50 @@ userRouter.post('/login', bodyParser.json(), (req,res)=>{
     }
 })
 
-// need to create a path for how a user cat delete, add, update a cart --- so delete cart controller
+// need to create a path for how a user can delete, add, update a cart --- so delete cart controller
+
+// End-points for my Cart
+
+userRouter.get('/:cID/cart',(req,res)=>{
+    try{
+        cart.fetchOrders(req,res)
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to retrieve products from Cart'
+        })
+    }
+})
+
+userRouter.delete('/delete/:cID/cart',(req,res)=>{
+    try{
+         cart.deleteOrder(req,res)
+        // const userID = req.params.id
+        res.json({msg:'Item has been removed'})
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to delete product from Cart'
+        })
+    }
+})
+
+userRouter.patch('/update/:cID/cart',(req,res)=>{
+    try{
+        cart.fetchOrders(req,res)
+        req.json({msg:'Item has been updated'})
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to Update products from Cart'
+        })
+    }
+})
+
+
 
 export {
     userRouter,
-    express
+    express,
+    cartRouter
 }

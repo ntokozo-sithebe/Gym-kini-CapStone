@@ -3,10 +3,13 @@ import { connection as db } from "../config/config.js"
 class Cart{
     fetchOrders(req,res){
 
-        // const {prodID, prodName, prodQuantity, prodAmount, userID } = req.body;
 
-        const query = `SELECT prodID, prodName prodQuantity, prodAmount, userID
-        FROM Products , Users;`
+        const query = `SELECT p.prodID, p.prodName, p.prodQuantity, p.prodAmount, u.userID
+        FROM Cart
+        INNER JOIN Products p
+        USING (prodID) 
+        INNER JOIN Users u
+        USING (userID) ;`
 
         db.query(query,(err,result)=>{
             if(err) throw err
@@ -18,8 +21,10 @@ class Cart{
     }
     deleteOrder(req,res){
         const query = `
-        DELETE FROM Products
-        WHERE prodID = ${req.params.id};`
+        DELETE 
+        FROM Cart 
+        INNER JOIN users ON cart.userID = users.userID
+        WHERE users.userID = ${req.params.id};`
 
         db.query(query, (err)=>{
             if(err) throw err
@@ -31,15 +36,19 @@ class Cart{
     }
     updateOrder(req,res){
         const query = `
-        SELECT prodID, prodName prodQuantity, prodAmount, userID
-        FROM Products , Users;
+        SELECT p.prodID, p.prodName, p.prodQuantity, p.prodAmount, u.userID
+        FROM Cart
+        INNER JOIN Products p
+        USING (prodID) 
+        INNER JOIN Users u
+        USING (userID) ;
        `
 
         db.query(query, (err)=>{
             if(err) throw err
             res.json({
                 status:res.statusCode,
-                msg: `Items has been removed`
+                msg: `Item has been updated`
             })
         })
     }

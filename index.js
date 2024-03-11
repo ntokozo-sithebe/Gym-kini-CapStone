@@ -5,7 +5,7 @@ import cors from 'cors'
 import { errorHandling } from "./middleware/ErrorHandling.js";
 import path from "path";
 import { config } from "dotenv";
-import { cartRouter } from "./controller/CartController.js";
+import { cartRouter } from "./controller/UserController.js";
 
 config();
 

@@ -17,7 +17,7 @@ class Products{
         const query = `
         SELECT prodID, prodName, prodQuantity, prodAmount, userID, prodUrl
         FROM Products
-        WHERE prodID = ${req.params.id}`
+        WHERE prodID = ${req.params.id}`;
 
         db.query(query,(err,result)=>{
             if(err) throw err
