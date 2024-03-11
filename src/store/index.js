@@ -1,6 +1,6 @@
 import { createStore } from 'vuex'
 import axios from 'axios';
-import { SweetAlert } from 'sweetalert/typings/core';
+import { SweetAlert } from 'sweetalert';
 const myURL = 'https://gym-kini-capstone.onrender.com'
 
 export default createStore({
