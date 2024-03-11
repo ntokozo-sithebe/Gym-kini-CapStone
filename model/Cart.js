@@ -1,8 +1,7 @@
-// import { Products } from "./Products.js";
-// import { Users } from "./Users.js";
+import { connection as db } from "../config/config.js"
 
 class Cart{
-    fetchProduct(req,res){
+    fetchOrders(req,res){
 
         // const {prodID, prodName, prodQuantity, prodAmount, userID } = req.body;
 
@@ -17,10 +16,24 @@ class Cart{
             })
         })
     }
-    deleteProduct(req,res){
+    deleteOrder(req,res){
         const query = `
         DELETE FROM Products
         WHERE prodID = ${req.params.id};`
+
+        db.query(query, (err)=>{
+            if(err) throw err
+            res.json({
+                status:res.statusCode,
+                msg: `Items has been removed`
+            })
+        })
+    }
+    updateOrder(req,res){
+        const query = `
+        SELECT prodID, prodName prodQuantity, prodAmount, userID
+        FROM Products , Users;
+       `
 
         db.query(query, (err)=>{
             if(err) throw err

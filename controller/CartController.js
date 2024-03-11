@@ -1,13 +1,11 @@
 import express from 'express'
-import { Users } from "../model/Users.js";
-import { Products } from "../model/Products.js";
-import { Cart } from "../model/Cart.js";
+import { cart } from "../model/index.js";
 
 const cartRouter = express.Router();
 
-cartRouter.get("/user/:id/cart", (req, res) => {
+cartRouter.get("/order", (req, res) => {
   try {
-    users.fetchCart(req, res);
+    cart.fetchOrders(req, res);
   } catch (e) {
     res.json({
       status: res.statusCode,
@@ -15,9 +13,9 @@ cartRouter.get("/user/:id/cart", (req, res) => {
     });
   }
 });
-cartRouter.post("/user/:id/cart", (req, res) => {
+cartRouter.post("/", (req, res) => {
   try {
-    users.fetchUsers(req, res);
+    //cart.
   } catch (e) {
     res.json({
       status: res.statusCode,
@@ -25,9 +23,9 @@ cartRouter.post("/user/:id/cart", (req, res) => {
     });
   }
 });
-cartRouter.patch("/user/:id/cart/:id", (req, res) => {
+cartRouter.patch("/UpdateOrder", (req, res) => {
   try {
-    users.UpdateCart(req, res);
+    cart.updateOrder(res,req) 
   } catch (e) {
     res.json({
       status: res.statusCode,
@@ -35,9 +33,9 @@ cartRouter.patch("/user/:id/cart/:id", (req, res) => {
     });
   }
 });
-cartRouter.delete("/user/:id/cart", (req, res) => {
+cartRouter.delete("/deleteOrder ", (req, res) => {
   try {
-    users.deleteItem(req, res);
+    cart.deleteOrder(req, res);
   } catch (e) {
     res.json({
       status: res.statusCode,

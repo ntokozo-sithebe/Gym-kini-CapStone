@@ -1,6 +1,5 @@
 import { Users } from "./Users.js";
 import { Products } from "./Products.js";
-import { verifyAToken } from "../middleware/AuthenticateUser.js";
 import { Cart } from "./Cart.js";
 
 

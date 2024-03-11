@@ -1,8 +1,4 @@
 import { connection as db } from "../config/config.js"
-import { config } from "dotenv";
-
-
-config();
 
 class Products{
     fetchProducts(req,res){

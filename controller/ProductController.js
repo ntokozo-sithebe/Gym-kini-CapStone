@@ -1,6 +1,6 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { Products } from '../model/Products.js'
+import { products } from '../model/index.js'
 
 const productRouter = express.Router()
 
@@ -69,8 +69,7 @@ productRouter.delete('/product/:id', bodyParser.json(), (req,res)=>{
 })
 
 export{
-    productRouter,
-    express
+    productRouter
 }
 
 
