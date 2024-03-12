@@ -1,7 +1,10 @@
 <template>
     <div class="container">
         <div class="row">
-            <h2>Contact</h2>
+            <div class="col">
+                
+
+            </div>
         </div>
 
     </div>
@@ -14,5 +17,12 @@
 </script>
 
 <style scoped>
+.container{
+    background-image: url('https://i.ibb.co/GpDpTGB/IMG-20240107-123230-833-1.webp');
+    /* background-repeat: no-repeat;
+    background-position: fit-content;
+    background-position: cover; */
+}
+
 
 </style>

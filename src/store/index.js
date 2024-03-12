@@ -1,7 +1,8 @@
 import { createStore } from 'vuex'
 import axios from 'axios';
-import { sweet } from 'sweetalert';
+import sweet from "sweetalert";
 const myURL = 'https://gym-kini-capstone.onrender.com'
+
 
 export default createStore({
   state: {
@@ -152,12 +153,15 @@ export default createStore({
     },
     async fetchProduct(context, userInfo){
       try{
-        let {result} = (await axios.get(`${myURL}products/${userInfo.id}`)).data;
+        let {result} = (await axios.get(`${myURL}product/${userInfo.id}`)).data;
         if (result){
-          context.commit("setProducts", result);
+          context.commit("setProduct", result);
         }else{
           sweet({
-            
+            title: "Fetching a single product",
+            text: " Product was not found",
+            icon: "userInfo",
+            timer: 2000,
           })
         }
       }catch(e){
@@ -169,6 +173,7 @@ export default createStore({
         });
       }
     },
+    
 
 
 
