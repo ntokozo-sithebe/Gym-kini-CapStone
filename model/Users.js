@@ -16,6 +16,10 @@ class Users {
       });
     });
   }
+
+  // fetching an individual user 
+  // using re.params.id --- number at the end of (the end point -- specifies/ targets)
+
   fetchUser(req, res) {
     const query = `
         SELECT userID, firstName, lastName, gender, emailAddress, userPassword, userRole
@@ -31,6 +35,9 @@ class Users {
       });
     });
   }
+
+// adding a new user = payload = token 
+
   async createUser(req, res) {
     // this is for the payload - from user
     let data = req.body;
@@ -40,16 +47,18 @@ class Users {
       userPassword: data.userPassword,
     };
 
-    const query = `INSERT INTO Users
+    const query = `
+    INSERT INTO Users
         SET ?;`;
 
     db.query(query, [data], (err) => {
       if (err) {
         res.json({
           status: res.statusCode,
-          msg: "Email address already exists",
+          msg: "Email address already exists, use another one",
         });
       } else {
+        // creates the user token 
         let token = createToken(user);
         res.json({
           status: res.statusCode,
@@ -59,7 +68,9 @@ class Users {
       }
     });
   }
+
   async updateUser(req, res) {
+    // const userID = req.params.id
     const data = req.body;
     if (data?.userPassword) {
       data.userPassword = await hash(data?.userPassword, 8);
@@ -69,27 +80,34 @@ class Users {
         SET ?
         WHERE userID = ${req.params.id}`;
 
-    db.query(query, [data], (err) => {
+    db.query(query, [req.body], (err) => {
       if (err) throw err
+      res.json({
+        msg: 'Failed to update user'
+      })
       res.json({
           status: res.statusCode,
           msg: "The user information is updated",
         });
     });
   }
+
   deleteUser(req, res) {
     const userID = req.params.id;
-    if (userID) {
+    if (!userID) {
       return res.status(400).json({
         msg: "User identification is required",
       });
     } else {
       const query = `
           DELETE FROM Users
-          WHERE userID = ${req.params.id};`;
+          WHERE userID = ?;`;
 
       db.query(query, (err) => {
-        if (err) throw err;
+        if (err){ 
+        res.json({
+          msg: 'Failed to delete the User'
+        })}
         res.json({
           status: res.statusCode,
           msg: `User information has been removed`,
@@ -97,6 +115,7 @@ class Users {
       });
     }
   }
+
   userLogin(req, res) {
     const { emailAddress, userPassword } = req.body;
     const query = `
@@ -125,6 +144,8 @@ class Users {
             token,
             result: result[0],
           });
+        }else{
+
           res.json({
             status: res.statusCode,
             msg: "Please provide the correct password",

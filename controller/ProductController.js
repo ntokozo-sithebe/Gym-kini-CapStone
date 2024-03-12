@@ -2,8 +2,9 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import { products } from '../model/index.js'
 
-const productRouter = express.Router()
+const productRouter = express.Router();
 
+//json middleware parsers requests
 productRouter.use(bodyParser.json()) //
 
 // fetching all products
@@ -32,7 +33,7 @@ productRouter.get('/:id', (req,res)=>{
     }
 })
 // adding
-productRouter.post('/product/:add', bodyParser.json(),(req,res)=>{
+productRouter.post('/produce', bodyParser.json(),(req,res)=>{
     try{
         products.addProduct(req,res)
     }catch(e){
@@ -44,7 +45,7 @@ productRouter.post('/product/:add', bodyParser.json(),(req,res)=>{
 })
 
 // updating the product 
-productRouter.patch('/update/:id', bodyParser.json(),(req,res)=>{
+productRouter.patch('/product/:id', bodyParser.json(),(req,res)=>{
     try{
         products.updateProduct(req,res)
     }catch(e){
@@ -56,7 +57,7 @@ productRouter.patch('/update/:id', bodyParser.json(),(req,res)=>{
 })
 // deleting the product 
 
-productRouter.delete('/delete/:id', bodyParser.json(), (req,res)=>{
+productRouter.delete('/product/:id', bodyParser.json(), (req,res)=>{
     try{
         products.deleteProduct(req,res)
     }catch(e){

@@ -35,20 +35,20 @@ userRouter.get('/:id',(req,res)=>{
     }
 })
 // adding a user
-userRouter.post('/register',verifyAToken, bodyParser.json(),(req,res)=>{
+userRouter.post('/add',verifyAToken, bodyParser.json(),(req,res)=>{
     try{
         users.createUser(req,res)
     }catch(e){
         res.json({
             status: res.statusCode,
-            msg: 'Failed to create user'
+            msg: 'Failed to add a new user'
             
         })
 
     }
 })
 // updating a user
-userRouter.patch('/update/:id', bodyParser.json(),(req,res)=>{
+userRouter.patch('/user/:id', bodyParser.json(),(req,res)=>{
     try{
         users.updateUser(req,res)
     }catch(e){
@@ -63,7 +63,7 @@ userRouter.patch('/update/:id', bodyParser.json(),(req,res)=>{
 
 // deleting the product
 
-userRouter.delete('/delete/:id', bodyParser.json(),(req,res)=>{
+userRouter.delete('/user/:id', bodyParser.json(),(req,res)=>{
     try{
         users.deleteUser(req,res)
     }catch(e){
@@ -90,7 +90,7 @@ userRouter.post('/login',verifyAToken, bodyParser.json(), (req,res)=>{
 
 // End-points for my Cart
 
-userRouter.get('/:cID/cart',(req,res)=>{
+userRouter.get('/:cID/cart',verifyAToken,(req,res)=>{
     try{
         cart.fetchOrders(req,res)
     }catch(e){
@@ -103,8 +103,8 @@ userRouter.get('/:cID/cart',(req,res)=>{
 
 userRouter.delete('/delete/:cID/cart',(req,res)=>{
     try{
+        const cID = req.params.id
          cart.deleteOrder(req,res)
-        // const userID = req.params.id
         res.json({msg:'Item has been removed'})
     }catch(e){
         res.json({
@@ -116,6 +116,7 @@ userRouter.delete('/delete/:cID/cart',(req,res)=>{
 
 userRouter.patch('/update/:cID/cart',(req,res)=>{
     try{
+        const cID = req.params.id
         cart.fetchOrders(req,res)
         req.json({msg:'Item has been updated'})
     }catch(e){

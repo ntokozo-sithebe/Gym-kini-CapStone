@@ -2,10 +2,10 @@ import { connection as db } from "../config/config.js"
 
 class Products{
     fetchProducts(req,res){
-        const query = `SELECT prodID, prodName, prodQuantity, prodAmount, userID, prodUrl
+        const query = `SELECT prodID, prodName, prodQuantity, prodAmount, prodUrl
         FROM Products;`
 
-        db.query(query,(err,results)=>{
+        db.query(query,(err, results)=>{
             if(err) throw err
             res.json({
                 status: res.statusCode,
@@ -15,11 +15,11 @@ class Products{
     }
     fetchProduct(req,res){
         const query = `
-        SELECT prodID, prodName, prodQuantity, prodAmount, userID, prodUrl
+        SELECT prodID, prodName, prodQuantity, prodAmount, prodUrl
         FROM Products
-        WHERE prodID = ${req.params.id}`;
+        WHERE prodID = ?`;
 
-        db.query(query,(err,result)=>{
+        db.query(query, [re.params.id],(err,result)=>{
             if(err) throw err
             res.json({
                 status: res.statusCode,
@@ -42,18 +42,41 @@ class Products{
     }
     deleteProduct(req,res){
         const query = `
-        DELETE prodID
-        FROM Products 
-        WHERE prodID = ${req.params.id}
+        DELETE FROM Products 
+        WHERE prodID = ?;
         `
 
-        db.query(query,[req.body], (err)=>{
-            if(err) throw err
+        db.query(query,[prodID], (err)=>{
+            if(err){
+                res.json({
+                    msg: 'Failed to delete product'
+                })
+            }
             res.json({
                 status:res.statusCode,
                 msg: 'Product was deleted'
             })
         })
+    }
+    updateProduct(req,res){
+        const query = `
+        UPDATE PRODUCTS 
+        SET ?
+        WHERE prodID = $(req.params.id)
+        `
+
+        db.query(query, [req.body], (err) =>{
+            if(err){
+                res.json({
+                    msg: 'Failed to update product'
+                })
+            }
+            res.json({
+                status: res.statusCode,
+                msg: 'Product has been updated'
+            })
+        });
+
     }
 }
 
