@@ -3,7 +3,6 @@ import { connection as db } from "../config/config.js"
 class Cart{
     fetchOrders(req,res){
 
-
         const query = `SELECT p.prodID, p.prodName, p.prodQuantity, p.prodAmount, u.userID
         FROM Cart
         INNER JOIN Products p
@@ -24,7 +23,7 @@ class Cart{
         DELETE 
         FROM Cart 
         INNER JOIN users ON cart.userID = users.userID
-        WHERE users.userID = ${req.params.id};`
+        WHERE users.userID = ?;`
 
         db.query(query, (err)=>{
             if(err) throw err
@@ -34,24 +33,43 @@ class Cart{
             })
         })
     }
-    updateOrder(req,res){
-        const query = `
-        SELECT p.prodID, p.prodName, p.prodQuantity, p.prodAmount, u.userID
-        FROM Cart
-        INNER JOIN Products p
-        USING (prodID) 
-        INNER JOIN Users u
-        USING (userID) ;
-       `
 
-        db.query(query, (err)=>{
-            if(err) throw err
+    createOrder(req, res) {
+        const query = `
+        INSERT INTO Cart
+            SET ?;`;
+    
+        db.query(query, [req.body], (err) => {
+          if (err) {
             res.json({
-                status:res.statusCode,
-                msg: `Item has been updated`
-            })
-        })
+              status: res.statusCode,
+              msg: "Product has been added into cart",
+            });
+          } 
+        });
     }
+
+
+
+    // updateOrder(req,res){
+    //     const query = `
+    //     SELECT p.prodID, p.prodName, p.prodQuantity, p.prodAmount, u.userID
+    //     FROM Cart
+    //     INNER JOIN Products p
+    //     USING (prodID) 
+    //     INNER JOIN Users u
+    //     USING (userID) ;
+    //    `
+
+    //     db.query(query, (err)=>{
+    //         if(err) throw err
+    //         res.json({
+    //             status:res.statusCode,
+    //             msg: `Item has been updated`
+    //         })
+    //     })
+    // }
+    
 }
 export{
     Cart

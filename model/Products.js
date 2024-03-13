@@ -58,19 +58,17 @@ class Products{
             })
         })
     }
-    updateProduct(req,res){
+
+
+    updateProduct(req, res){
         const query = `
-        UPDATE PRODUCTS 
+        UPDATE Products 
         SET ?
-        WHERE prodID = $(req.params.id)
-        `
+        WHERE prodID = ${req.params.id};
+        `;
 
         db.query(query, [req.body], (err) =>{
-            if(err){
-                res.json({
-                    msg: 'Failed to update product'
-                })
-            }
+            if(err) throw err
             res.json({
                 status: res.statusCode,
                 msg: 'Product has been updated'
@@ -78,6 +76,8 @@ class Products{
         });
 
     }
+   
+    
 }
 
 export{

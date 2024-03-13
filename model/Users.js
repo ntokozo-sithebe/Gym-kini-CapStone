@@ -80,11 +80,8 @@ class Users {
         SET ?
         WHERE userID = ${req.params.id}`;
 
-    db.query(query, [req.body], (err) => {
-      if (err) throw err
-      res.json({
-        msg: 'Failed to update user'
-      })
+    db.query(query, [data], (err) => {
+      if(err) throw err
       res.json({
           status: res.statusCode,
           msg: "The user information is updated",
@@ -103,7 +100,7 @@ class Users {
           DELETE FROM Users
           WHERE userID = ?;`;
 
-      db.query(query, (err) => {
+      db.query(query, [userID], (err) => {
         if (err){ 
         res.json({
           msg: 'Failed to delete the User'
@@ -123,7 +120,7 @@ class Users {
         FROM Users
         WHERE emailAddress = '${emailAddress}';`;
 
-    db.query(query, async (err, result) => {
+    db.query(query, [req.body], async(err, result) => {
       if (err) throw err;
       if (!result?.length) {
         res.json({

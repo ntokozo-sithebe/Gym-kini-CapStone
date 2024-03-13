@@ -61,11 +61,14 @@ userRouter.patch('/user/:id', bodyParser.json(),(req,res)=>{
     }
 })
 
-// deleting the product
+// deleting the user
 
 userRouter.delete('/user/:id', bodyParser.json(),(req,res)=>{
     try{
         users.deleteUser(req,res)
+        res.json({
+            msg: 'User has been deleted'
+        })
     }catch(e){
         res.json({
             status: res.statusCode,
@@ -90,42 +93,42 @@ userRouter.post('/login',verifyAToken, bodyParser.json(), (req,res)=>{
 
 // End-points for my Cart
 
-userRouter.get('/:cID/cart',verifyAToken,(req,res)=>{
-    try{
-        cart.fetchOrders(req,res)
-    }catch(e){
-        res.json({
-            status: res.statusCode,
-            msg: 'Failed to retrieve products from Cart'
-        })
-    }
-})
+// userRouter.get('/:cID/cart',verifyAToken,(req,res)=>{
+//     try{
+//         cart.fetchOrders(req,res)
+//     }catch(e){
+//         res.json({
+//             status: res.statusCode,
+//             msg: 'Failed to retrieve products from Cart'
+//         })
+//     }
+// })
 
-userRouter.delete('/delete/:cID/cart',(req,res)=>{
-    try{
-        const cID = req.params.id
-         cart.deleteOrder(req,res)
-        res.json({msg:'Item has been removed'})
-    }catch(e){
-        res.json({
-            status: res.statusCode,
-            msg: 'Failed to delete product from Cart'
-        })
-    }
-})
+// userRouter.delete('/:id/cart',(req,res)=>{
+//     try{
+//         const cID = req.params.id
+//          cart.deleteOrder(req,res)
+//         res.json({msg:'Item has been removed'})
+//     }catch(e){
+//         res.json({
+//             status: res.statusCode,
+//             msg: 'Failed to delete product from Cart'
+//         })
+//     }
+// })
 
-userRouter.patch('/update/:cID/cart',(req,res)=>{
-    try{
-        const cID = req.params.id
-        cart.fetchOrders(req,res)
-        req.json({msg:'Item has been updated'})
-    }catch(e){
-        res.json({
-            status: res.statusCode,
-            msg: 'Failed to Update products from Cart'
-        })
-    }
-})
+// userRouter.patch('/update/:cID/cart',(req,res)=>{
+//     try{
+//         const cID = req.params.id
+//         cart.fetchOrders(req,res)
+//         req.json({msg:'Item has been updated'})
+//     }catch(e){
+//         res.json({
+//             status: res.statusCode,
+//             msg: 'Failed to Update products from Cart'
+//         })
+//     }
+// })
 
 
 
