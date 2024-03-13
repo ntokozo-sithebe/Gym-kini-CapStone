@@ -1,11 +1,11 @@
 <template>
     <div class="container">
         <div class="row">
-            <div class="col" v-for="info in products" :key="info.id">
+            <div class="col" v-for="info in  products" :class="info.prodID"  :key="info.id">
                 <h2 class=""> {{ info.prodName }}</h2>
             </div>
             <div>
-                <img class="img-fluid w-50" :scr="info.prodUrl" alt="productImages" loading="lazy">
+                <img class="card-img-top w-50" :scr="info.prodUrl" alt="productImages" loading="lazy">
             </div>
             <div>
                 <p>{{ info.prodQuantity }}</p><br>
@@ -20,20 +20,21 @@
 
 
 export default {
-    // name: 'ProductsView',
-    components: {},
+    name: 'ProductView',
+    components: {
+        
+
+    },
     computed: {
-        products() {
-            return this.$store.state.products;
-        }
+        product() {
+            return this.$store.state.product;
+        },
     },
     mounted() {
-        this.$store.dispatch('fetchProducts', this.$route.params);
+        this.$store.dispatch('fetchProduct', this.$route.params);
     },
 };
 
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

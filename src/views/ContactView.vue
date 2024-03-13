@@ -2,6 +2,27 @@
     <div class="container">
         <div class="row">
             <div class="col">
+                <form action="" method="post">
+                    <div class="input m-1">
+                        <textarea input type="text" class="form-control" placeholder="Name" rows="2" cols="1">
+                        </textarea>
+                    </div>
+                    <div class="input m-1">
+                        <textarea input type="text" class="form-control" placeholder="LastName" rows="2" cols="1">
+                        </textarea>
+                    </div>
+                    <div class="input m-1">
+                        <textarea input type="text" class="form-control" placeholder="Email" rows="2" cols="1">
+                        </textarea>
+                    </div>
+                    <div class="input m-1">
+                        <textarea input type="text" class="form-control" placeholder="Message" rows="2" cols="1">
+                        </textarea>
+                    </div>
+                    <button class="btn m-2 bg-white text-black">
+                        Submit
+                    </button>
+                </form>
                 
 
             </div>

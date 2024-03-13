@@ -2,9 +2,12 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <p class="fixed-bottom justify-content-center text-align-center" >
-                 Gym'kini by Ntokozo &copy; {{ currDate }}
+                <p class="fixed-bottom text-align-center text-black" >
+                 Gym'kini by Ntokozo Sithebe &copy; {{ currDate }}
                 </p> 
+            </div>
+            <div class="row">
+                
             </div>
         </div>
 

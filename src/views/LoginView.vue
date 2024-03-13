@@ -19,20 +19,20 @@
 <script>
     export default {
         name: 'LoginComp',
-  data(){
-    return{
-      showLogin: false
-    }
-  },
-  mounted(){
-    setTimeout(()=>{
-      this.showLogin = true;
-      //after 3 minutes of clicking the sight
-    },3 * 60 * 1000 
-    )
+//   data(){
+//     return{
+//       showLogin: false
+//     }
+//   },
+//   mounted(){
+//     setTimeout(()=>{
+//       this.showLogin = true; 
+//       //after 3 minutes of clicking the sight
+//     },3 * 60 * 1000 
+//     )
 
 
-  }
+//   }
     }
 </script>
 
