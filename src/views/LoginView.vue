@@ -13,6 +13,8 @@
 </div>
 
 <!-- create a key as you would a norm -->
+
+<!-- create a register <button></button> for new users right --- which will create new token  -->
     </div>
 </template>
 

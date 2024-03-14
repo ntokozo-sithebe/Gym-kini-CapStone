@@ -18,6 +18,7 @@
     text-align: center;
     background-color: #f8f8f8;
     color: #2c3e50;
+    /* text-align: center; */
   }
   
   nav {
@@ -32,4 +33,5 @@
   
   nav a.router-link-exact-active {
     color: #42b983;
+    text-align: center;
   }

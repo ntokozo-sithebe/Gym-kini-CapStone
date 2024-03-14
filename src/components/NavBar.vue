@@ -50,7 +50,7 @@
         </li>
         <li>
           <router-link to="/login" class="nav-link active">
-            Log-In
+            Login
           </router-link>
         </li>
       </ul>
@@ -58,6 +58,8 @@
   </div>
 </nav>
 </template>
+
+<!--   --- oor have the logo in the middle then user profile and login on the left and other navbar links on the right -->
 
 <script>
     export default {

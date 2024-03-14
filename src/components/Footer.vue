@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col">
                 <p class="fixed-bottom text-align-center text-black" >
                  Gym'kini by Ntokozo Sithebe &copy; {{ currDate }}
