@@ -41,7 +41,7 @@
 .container-fluid{
     background-image: url('https://i.ibb.co/GpDpTGB/IMG-20240107-123230-833-1.webp');
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: cover 70%;
     background-position: center;
     margin: 0px;
     padding: 0px;

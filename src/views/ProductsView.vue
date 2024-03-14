@@ -1,27 +1,30 @@
 <template>
     <div class="container">
-        <div class="row">
-            <div class="col" v-for="info in products" :key="info.id">
-                <h2 class=""> {{ info.prodName }}</h2>
+        <div class="row" v-if="products">
+            <div class="col" v-for="product in products" :key="product.id">
+                <h2 class=""> {{ product.prodName }}</h2>
+                <img class="img-fluid w-50" :src="product.prodUrl" alt="productImages" loading="lazy">
+                <h5>{{ product.prodID }}</h5>
+                <p>{{ product.prodQuantity }}</p><br>
+                <p>{{ product.prodAmount }}</p>
             </div>
-            <div>
-                <img class="img-fluid w-50" :scr="info.prodUrl" alt="productImages" loading="lazy">
-            </div>
-            <div>
-                <p>{{ info.prodQuantity }}</p><br>
-                <p>{{ info.prodAmount }}</p>
-            </div>
+        </div>
+        <div class="row" v-else>
+            <Spinner/>
         </div>
         
     </div>
 </template>
 
 <script>
+import Spinner from '@/components/Spinner.vue';
 
 
 export default {
     // name: 'ProductsView',
-    components: {},
+    components: {
+        Spinner
+    },
     computed: {
         products() {
             return this.$store.state.products;

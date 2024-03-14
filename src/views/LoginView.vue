@@ -10,13 +10,17 @@
           <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
           <label for="floatingPassword">Password</label>
         </div>
-        <div class="col">
+        <div class="col justify-content-center">
             <div>
-                <button> Submit </button>
+                <button @click="submitForm">
+                        Submit
+                 </button>
             </div>
             <!-- link the registerView -->
             <div>
-                <button>Register</button>
+                <button @click="registerUser">
+                    Register
+                </button>
             </div>
 
         </div>
@@ -31,22 +35,25 @@
 
 <script>
     export default {
-        name: 'LoginComp',
-//   data(){
-//     return{
-//       showLogin: false
-//     }
-//   },
-//   mounted(){
-//     setTimeout(()=>{
-//       this.showLogin = true; 
-//       //after 3 minutes of clicking the sight
-//     },3 * 60 * 1000 
-//     )
-
-
-//   }
+        name: 'LoginView',
+         data(){
+            return{
+                email: '',
+                password: ''
+            }
+         },
+         methods:{
+            submitForm(){
+                this.$store.dispatch('login', {
+                    email: this.email, password: this.password
+                })
+            },
+            registerUser(){
+                this.$router.push('/register')
+            }
+         }
     }
+
 </script>
 
 <style scoped>

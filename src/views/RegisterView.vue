@@ -25,7 +25,7 @@
   <label for="floatingPassword">Password</label>
 </div>
 <div>
-    <button> Submit </button>
+    <button @click="submitForm"> Submit </button>
 </div>
 
 
@@ -35,7 +35,22 @@
 
 <script>
     export default {
-        name:'RegisterView'
+        name:'RegisterView',
+        data(){
+          return{
+
+          }
+        },
+        methods:{
+            submitForm(){
+                this.$store.dispatch('login', {
+                    email: this.email, password: this.password
+                })
+            },
+            registerUser(){
+                this.$router.push('/register')
+            }
+         }
     }
 </script>
 
