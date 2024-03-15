@@ -56,8 +56,8 @@ export default {
 
 } */
 
- #images{
+ /* #images{
   height: 2000px;
   aspect-ratio: 1/1;
-} 
+}  */
 </style>

@@ -6,7 +6,7 @@
                 <img class="img-fluid w-50" :src="product.prodUrl" alt="productImages" loading="lazy">
                 <h5>{{ product.prodID }}</h5>
                 <p>{{ product.prodQuantity }}</p><br>
-                <p>{{ product.prodAmount }}</p>
+                <p> R {{ product.prodAmount }}</p>
             </div>
         </div>
         <div class="row" v-else>
