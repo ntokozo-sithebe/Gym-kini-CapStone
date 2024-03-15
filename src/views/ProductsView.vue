@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row" v-if="products">
-            <div class="col" v-for="product in products" :key="product.id">
+            <div class="col" v-for="product in products" :key="product">
                 <h2 class=""> {{ product.prodName }}</h2>
                 <img class="img-fluid w-50" :src="product.prodUrl" alt="productImages" loading="lazy">
                 <h5>{{ product.prodID }}</h5>
@@ -22,6 +22,7 @@ import Spinner from '@/components/Spinner.vue';
 
 export default {
     // name: 'ProductsView',
+    
     components: {
         Spinner
     },
@@ -31,8 +32,11 @@ export default {
         }
     },
     mounted() {
-        this.$store.dispatch('fetchProducts', this.$route.params);
+        this.$store.dispatch('fetchProducts');
     },
+    methods:{
+        
+    }
 };
 
 </script>

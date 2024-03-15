@@ -3,8 +3,9 @@
         <table class="table">
   <thead>
     <tr>
-      <th scope="col">#id</th>
+      <th scope="col">#ID</th>
       <th scope="col">Name</th>
+      <!-- <th scope="col">Product</th> -->
       <th scope="col">Amount</th>
       <th scope="col">Price</th>
     </tr>
@@ -13,8 +14,9 @@
     <tr v-for="product in products" :key="product.id">
       <th scope="row">{{ product.prodID }}</th>
       <td>{{ product.prodName }}</td>
+      <!-- <td><img class="img-fluid w-50" :src="product.prodUrl" alt="images"></td> -->
       <td>{{ product.prodQuantity }}</td>
-      <td>{{ product.prodAmount }}</td>
+      <td> R {{ product.prodAmount }}</td>
     </tr>
   </tbody>
 </table>

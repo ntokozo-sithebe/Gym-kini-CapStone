@@ -163,7 +163,7 @@ export default createStore({
       try {
         let { results } = (await axios.get(`${myURL}products`)).data;
         if (results) {
-          context.dispatch("setProducts", results);
+          context.commit("setProducts", results);
         }
       } catch (e) {
         sweet({
