@@ -7,7 +7,9 @@
                 <h5>{{ product.prodID }}</h5>
                 <p>{{ product.prodQuantity }}</p><br>
                 <p> R {{ product.prodAmount }}</p>
+                <button>Add to cart </button>
             </div>
+            
         </div>
         <div class="row" v-else>
             <Spinner/>
@@ -22,6 +24,11 @@ import Spinner from '@/components/Spinner.vue';
 
 export default {
     // name: 'ProductsView',
+    data(){
+        return{
+            cart : ' '
+        }
+    },
     
     components: {
         Spinner
