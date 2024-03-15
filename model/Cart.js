@@ -3,7 +3,7 @@ import { connection as db } from "../config/config.js"
 class Cart{
     fetchOrders(req,res){
 
-        const query = `SELECT p.prodID, p.prodName, p.prodQuantity, p.prodAmount, u.userID
+        const query = `SELECT p.prodID, p.prodName, p.prodDesc, p.prodCategory, p.prodAmount, u.userID
         FROM Cart
         INNER JOIN Products p
         USING (prodID) 
