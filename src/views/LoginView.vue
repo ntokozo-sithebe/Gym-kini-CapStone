@@ -29,7 +29,7 @@
 
 <!-- create a key as you would a norm -->
 
-<!-- create a register <button></button> for new users right --- which will create new token  -->
+
     </div>
 </template>
 
@@ -45,8 +45,18 @@
          methods:{
             submitForm(){
                 this.$store.dispatch('login', {
-                    email: this.email, password: this.password
-                })
+                        email: this.email, 
+                        password: this.password
+                    }).then(()=>{
+                        if(this.$store.state.isAuthenticated){
+
+                            this.$router.push('/')
+                        }else {
+                            this.$router.push('/register')
+                        }
+                    })
+// if the user exists theyll be sent to the home page if not they will register
+
             },
             registerUser(){
                 this.$router.push('/register')

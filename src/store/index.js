@@ -237,9 +237,9 @@ export default createStore({
           router.push({name: 'Home'})
         }else{
           sweet({
-            title: 'info',
+            title: 'Try Again',
             text: msg,
-            icon: 'info',
+            icon: 'Error',
             timer: 2000
           })
         }
