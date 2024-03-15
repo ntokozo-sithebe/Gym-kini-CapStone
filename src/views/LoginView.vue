@@ -13,13 +13,13 @@
         <div class="col justify-content-center">
             <div>
                 <button @click="submitForm">
-                        Submit
+                        LOGIN
                  </button>
             </div>
             <!-- link the registerView -->
             <div>
                 <button @click="registerUser">
-                    Register
+                    REGISTER
                 </button>
             </div>
 
@@ -48,7 +48,7 @@
                         email: this.email, 
                         password: this.password
                     }).then(()=>{
-                        if(this.$store.state.isAuthenticated){
+                        if(this.$store.state.cookies.get('LegitUser')){
 
                             this.$router.push('/')
                         }else {

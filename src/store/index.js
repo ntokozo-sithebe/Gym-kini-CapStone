@@ -224,9 +224,14 @@ export default createStore({
         const {msg, token, result} = ( await axios.post(`${myURL}users/login`, gym)).data
         if(result){
           context.commit('setUser', {msg, result})
+
+          // set cookies with user information
           cookies.set('LegitUser',{
-            msg, token, result
+            msg, 
+            token, 
+            result
           })
+           
           AuthenticateUser.applyToken(token)
           sweet({
             title: msg,

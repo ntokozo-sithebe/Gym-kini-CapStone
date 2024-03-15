@@ -53,6 +53,11 @@
             Login
           </router-link>
         </li>
+        <li>
+          <router-link to="/admin" class="nav-link active">
+            Admin
+          </router-link>
+        </li>
       </ul>
     </div>
   </div>

@@ -10,22 +10,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row"></th>
-      <td colspan="2"></td>
-      <td></td>
+    <tr v-for="product in products" :key="product.id">
+      <th scope="row">{{ product.prodID }}</th>
+      <td>{{ product.prodName }}</td>
+      <td>{{ product.prodQuantity }}</td>
+      <td>{{ product.prodAmount }}</td>
     </tr>
   </tbody>
 </table>
@@ -33,16 +22,16 @@
     </div>
 </template>
  <!-- only when log in as the admin user it will display the admin button  -->
- <!-- so use if statement for login if user === ntokozo and display to home if there is a nnormal user -->
+ <!-- so use if statement for login if user === ntokozo and display to home if there is a normal user -->
 <script>
     export default {
         name: 'AdminView',
-        data(){
-            return{
-                email: 'ntoky28@gmail.com',
-                password: 'Tk@2236_'
-            }
-        },
+        // data(){
+        //     return{
+        //         email: 'ntoky28@gmail.com',
+        //         password: 'Tk@2236_'
+        //     }
+        // },
         computed: {
         products() {
             return this.$store.state.products;
@@ -50,15 +39,17 @@
         
     },
     mounted() {
-        this.$store.dispatch('fetchProducts', this.$route.params);
-        this.$store.dispatch('deleteProducts', this.$route.params);
-        this.$store.dispatch('addProducts', this.$route.params);
-        this.$store.dispatch('updateProducts', this.$route.params);
+        this.$store.dispatch('fetchProducts');
+        // this.$store.commit('deleteProducts');
+        // this.$store.commit('addProducts');
+        // this.$store.commit('updateProducts');
         
     },
+    
         
     }
 </script>
+<!-- this.$route.params -->
 
 <style scoped>
 
