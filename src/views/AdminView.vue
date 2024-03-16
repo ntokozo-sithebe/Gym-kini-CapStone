@@ -6,6 +6,7 @@
       <th scope="col">#ID</th>
       <th scope="col">Name</th>
       <th scope="col">Product</th>
+      <th scope="col">Description</th>
       <th scope="col">Amount</th>
       <th scope="col">Price</th>
       <th scope="col">Action</th>
@@ -16,6 +17,7 @@
       <th scope="row">{{ product.prodID }}</th>
       <td>{{ product.prodName }}</td>
       <td><img class="img-fluid w-25" :src="product.prodUrl" alt="images"></td>
+      <td>{{ product.prodDesc }}</td>
       <td>{{ product.prodQuantity }}</td>
       <td> R {{ product.prodAmount }}</td>
       <td class="d=block">
@@ -34,7 +36,7 @@
             <input type="text" class="form-control" id="recipient-name">
           </div>
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Product Quantity:</label>
+            <label for="recipient-name" class="col-form-label">Product Description:</label>
             <input type="text" class="form-control" id="recipient-name">
           </div>
           <div class="mb-3">
@@ -71,7 +73,7 @@
             <input type="text" class="form-control" id="recipient-name">
           </div>
           <div class="mb-3">
-            <label for="recipient-name" class="col-form-label">Product Quantity:</label>
+            <label for="recipient-name" class="col-form-label">Product Description:</label>
             <input type="text" class="form-control" id="recipient-name">
           </div>
           <div class="mb-3">
@@ -94,7 +96,7 @@
 
 <!-- delete  -->
 <!--  which will be onclick -->
-<button class="btn btn-warning">
+<button class="btn btn-warning" @click="deleteProduct(product.prodID)">
   Delete
 </button>
 
@@ -125,13 +127,18 @@
         products() {
             return this.$store.state.products;
         },
+        methods:{
+          deleteProduct(prodID){
+            this.$store.dispatch('deleteProduct',prodID)
+          }
+        }
         
     },
     mounted() {
         this.$store.dispatch('fetchProducts');
-        this.$store.commit('deleteProducts');
-        this.$store.commit('addProducts');
-        this.$store.commit('updateProducts');
+        this.$store.dispatch('deleteProducts');
+        // this.$store.commit('addProducts');
+        // this.$store.commit('updateProducts');
         
     },
     

@@ -178,12 +178,12 @@ export default createStore({
       try {
         let { result } = (await axios.get(`${myURL}products/${gym.id}`)).data;
         if (result) {
-          context.commit("setProduct", result);
+          context.dispatch("setProduct", result);
         } else {
           sweet({
             title: "Fetching a single product",
             text: " Product was not found",
-            icon: "success",
+            icon: "error",
             timer: 2000,
           });
         }
@@ -191,11 +191,35 @@ export default createStore({
         sweet({
           title: "Error",
           text: "An error occurred when retrieving the products",
-          icon: "success",
+          icon: "error",
           timer: 2000,
         });
       }
     },
+    async addProduct(context) {
+        try {
+          let { result } = (await axios.post(`${myURL}products/produce`)).data;
+          if (result) {
+            context.dispatch("setProduct", result);
+          } else {
+            sweet({
+              title: "Adding a single user",
+              text: " Product was not added",
+              icon: "userInfo",
+              timer: 2000,
+            });
+          }
+        } catch (e) {
+          sweet({
+            title: "Error",
+            text: "A Product was not added",
+            icon: "error",
+            timer: 2000,
+          });
+        }
+      },
+
+
     async updateProduct(context, gym) {
       try {
         let { result } = (await axios.patch(`${myURL}products/${gym.id}`)).data;
@@ -214,6 +238,28 @@ export default createStore({
           title: "Error",
           text: "An error occurred when retrieving the products",
           icon: "success",
+          timer: 2000,
+        });
+      }
+    },
+    async deleteProduct(context, prod) {
+      try {
+        let response = (await axios.delete(`${myURL}product/${prod.id}`));
+        if (response.data.result) {
+          context.dispatch("deleteProduct", prod.id);
+        } else {
+          sweet({
+            title: "Deleting a single product",
+            text: " Product was not deleted",
+            icon: "error",
+            timer: 2000,
+          });
+        }
+      } catch (e) {
+        sweet({
+          title: "Error",
+          text: "A Product was not deleted",
+          icon: "error",
           timer: 2000,
         });
       }

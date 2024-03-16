@@ -1,25 +1,33 @@
 <template>
     <div class="container">
-        <div class="row" v-if="products">
-            <div class="col" v-for="product in products" :key="product">
+        <div class="row d-block d-flex" v-if="products">
+            <Card class="col-md-4 justify-content-center" v-for="product in products" :key="product">
+                <template #cardHeader>
                 <h2 class=""> {{ product.prodName }}</h2>
-                <img class="img-fluid w-50" :src="product.prodUrl" alt="productImages" loading="lazy">
-                <h5>{{ product.prodID }}</h5>
-                <p>{{ product.prodQuantity }}</p><br>
-                <p> R {{ product.prodAmount }}</p>
-                <button>Add to cart </button>
-            </div>
-            
-        </div>
+                </template>
+                <template #cardBody>
+                <img class="img-fluid w-100" :src="product.prodUrl" alt="productImages" loading="lazy">
+                <p>{{ product.prodDesc }}</p>
+                <p> R {{ product.prodAmount }} </p>
+                <button>
+                    <router-link :to="{ name: 'product', params: { id: product.prodID}}"> View More </router-link>
+                </button>
+                <button>
+                    Add to cart
+                </button>
+            </template>
+            </Card>
+         </div>
         <div class="row" v-else>
             <Spinner/>
         </div>
-        
+
     </div>
 </template>
 
 <script>
 import Spinner from '@/components/Spinner.vue';
+import Card from '@/components/Card.vue';
 
 
 export default {
@@ -31,7 +39,8 @@ export default {
     },
     
     components: {
-        Spinner
+        Spinner,
+        Card
     },
     computed: {
         products() {
@@ -42,12 +51,20 @@ export default {
         this.$store.dispatch('fetchProducts');
     },
     methods:{
-        
+        // toCart(){
+        //         this.$router.push('/cart')
+        //     }
     }
+   
 };
 
 </script>
 
 <style scoped>
+
+#cardBody{
+    justify-content: center;
+    align-items: center;
+}
 
 </style>
