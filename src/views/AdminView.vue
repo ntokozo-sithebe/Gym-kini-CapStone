@@ -1,27 +1,8 @@
 <template>
     <div class="container">
-        <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Product</th>
-      <th scope="col">Description</th>
-      <th scope="col">Amount</th>
-      <th scope="col">Price</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr v-for="product in products" :key="product.id">
-      <th scope="row">{{ product.prodID }}</th>
-      <td>{{ product.prodName }}</td>
-      <td><img class="img-fluid w-25" :src="product.prodUrl" alt="images"></td>
-      <td>{{ product.prodDesc }}</td>
-      <td>{{ product.prodQuantity }}</td>
-      <td> R {{ product.prodAmount }}</td>
-      <td class="d=block">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add</button>
+      <div class="row">
+        <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Add Product</button>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -51,16 +32,41 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Add Product</button>
+        <button type="button" class="btn btn-primary" @click="addProduct(prodID)" >Add Product</button>
       </div>
     </div>
   </div>
 </div>
- 
+
+        </div>
+      </div>
+        <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Product</th>
+      <th scope="col">Description</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="product in products" :key="product.id">
+      <th scope="row">{{ product.prodID }}</th>
+      <td>{{ product.prodName }}</td>
+      <td><img class="img-fluid w-25" :src="product.prodUrl" alt="images"></td>
+      <td>{{ product.prodDesc }}</td>
+      <td>{{ product.prodQuantity }}</td>
+      <td> R {{ product.prodAmount }}</td>
+      <td class="d=block">
+        
 <!-- to update -->
+
 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Update</button>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog"> 
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Product Update</h1>
@@ -117,35 +123,68 @@
 <script>
     export default {
         name: 'AdminView',
-        // data(){
-        //     return{
-        //         email: 'ntoky28@gmail.com',
-        //         password: 'Tk@2236_'
-        //     }
-        // },
+        data(){
+            return{
+              newProduct:{
+
+                prodName: '',
+                prodDesc: '',
+                prodAmount: '',
+                prodUrl: '',
+
+              }
+
+
+
+
+                // email: 'ntoky28@gmail.com',
+                // password: 'Tk@2236_'
+            }
+        },
         computed: {
         products() {
             return this.$store.state.products;
         },
         methods:{
-          deleteProduct(prodID){
-            this.$store.dispatch('deleteProduct',prodID)
-          }
-        }
+          deleteProduct(){
+            this.$store.dispatch('deleteProduct',{
+              
+            })
+          },
+          openAddModal(){
+            this.newProduct ={
+              prodName: '',
+                prodDesc: '',
+                prodAmount: '',
+                prodUrl: '',
+
+            }; 
+            // $('#addProductModal').modal('show');
+        //     this.$store.dispatch('addProduct',{
+        //       prodName : this.prodName,
+        //       prodDesc: this.prodDesc,
+        //       prodAmount: this.prodAmount,
+        //       prodUrl: this.prodUrl
+        //     })
+        //   }
+        // }
         
     },
     mounted() {
         this.$store.dispatch('fetchProducts');
-        this.$store.dispatch('deleteProducts');
-        // this.$store.commit('addProducts');
+        // this.$store.dispatch('deleteProducts');
+        this.$store.dispatch('addProducts');
         // this.$store.commit('updateProducts');
         
     },
-    
-        
+  }
+}
     }
+     
+  
 </script>
-<!-- this.$route.params -->
+
+// <!-- this.$route.params -->
 
 <style scoped>
 

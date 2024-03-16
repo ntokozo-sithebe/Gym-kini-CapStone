@@ -13,13 +13,13 @@
         <div class="col justify-content-center">
             <div>
                 <button @click="submitForm">
-                        LOGIN
+                        login
                  </button>
             </div>
             <!-- link the registerView -->
             <div>
                 <button @click="registerUser">
-                    REGISTER
+                    register
                 </button>
             </div>
 
