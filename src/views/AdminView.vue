@@ -1,4 +1,6 @@
-<template>
+<template> 
+
+<!-- place as component so that you can use as an if/else statement to display the crud sytem for user and productsfor specific admin user -->
     <div class="container">
       <div class="row">
         <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">

@@ -66,6 +66,7 @@ export default {
 }
 .overlay_button:hover{
   background-color: black;
+  color: white;
 }
 
 img{

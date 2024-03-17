@@ -7,7 +7,7 @@
                 </template>
                 <template #cardBody>
                 <img class="img-fluid w-100" :src="product.prodUrl" alt="productImages" loading="lazy">
-                <p>{{ product.prodDesc }}</p>
+                <p class="desc">{{ product.prodDesc }}</p>
                 <p> R {{ product.prodAmount }} </p>
                 <button>
                     <router-link :to="{ name: 'product', params: { id: product.prodID}}"> View More </router-link>
@@ -65,6 +65,10 @@ export default {
 #cardBody{
     justify-content: center;
     align-items: center;
+}
+
+.Card{
+    width: 25px;
 }
 
 </style>

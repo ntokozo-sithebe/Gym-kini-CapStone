@@ -1,10 +1,14 @@
 <template>
     <div class="container-fluid">
+        <!-- <div>
+            <img class="img-fluid w-100" src="https://i.ibb.co/GpDpTGB/IMG-20240107-123230-833-1.webp" alt="bckImage" loading="lazy" id="contact">
+        </div> -->
+        <div class="overlay-form">
         <div class="row">
-            <div class="col-md-6 justify-content-center">
+            <div class="col justify-content-center overlay_form text-black ">
                 <form action="" method="post">
                     <div class="input m-1">
-                        <textarea input type="text" class="form-control" placeholder="Name" rows="2" >
+                        <textarea input type="text" class="form-control" placeholder="Name" rows="2" cols="10" >
                         </textarea>
                     </div>
                     <div class="input m-1">
@@ -27,6 +31,7 @@
 
             </div>
         </div>
+    </div>
 
     </div>
 </template>
@@ -39,13 +44,28 @@
 
 <style scoped>
 .container-fluid{
+    height: 70vh ;
+    width: 70%;
     background-image: url('https://i.ibb.co/GpDpTGB/IMG-20240107-123230-833-1.webp');
     background-repeat: no-repeat;
-    background-size: cover 70%;
-    background-position: center;
-    margin: 0px;
-    padding: 0px;
+    background-size: cover;
+    background-position: 0% 40%;
+    background-attachment: fixed;
+    margin: auto;
+    opacity: 100%;
 }
+.overlay-form {
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    top: 50% ;
+    translate: middle;
+    align-items: center;
+}
+
+
+
+
 
 
 </style>
