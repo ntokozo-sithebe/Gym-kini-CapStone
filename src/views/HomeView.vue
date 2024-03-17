@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid">
         <div class="row" id="images">
-          <div class="col d-block d-flex position-absolute m-0 p-0">
+          <div class="col position-absolute d-block d-flex m-0 p-0">
             <div>
-              <img class="img-fluid w-100" src="https://i.ibb.co/t33JK2q/backups-5.webp" alt="item1" loading="lazy">
+              <img class="img-fluid w-100 h" src="https://i.ibb.co/t33JK2q/backups-5.webp" alt="item1" loading="lazy">
             </div>
             <div>
               <img class="img-fluid w-100" src="https://i.ibb.co/R3ncRXS/gym-kini-3.jpg" alt="item2" loading="lazy">
@@ -11,18 +11,11 @@
             <div>
               <img class="img-fluid w-100" src="https://i.ibb.co/NxN9L9N/gym-kini-7.webp" alt="item3" loading="lazy">
             </div>
+              <button class="overlay_button btn btn-tertiary" @click="products"> Discover More </button>
+            </div>
           </div>
-           
         </div>
-        <div class="row">
-          <button> Learn More</button>
-        </div>
-        <div>
-          <button>Sign Up </button>
-        </div>
-  
-        </div>
-
+<!-- Where vision meets action  -->
 
   
    
@@ -33,6 +26,12 @@
 
 export default {
   name: 'HomeView',
+
+  methods:{
+    products(){
+            this.$router.push('/products')
+            }
+  }
   
 
 
@@ -47,8 +46,36 @@ export default {
   box-sizing: border-box;
 }
 
-.container{
+.container-fluid{
   overflow: hidden;
+  background-color: lightblue;
+}
+
+.overlay_button{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 12px 30px;
+  background-color: lightblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+}
+.overlay_button:hover{
+  background-color: black;
+}
+
+img{
+  height: 50em;
+}
+
+
+img:hover{
+  transform: translate(-5%, 5%);
+  
 }
 
 /* body::-webkit-scrollbar{

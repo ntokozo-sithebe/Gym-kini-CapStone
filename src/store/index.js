@@ -203,9 +203,9 @@ export default createStore({
             context.dispatch("setProduct", result);
           } else {
             sweet({
-              title: "Adding a single user",
+              title: "Adding a single product",
               text: " Product was not added",
-              icon: "userInfo",
+              icon: "error",
               timer: 2000,
             });
           }

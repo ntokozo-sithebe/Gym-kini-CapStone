@@ -32,7 +32,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" @click="addProduct(prodID)" >Add Product</button>
+        <button type="button" class="btn btn-primary" @click="addProduct()" >Add Product</button>
       </div>
     </div>
   </div>
@@ -133,12 +133,6 @@
                 prodUrl: '',
 
               }
-
-
-
-
-                // email: 'ntoky28@gmail.com',
-                // password: 'Tk@2236_'
             }
         },
         computed: {
@@ -147,10 +141,25 @@
         },
         methods:{
           deleteProduct(){
-            this.$store.dispatch('deleteProduct',{
-              
-            })
+            this.$store.dispatch('deleteProduct')
           },
+            addProduct(){
+              this.$store.dispatch('addProduct',this.newProduct)
+              .then(()=>{
+                this.newProduct ={
+              prodName: '',
+                prodDesc: '',
+                prodAmount: '',
+                prodUrl: '',
+
+            }; 
+
+              })
+              .catch(error =>{
+                console.error('Error adding Product',error)
+              })
+            }
+          ,
           openAddModal(){
             this.newProduct ={
               prodName: '',
@@ -159,21 +168,12 @@
                 prodUrl: '',
 
             }; 
-            // $('#addProductModal').modal('show');
-        //     this.$store.dispatch('addProduct',{
-        //       prodName : this.prodName,
-        //       prodDesc: this.prodDesc,
-        //       prodAmount: this.prodAmount,
-        //       prodUrl: this.prodUrl
-        //     })
-        //   }
-        // }
         
     },
     mounted() {
-        this.$store.dispatch('fetchProducts');
-        // this.$store.dispatch('deleteProducts');
-        this.$store.dispatch('addProducts');
+        this.$store.dispatch('fetchProduct');
+      //   this.$store.dispatch('deleteProducts');
+      //  this.$store.dispatch('addProducts');
         // this.$store.commit('updateProducts');
         
     },
