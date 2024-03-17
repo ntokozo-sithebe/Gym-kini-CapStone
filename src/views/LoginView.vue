@@ -13,7 +13,7 @@
         <div class="col justify-content-center">
             <div>
                 <button @click="submitForm">
-                        login
+                    <router-link :to="{name: 'login', params: {id: userEmail, userPassword}}">login</router-link>    
                  </button>
             </div>
             <!-- link the registerView -->
