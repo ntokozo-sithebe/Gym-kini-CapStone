@@ -1,8 +1,8 @@
 import { createStore } from "vuex";
-import axios from 'axios';
+import axios from "axios";
 import sweet from "sweetalert";
 import { useCookies } from "vue3-cookies";
-const {cookies} = useCookies();
+const { cookies } = useCookies();
 import router from "@/router";
 import AuthenticateUser from "@/service/AuthenticateUser";
 const myURL = "https://gym-kini-capstone.onrender.com/";
@@ -34,31 +34,32 @@ export default createStore({
     },
   },
   actions: {
-    async register(context, payload){
-      try{
-      let {msg} = (await axios.post(`${myURL}users/register`,payload)).data
-      if(msg){
-        context.dispatch('fetchUsers')
+    async register(context, payload) {
+      try {
+        let { msg } = (await axios.post(`${myURL}users/register`, payload))
+          .data;
+        if (msg) {
+          context.dispatch("fetchUsers");
+          sweet({
+            title: "",
+            text: msg,
+            icon: "success",
+            timer: 2000,
+          });
+          router.push({ name: "login" });
+        }
+      } catch (e) {
         sweet({
-          title: '',
-          text: msg,
-          icon: "success",
-          timer: 2000
-        })
-        router.push({name:'login'})
-      }
-      }catch(e){
-        sweet({
-          title: 'Error',
-          text: 'Please try again later',
-          icon: 'error',
-          timer: 2000
-        })
+          title: "Error",
+          text: "Please try again later",
+          icon: "error",
+          timer: 2000,
+        });
       }
     },
     async fetchUsers(context) {
       try {
-        let { results } = (await axios.get(`/${myURL}users`)).data;
+        let { results } = (await axios.get(`${myURL}users`)).data;
         if (results) {
           context.commit("setUsers", results);
         }
@@ -196,29 +197,28 @@ export default createStore({
         });
       }
     },
-    async addProduct(context) {
-        try {
-          let { result } = (await axios.post(`${myURL}products/produce`)).data;
-          if (result) {
-            context.dispatch("setProduct", result);
-          } else {
-            sweet({
-              title: "Adding a single product",
-              text: " Product was not added",
-              icon: "error",
-              timer: 2000,
-            });
-          }
-        } catch (e) {
+    async addProduct(context, add) {
+      try {
+        let { result } = (await axios.post(`${myURL}products/add`, add)).data;
+        if (result) {
+          context.dispatch("fetchProducts");
+        } else {
           sweet({
-            title: "Error",
-            text: "A Product was not added",
-            icon: "error",
+            title: "Adding a single product",
+            text: " Product was not added",
+            icon: "success",
             timer: 2000,
           });
         }
-      },
-
+      } catch (e) {
+        sweet({
+          title: "",
+          text: e.message,
+          icon: "error",
+          timer: 2000,
+        });
+      }
+    },
 
     async updateProduct(context, gym) {
       try {
@@ -242,11 +242,11 @@ export default createStore({
         });
       }
     },
-    async deleteProduct(context, prod) {
+    async deleteProduct(context, prodID) {
       try {
-        let response = (await axios.delete(`${myURL}product/${prod.id}`));
+        let response = await axios.delete(`${myURL}product/${prodID}`);
         if (response.data.result) {
-          context.dispatch("deleteProduct", prod.id);
+          context.dispatch("deleteProduct", prodID);
         } else {
           sweet({
             title: "Deleting a single product",
@@ -265,47 +265,46 @@ export default createStore({
       }
     },
 
-    async login(context, gym){
-      try{
-        const {msg, token, result} = ( await axios.post(`${myURL}users/login`, gym)).data
-        if(result){
-          context.commit('setUser', {msg, result})
+    async login(context, payload) {
+      try {
+        const { msg, token, result } = (
+          await axios.post(`${myURL}users/login`, payload)
+        ).data;
+        if (result) {
+          context.commit("setUser", { msg, result });
 
           // set cookies with user information
-          cookies.set('LegitUser',{
-            msg, 
-            token, 
-            result
-          })
-           
-          AuthenticateUser.applyToken(token)
+          cookies.set("LegitUser", {
+            msg,
+            token,
+            result,
+          });
+
+          AuthenticateUser.applyToken(token);
           sweet({
             title: msg,
             text: `Welcome to Gym'kini ${result?.firstName} ${result?.lastName}`,
             icon: "success",
-            timer: 2000
-          })
-          router.push({name: 'Home'})
-        }else{
+            timer: 2000,
+          });
+          router.push({ name: "Home" });
+        } else {
           sweet({
-            title: 'Try Again',
+            title: "Try Again",
             text: msg,
-            icon: 'Error',
-            timer: 2000
-          })
+            icon: "Error",
+            timer: 2000,
+          });
         }
-      }
-      catch(e){
+      } catch (e) {
         sweet({
-          title: 'Error',
-          text: 'Failed to login to Gym\'kini',
+          title: "Error",
+          text: "Failed to login to Gym'kini",
           icon: "error",
-          timer: 2000
-        })
+          timer: 2000,
+        });
       }
-    }
-
-   
+    },
   },
   modules: {},
 });
