@@ -116,12 +116,12 @@ class Users {
   userLogin(req, res) {
     const { emailAddress, userPassword } = req.body;
     const query = `
-        SELECT userID, firstName, lastName, userAge, gender, emailAddress, userPassword, userRole
+        SELECT  emailAddress, userPassword
         FROM Users
-        WHERE emailAddress = '${emailAddress}';`;
+        WHERE emailAddress = '${emailAddress}';`
 
     db.query(query, [req.body], async(err, result) => {
-      if (err) throw err;
+      if (err) throw err
       if (!result?.length) {
         res.json({
           status: res.statusCode,
@@ -130,7 +130,7 @@ class Users {
       } else {
         // to validate the password
         const properPass = await compare(userPassword, result[0].userPassword);
-        if (validPass) {
+        if (validPassword) {
           const token = createToken({
             emailAddress,
             userPassword,
