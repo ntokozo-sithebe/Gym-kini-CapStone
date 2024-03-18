@@ -6,7 +6,7 @@ class Products{
         FROM Products;`
 
         db.query(query,(err, results)=>{
-            if(err) throw err
+            if(err) throw err 
             res.json({
                 status: res.statusCode,
                 results
@@ -19,7 +19,7 @@ class Products{
         FROM Products
         WHERE prodID = ?`;
 
-        db.query(query, [re.params.id],(err,result)=>{
+        db.query(query, [req.params.id],(err,result)=>{
             if(err) throw err
             res.json({
                 status: res.statusCode,
@@ -40,23 +40,33 @@ class Products{
             })
         })
     }
-    deleteProduct(req,res){
-        const query = `
-        DELETE FROM Products 
-        WHERE prodID = ?;
-        `
+    
+    deleteProduct(req, res){
+        const prodID = req.params.id;
+        if(!prodID){
+            return res.status(400).json({
+                msg: 'Unsuccessful'
+            });
+        }else{
 
-        db.query(query,[prodID], (err)=>{
-            if(err){
+            const query = `
+            DELETE FROM Products 
+            WHERE prodID = ?;
+            `
+    
+            db.query(query,[prodID], (err)=>{
+                if(err){
+                    console.err('Error deleting product', err);
+                    return res.status(500).json({
+                        msg: 'Failed to delete product'
+                    })
+                }
                 res.json({
-                    msg: 'Failed to delete product'
+                    status: res.statusCode,
+                    msg: 'Product was deleted'
                 })
-            }
-            res.json({
-                status:res.statusCode,
-                msg: 'Product was deleted'
             })
-        })
+        }
     }
 
 
@@ -68,7 +78,13 @@ class Products{
         `;
 
         db.query(query, [req.body], (err) =>{
-            if(err) throw err
+            if(err) {
+                console.err('Error updating product', err)
+                return res.status(500).json({
+                    msg:'Failed to update product'
+                })
+                
+            }
             res.json({
                 status: res.statusCode,
                 msg: 'Product has been updated'

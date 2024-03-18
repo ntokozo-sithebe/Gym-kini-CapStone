@@ -47,7 +47,7 @@ productRouter.post('/produce', bodyParser.json(),(req,res)=>{
 })
 
 // updating the product 
-productRouter.patch('/product/:id', bodyParser.json(),(req,res)=>{
+productRouter.patch('/product/:id', bodyParser.json(), (req,res)=>{
     try{
         products.updateProduct(req,res)
     }catch(e){
@@ -62,6 +62,9 @@ productRouter.patch('/product/:id', bodyParser.json(),(req,res)=>{
 productRouter.delete('/product/:id', bodyParser.json(), (req,res)=>{
     try{
         products.deleteProduct(req,res)
+        res.json({
+            msg:'Product has been deleted'
+        })
     }catch(e){
         res.json({
             status: res.statusCode,

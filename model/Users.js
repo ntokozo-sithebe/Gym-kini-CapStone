@@ -45,7 +45,7 @@ class Users {
     let user = {
       emailAddress: data.emailAddress,
       userPassword: data.userPassword,
-    };
+    }
 
     const query = `
     INSERT INTO Users
