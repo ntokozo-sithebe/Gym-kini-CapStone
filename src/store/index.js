@@ -199,17 +199,17 @@ export default createStore({
     },
     async addProduct(context, add) {
       try {
-        let { result } = (await axios.post(`${myURL}products/add`, add)).data;
-        if (result) {
+        let { msg } = (await axios.post(`${myURL}products/add`, add)).data;
+        
           context.dispatch("fetchProducts");
-        } else {
+    
           sweet({
             title: "Adding a single product",
-            text: " Product was not added",
+            text: msg,
             icon: "success",
             timer: 2000,
           });
-        }
+        
       } catch (e) {
         sweet({
           title: "",

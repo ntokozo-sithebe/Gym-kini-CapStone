@@ -37,7 +37,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary"  @click="addProduct()"> Add Product </button>
+        <button type="button" class="btn btn-primary"  @click.prevent="addingProduct()"> Add Product </button>
       </div>
     </div>
   </div>
@@ -161,7 +161,7 @@ import UpdateProduct from '@/components/UpdateProduct.vue';
           this.$store.dispatch('fetchProducts')
         },
         methods:{
-            addProduct(){
+            addingProduct(){
               this.$store.dispatch('addProduct',this.payload)
             }      
         },
