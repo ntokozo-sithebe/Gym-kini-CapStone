@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="row d-block d-flex" v-if="products">
-            <Card class="col-md-4 justify-content-center" v-for="product in products" :key="product">
+        <div class="row d-block d-flex" v-if="product">
+            <Card class="col-md-4 justify-content-center">
                 <template #cardHeader>
                 <h2 class=""> {{ product.prodName }}</h2>
                 </template>

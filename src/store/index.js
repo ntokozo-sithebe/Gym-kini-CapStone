@@ -34,7 +34,7 @@ export default createStore({
     },
   },
   actions: {
-    async register(context, payload) {
+    async addUser(context, payload) {
       try {
         let { msg } = (await axios.post(`${myURL}users/register`, payload))
           .data;
@@ -118,21 +118,21 @@ export default createStore({
     // },
     async updateUser(context, gym) {
       try {
-        let { result } = (await axios.patch(`${myURL}users/${gym.id}`)).data;
-        if (result) {
-          context.dispatch("setUser", result); // may remove result
-        } else {
+        let { msg } = (await axios.patch(`${myURL}users/user/${gym.userID}`)).data;
+       
+          context.dispatch("fetchtUsers"); // may remove result
           sweet({
             title: "Updated a single user",
-            text: " User was not Updated",
+            text: msg,
             icon: "success",
             timer: 2000,
           });
-        }
+      
       } catch (e) {
+        // "An error occurred when updating user",
         sweet({
           title: "Error",
-          text: "An error occurred when updating user",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -179,7 +179,7 @@ export default createStore({
       try {
         let { result } = (await axios.get(`${myURL}products/${gym.id}`)).data;
         if (result) {
-          context.dispatch("setProduct", result);
+          context.commit("setProduct", result);
         } else {
           sweet({
             title: "Fetching a single product",
@@ -191,7 +191,7 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "An error occurred when retrieving the products",
+          text: `from the single item ${e.message}`,
           icon: "error",
           timer: 2000,
         });
@@ -200,16 +200,15 @@ export default createStore({
     async addProduct(context, add) {
       try {
         let { msg } = (await axios.post(`${myURL}products/add`, add)).data;
-        
-          context.dispatch("fetchProducts");
-    
-          sweet({
-            title: "Adding a single product",
-            text: msg,
-            icon: "success",
-            timer: 2000,
-          });
-        
+
+        context.dispatch("fetchProducts");
+
+        sweet({
+          title: "Adding a single product",
+          text: msg,
+          icon: "success",
+          timer: 2000,
+        });
       } catch (e) {
         sweet({
           title: "",
@@ -222,22 +221,23 @@ export default createStore({
 
     async updateProduct(context, gym) {
       try {
-        let { msg } = (await axios.patch(`${myURL}products/${gym.id}`)).data;
-        
-          context.dispatch("fetchProduct");
-       
-          sweet({
-            title: "Updating a single product",
-            text: msg,
-            icon: "success",
-            timer: 2000,
-          });
-       
+        let { msg } = (await axios.patch(`${myURL}products/product/${gym.prodID}`, gym))
+          .data;
+
+        context.dispatch("fetchProducts");
+
+        sweet({
+          title: "Updating a single product",
+          text: msg,
+          icon: "success",
+          timer: 2000,
+        });
       } catch (e) {
+        // "An error occurred when updating a product",
         sweet({
           title: "Error",
-          text: "An error occurred when retrieving the products",
-          icon: "success",
+          text: e.message,
+          icon: "error",
           timer: 2000,
         });
       }

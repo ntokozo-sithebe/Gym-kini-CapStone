@@ -3,18 +3,18 @@
   <!-- place as component so that you can use as an if/else statement to display the crud sytem for user and productsfor specific admin user -->
       <div class="container">
         <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Update Product</button>
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" :data-bs-target="`#${updateModal}`" data-bs-whatever="@mdo">Update Product</button>
+  <div class="modal fade" :id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel"> Product Update</h1>
+          <h1 class="modal-title fs-5" id="updateModalLabel"> Product Update </h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Product ID:</label>
+              <label for="recipient-name" class="col-form-label"> Product ID: </label>
               <input type="text" v-model="payload.prodID" class="form-control" id="recipient-name">
             </div>
             <div class="mb-3">
@@ -26,7 +26,7 @@
               <input type="text"  v-model="payload.prodDesc"  class="form-control" id="recipient-name">
             </div>
             <div class="mb-3">
-              <label for="recipient-name" class="col-form-label">Product Category:</label>
+              <label for="recipient-name" class="col-form-label">Product :</label>
               <input type="text"  v-model="payload.prodCategory"  class="form-control" id="recipient-name">
             </div>
             <div class="mb-3">
@@ -41,7 +41,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary"  @click.prevent="updatingProduct()"> Update </button>
+          <button type="button" class="btn btn-primary"  @click.prevent="updatingProduct"> Update Product </button>
         </div>
       </div>
     </div>
@@ -58,6 +58,7 @@
   
       export default {
           name: 'AdminView',
+          props: ['productData', 'updateModal'],
           components:{
 
           },
@@ -65,12 +66,12 @@
               return {
                 payload:
                 {
-                  prodID: '',
-                  prodName: '',
-                  prodDesc: '',
-                  prodCategory:'',
-                  prodAmount: '',
-                  prodUrl: ''
+                  prodID: this.productData.prodID,
+                  prodName: this.productData.prodName,
+                  prodDesc: this.productData.prodDesc,
+                  prodCategory:this.productData.prodCategory,
+                  prodAmount: this.productData.prodAmount,
+                  prodUrl: this.productData.prodUrl
   
                 }
               }
@@ -83,18 +84,19 @@
    
           },
           mounted(){
-            this.$store.dispatch('fetchProducts')
+            this.$store.dispatch('fetchProduct')
           },
           methods:{
             updatingProduct(){
-                this.$store.dispatch('updateProduct', (data =>{
-                  this.payload.prodID = data.prodID
-                  this.payload.prodName = data.prodName
-                  this.payload.prodDesc = data.prodDesc
-                  this.payload.prodCategory = data.prodCategory
-                  this.payload.prodAmount = data.prodAmount
-                  this.payload.prodUrl = data.prodUrl
-                }))
+                // this.$store.dispatch('updateProduct', (data =>{
+                //   this.payload.prodID = data.prodID
+                //   this.payload.prodName = data.prodName
+                //   this.payload.prodDesc = data.prodDesc
+                //   this.payload.prodCategory = data.prodCategory
+                //   this.payload.prodAmount = data.prodAmount
+                //   this.payload.prodUrl = data.prodUrl
+                // })) == long way 
+                this.$store.dispatch('updateProduct', this.payload)
               }  
           },
     }
