@@ -68,7 +68,7 @@
 <!-- to update -->
          <UpdateProduct :productData="product" :updateModal="`updateProductModal${product.prodID}`"/>
 <!-- delete  -->
-<button class="btn btn-warning" @click="deleteProduct(product.prodID)">
+<button class="btn btn-warning" @click="deleteProduct">
   Delete
 </button>
       </td>
@@ -81,7 +81,10 @@
 <!-- ===================================================== -->
 
 <div class="container">
-  <h2>Users Table</h2>
+  <div class="row">
+    <h2>Users Table</h2>
+  </div>
+  
   <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal" data-bs-whatever="@mdo">Add New User</button>
 <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModal" aria-hidden="true">
@@ -111,11 +114,11 @@
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label"> E-mail:</label>
-            <input class="form-control" v-model="newUser.email" id="message-text">
+            <input class="form-control" v-model="newUser.emailAddress" id="message-text">
           </div>
           <div class="mb-3">
             <label for="message-text" class="col-form-label"> Password:</label>
-            <input class="form-control" v-model="newUser.Password" id="message-text">
+            <input class="form-control" v-model="newUser.userPassword" id="message-text">
           </div>
           <div class="mb-3">
             <label for="recipient-name" class="col-form-label"> Role:</label>
@@ -130,14 +133,13 @@
     </div>
   </div>
 </div>
-
-        </div>
+</div>
 <table class="table">
   <thead>
     <tr>
       <th scope="col">#ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Lastname</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
       <th scope="col">Gender</th>
       <th scope="col">Role</th>
       <th scope="col">Email</th>
@@ -152,9 +154,9 @@
               <td>{{ users.gender }}</td>
               <td>{{ users.userRole }}</td>
               <td>{{ users.emailAddress }}</td>
-              <td class="d-flex justify-content-between">
-                <UpdateUser :UserData="users" :UpdateUserModal="`UpdateUserModal${users.userID}`"/>
-                <button class="btn btn-user deleteButton" @click.prevent="deleteUser(users.userID)">Delete</button>
+              <td class="d-flex">
+                <UpdateUser :userData="users" :UpdateUserModal="`UpdateUserModal${users.userID}`"/>
+                <button class="btn btn-warning deleteButton" @click.prevent="deleteUser(users.userID)"> Delete</button>
               </td>
              
             </tr>
@@ -176,6 +178,7 @@ import UpdateUser from '@/components/UpdateUser.vue';
 
     export default {
         name: 'AdminView',
+
         components:{
        UpdateProduct,
        UpdateUser
@@ -234,10 +237,11 @@ import UpdateUser from '@/components/UpdateUser.vue';
 
          // users deleting 
 
+            deleteProduct(){
+              this.$store.dispatch('deleteProduct');
+            },
             deleteUser(){
-              this.$store.dispatch('deleteProduct', this.payload);
-              
-              this.$store.dispatch('deleteUser', this.newUser)
+              this.$store.dispatch('deleteUser')
                 
             }    
         },

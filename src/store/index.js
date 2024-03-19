@@ -36,7 +36,7 @@ export default createStore({
   actions: {
     async addUser(context, payload) {
       try {
-        let { msg } = (await axios.post(`${myURL}users/register`, payload))
+        let { msg } = (await axios.post(`${myURL}users/add`, payload))
           .data;
         if (msg) {
           context.dispatch("fetchUsers");
@@ -61,7 +61,7 @@ export default createStore({
       try {
         let { results } = (await axios.get(`${myURL}users`)).data;
         if (results) {
-          context.commit("setUsers", results);
+          context.dispatch("setUsers", results);
         }
       } catch (e) {
         sweet({
@@ -118,9 +118,10 @@ export default createStore({
     // },
     async updateUser(context, gym) {
       try {
-        let { msg } = (await axios.patch(`${myURL}users/user/${gym.userID}`)).data;
+        let { msg } = (await axios.patch(`${myURL}users/user/${gym.userID}`, gym)).data;
        
-          context.dispatch("fetchtUsers"); // may remove result
+          context.dispatch("fetchUsers"); 
+
           sweet({
             title: "Updated a single user",
             text: msg,
@@ -140,7 +141,7 @@ export default createStore({
     },
     async deleteUser(context, gym) {
       try {
-        let { result } = (await axios.delete(`${myURL}users/${gym.id}`)).data;
+        let { result } = (await axios.delete(`${myURL}users/user/${gym.id}`)).data;
         if (result) {
           context.dispatch("setUser");
         } else {
@@ -201,7 +202,7 @@ export default createStore({
       try {
         let { msg } = (await axios.post(`${myURL}products/add`, add)).data;
 
-        context.dispatch("fetchProducts");
+        context.dispatch("fetchProduct");
 
         sweet({
           title: "Adding a single product",
@@ -242,11 +243,11 @@ export default createStore({
         });
       }
     },
-    async deleteProduct(context, prodID) {
+    async deleteProduct(context, gym) {
       try {
-        let response = await axios.delete(`${myURL}product/${prodID}`);
+        let response = (await axios.delete(`${myURL}/products/product/${gym.id}`) );
         if (response.data.result) {
-          context.dispatch("deleteProduct", prodID);
+          context.commit("fetchProducts");
         } else {
           sweet({
             title: "Deleting a single product",
@@ -256,9 +257,10 @@ export default createStore({
           });
         }
       } catch (e) {
+        //"A Product was not deleted"
         sweet({
           title: "Error",
-          text: "A Product was not deleted",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
