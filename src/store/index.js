@@ -222,17 +222,17 @@ export default createStore({
 
     async updateProduct(context, gym) {
       try {
-        let { result } = (await axios.patch(`${myURL}products/${gym.id}`)).data;
-        if (result) {
-          context.dispatch("setProduct", result);
-        } else {
+        let { msg } = (await axios.patch(`${myURL}products/${gym.id}`)).data;
+        
+          context.dispatch("fetchProduct");
+       
           sweet({
             title: "Updating a single product",
-            text: " Product was not updated",
+            text: msg,
             icon: "success",
             timer: 2000,
           });
-        }
+       
       } catch (e) {
         sweet({
           title: "Error",
