@@ -3,13 +3,13 @@
         <div class="row" id="images">
           <div class="col position-absolute d-block d-flex m-0 p-0">
             <div>
-              <img class="img-fluid w-100 h" src="https://i.ibb.co/t33JK2q/backups-5.webp" alt="item1" loading="lazy">
+              <img class="img-fluid w-100" src="https://i.ibb.co/2v6rJNC/c249d88ccb5d1055652caa3510bd883c.jpg" alt="item1" loading="lazy">
             </div>
             <div>
-              <img class="img-fluid w-100" src="https://i.ibb.co/R3ncRXS/gym-kini-3.jpg" alt="item2" loading="lazy">
+              <img class="img-fluid w-100" src="https://i.ibb.co/2v6rJNC/c249d88ccb5d1055652caa3510bd883c.jpg" alt="item2" loading="lazy">
             </div>
             <div>
-              <img class="img-fluid w-100" src="https://i.ibb.co/NxN9L9N/gym-kini-7.webp" alt="item3" loading="lazy">
+              <img class="img-fluid w-100" src="https://i.ibb.co/2v6rJNC/c249d88ccb5d1055652caa3510bd883c.jpg" alt="item3" loading="lazy">
             </div>
               <button class="overlay_button btn btn-tertiary" @click="products"> Discover More </button>
             </div>

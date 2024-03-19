@@ -1,5 +1,4 @@
-<template> 
-
+<template>
 <!-- place as component so that you can use as an if/else statement to display the crud sytem for user and productsfor specific admin user -->
     <div class="container">
       <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
@@ -68,7 +67,7 @@
 <!-- to update -->
          <UpdateProduct :productData="product" :updateModal="`updateProductModal${product.prodID}`"/>
 <!-- delete  -->
-<button class="btn btn-warning" @click="deleteProduct">
+<button class="btn btn-warning" @click="deleteProduct(prodID)">
   Delete
 </button>
       </td>
@@ -84,7 +83,7 @@
   <div class="row">
     <h2>Users Table</h2>
   </div>
-  
+
   <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
           <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal" data-bs-whatever="@mdo">Add New User</button>
 <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModal" aria-hidden="true">
@@ -146,7 +145,7 @@
       <th scope="col">Action</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody v-if="users">
             <tr v-for="users in users" :key="users.userID">
               <td scope="row">{{ users.userID }}</td>
               <td>{{ users.firstName }}</td>
@@ -154,9 +153,9 @@
               <td>{{ users.gender }}</td>
               <td>{{ users.userRole }}</td>
               <td>{{ users.emailAddress }}</td>
-              <td class="d-flex">
+              <td class="d-block">
                 <UpdateUser :userData="users" :UpdateUserModal="`UpdateUserModal${users.userID}`"/>
-                <button class="btn btn-warning deleteButton" @click.prevent="deleteUser(users.userID)"> Delete</button>
+                <button class="btn btn-warning deleteButton" @click.prevent="deleteUser(userID)"> Delete</button>
               </td>
              
             </tr>
@@ -224,7 +223,7 @@ import UpdateUser from '@/components/UpdateUser.vue';
           
         },
 
-        // for the products
+    
 
         methods:{
             addingProduct(){
@@ -235,8 +234,7 @@ import UpdateUser from '@/components/UpdateUser.vue';
             } ,
 
 
-         // users deleting 
-
+    
             deleteProduct(){
               this.$store.dispatch('deleteProduct');
             },

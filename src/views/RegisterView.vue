@@ -1,27 +1,27 @@
 <template>
  <div class="container">
         <div class="form-floating mb-3">
-  <input type="firstName" v-model="payload.firstName" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <input type="firstName" v-model="newUser.firstName" class="form-control" id="floatingInput" placeholder="name@example.com">
   <label for="floatingInput" >First Name</label>
 </div>
 <div class="form-floating">
-  <input type="lastName" v-model="payload.lastName" class="form-control" id="floatingPassword" placeholder="Password">
+  <input type="lastName" v-model="newUser.lastName" class="form-control" id="floatingPassword" placeholder="Password">
   <label for="floatingPassword">Last Name</label>
 </div>
 <div class="form-floating">
-  <input type="userAge" v-model="payload.userAge" class="form-control" id="floatingPassword" placeholder="Password">
+  <input type="userAge" v-model="newUser.userAge" class="form-control" id="floatingPassword" placeholder="Password">
   <label for="floatingPassword">Age</label>
 </div>
 <div class="form-floating">
-  <input type="gender" v-model="payload.gender" class="form-control" id="floatingPassword" placeholder="Password">
+  <input type="gender" v-model="newUser.gender" class="form-control" id="floatingPassword" placeholder="Password">
   <label for="floatingPassword">Gender</label>
 </div>
 <div class="form-floating">
-  <input type="userEmail" v-model="payload.email" class="form-control" id="floatingPassword" placeholder="Password">
+  <input type="userEmail" v-model="newUser.email" class="form-control" id="floatingPassword" placeholder="Password">
   <label for="floatingPassword">Email</label>
 </div>
 <div class="form-floating">
-  <input type="userPassword" v-model="payload.Password" class="form-control" id="floatingPassword" placeholder="Password">
+  <input type="userPassword" v-model="newUser.Password" class="form-control" id="floatingPassword" placeholder="Password">
   <label for="floatingPassword">Password</label>
 </div>
 <div>

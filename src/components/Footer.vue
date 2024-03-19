@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid"  id="footer">
+    <div class="container-fluid g-0 "  id="footer">
         <div class="row">
             <div class="col-md-3 d-block">
                 <h5 class="text-align-center text-black m-3 p-2" >
@@ -27,10 +27,11 @@
                  </div>
                 </div>
             <div class="col">
-                <h1>Join Our Running Community</h1>
-                <p> Designed for women by women </p> <p> Gym'kini &copy; {{ currDate }}</p>
+                <h1 >Join Our Running Community</h1>
+                <p> Designed for People by People </p>
+                <p> Gym'kini &copy; {{ currDate }}</p>
                 <p>
-                    Where vision meets action
+                   We love GOOD SKIN, DON'T YOU ?
                 </p>
                 <div>
                     <form action="post">
@@ -41,13 +42,6 @@
                 </div>
 
             </div>
-            <div class="row">
-                <div class="d-block">
-                   <img class="img-fluid w-25" src="https://i.ibb.co/k4G5gk4/copy.png" alt="logo2" loading="lazy">
-                </div>
-            </div>
-
-
         </div>
 
     </div>
@@ -79,6 +73,9 @@
     margin: 15px;
     border: none;
     border-radius: 5px;
+    /* position: fixed;
+    bottom: 0px; */
+    
 }
 
 text{

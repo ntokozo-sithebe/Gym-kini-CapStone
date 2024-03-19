@@ -61,7 +61,7 @@ export default createStore({
       try {
         let { results } = (await axios.get(`${myURL}users`)).data;
         if (results) {
-          context.dispatch("setUsers", results);
+          context.commit("setUsers", results);
         }
       } catch (e) {
         sweet({
@@ -72,9 +72,9 @@ export default createStore({
         });
       }
     },
-    async fetchUser(context, gym) {
+    async fetchUser(context, userID) {
       try {
-        let { result } = (await axios.get(`${myURL}.users/${gym.id}`)).data;
+        let { result } = (await axios.get(`${myURL}.users/${userID.id}`)).data;
         if (result) {
           context.commit("setUser", result);
         } else {
@@ -139,9 +139,9 @@ export default createStore({
         });
       }
     },
-    async deleteUser(context, gym) {
+    async deleteUser(context, userID) {
       try {
-        let { result } = (await axios.delete(`${myURL}users/user/${gym.id}`)).data;
+        let { result } = (await axios.delete(`${myURL}users/user/${userID.id}`)).data;
         if (result) {
           context.dispatch("setUser");
         } else {
@@ -243,9 +243,9 @@ export default createStore({
         });
       }
     },
-    async deleteProduct(context, gym) {
+    async deleteProduct(context, prodID) {
       try {
-        let response = (await axios.delete(`${myURL}/products/product/${gym.id}`) );
+        let response = (await axios.delete(`${myURL}/products/product/${prodID.id}`) );
         if (response.data.result) {
           context.commit("fetchProducts");
         } else {
