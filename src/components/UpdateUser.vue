@@ -141,13 +141,13 @@ export default {
   data() {
     return {
       User: {
-        firstName: this.user.firstName,
-        lastName: this.user.lastName,
-        userAge: this.user.userAge,
-        gender: this.user.gender,
-        email: this.user.email,
-        Password: this.user.Password,
-        userRole: this.user.userRole,
+        firstName: this.userData.firstName,
+        lastName: this.userData.lastName,
+        userAge: this.userData.userAge,
+        gender: this.userData.gender,
+        email: this.userData.email,
+        userPassword: this.userData.userPassword,
+        userRole: this.userData.userRole,
       },
     };
   },

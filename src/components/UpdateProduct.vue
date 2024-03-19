@@ -84,7 +84,7 @@
    
           },
           mounted(){
-            this.$store.dispatch('fetchProduct')
+            this.$store.dispatch('fetchProducts')
           },
           methods:{
             updatingProduct(){

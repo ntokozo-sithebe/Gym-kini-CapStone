@@ -36,8 +36,7 @@ export default createStore({
   actions: {
     async addUser(context, payload) {
       try {
-        let { msg } = (await axios.post(`${myURL}users/add`, payload))
-          .data;
+        let { msg } = (await axios.post(`${myURL}users/add`, payload)).data;
         if (msg) {
           context.dispatch("fetchUsers");
           sweet({
@@ -118,17 +117,18 @@ export default createStore({
     // },
     async updateUser(context, gym) {
       try {
-        let { msg } = (await axios.patch(`${myURL}users/user/${gym.userID}`, gym)).data;
-       
-          context.dispatch("fetchUsers"); 
+        let { msg } = (
+          await axios.patch(`${myURL}users/user/${gym.userID}`, gym)
+        ).data;
 
-          sweet({
-            title: "Updated a single user",
-            text: msg,
-            icon: "success",
-            timer: 2000,
-          });
-      
+        context.dispatch("fetchUsers");
+
+        sweet({
+          title: "Updated a single user",
+          text: msg,
+          icon: "success",
+          timer: 2000,
+        });
       } catch (e) {
         // "An error occurred when updating user",
         sweet({
@@ -141,21 +141,24 @@ export default createStore({
     },
     async deleteUser(context, userID) {
       try {
-        let { result } = (await axios.delete(`${myURL}users/user/${userID.id}`)).data;
+        alert(userID);
+        let { result } = (await axios.delete(`${myURL}users/user/${userID}`))
+          .data;
         if (result) {
           context.dispatch("setUser");
         } else {
           sweet({
             title: "Deleting a single user",
             text: " User was not deleted",
-            icon: "success",
+            icon: "error",
             timer: 2000,
           });
         }
       } catch (e) {
+		"A user was not deleted"
         sweet({
           title: "Error",
-          text: "A user was not deleted",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
@@ -178,6 +181,7 @@ export default createStore({
     },
     async fetchProduct(context, gym) {
       try {
+        console.log(gym);
         let { result } = (await axios.get(`${myURL}products/${gym.id}`)).data;
         if (result) {
           context.commit("setProduct", result);
@@ -202,7 +206,7 @@ export default createStore({
       try {
         let { msg } = (await axios.post(`${myURL}products/add`, add)).data;
 
-        context.dispatch("fetchProduct");
+        context.dispatch("fetchProducts");
 
         sweet({
           title: "Adding a single product",
@@ -222,8 +226,9 @@ export default createStore({
 
     async updateProduct(context, gym) {
       try {
-        let { msg } = (await axios.patch(`${myURL}products/product/${gym.prodID}`, gym))
-          .data;
+        let { msg } = (
+          await axios.patch(`${myURL}products/product/${gym.prodID}`, gym)
+        ).data;
 
         context.dispatch("fetchProducts");
 
@@ -245,7 +250,10 @@ export default createStore({
     },
     async deleteProduct(context, prodID) {
       try {
-        let response = (await axios.delete(`${myURL}/products/product/${prodID.id}`) );
+        alert(prodID);
+        let response = await axios.delete(
+          `${myURL}/products/product/${prodID}`
+        );
         if (response.data.result) {
           context.commit("fetchProducts");
         } else {
