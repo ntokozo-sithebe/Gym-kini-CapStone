@@ -1,5 +1,11 @@
 <template>
     <div class="container">
+		<div>
+			<input type="text" data-input placeholder="Search your Favorites" :onKeyup="filteringProducts"> 
+		</div>
+		<div>
+			<button class="filter">Sort</button>
+		</div>
         <div class="row d-block d-flex" v-if="products">
             <Card class="col-md-4 justify-content-center" v-for="product in products" :key="product">
                 <template #cardHeader>
@@ -34,7 +40,8 @@ export default {
     // name: 'ProductsView',
     data(){
         return{
-            cart : ' '
+            searchProduct : '',
+			fetchingProducts: this.productsData
         }
     },
     
@@ -51,9 +58,16 @@ export default {
         this.$store.dispatch('fetchProducts');
     },
     methods:{
+		filteringProducts(product){
+			this.products = this.products.filter(products =>{
+				return products.prodName.includes(product.toLowerCase());
+			});
+		}
+
+
         // toCart(){
         //         this.$router.push('/cart')
-        //     }
+        //     
     }
    
 };
