@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row" id="wrapper">
             <div class="col">
 				<h2>Sign In</h2>
@@ -81,11 +81,10 @@
 	padding: 0px;
 	box-sizing: border-box;
 }
-.container{
+.container-fluid{
 	background-image: url('https://i.ibb.co/58Zb9rT/c6533b8c5a9dca582f1e51572e75f475.jpg');
-
 	margin: 0px;
-	padding: 0px;
+	padding: 5rem;
 	box-sizing: border-box;
 	font-family: "Poppins",sans-serif
 }
@@ -93,7 +92,7 @@
 #wrapper{
 	width: 333px;
 	padding: 2rem 1rem;
-	margin: 50px auto;
+	margin: auto;
 	background-color: white;
 	border-radius: 10px;
 	text-align: center;

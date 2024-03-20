@@ -60,7 +60,9 @@ export default {
     methods:{
 		filteringProducts(product){
 			this.products = this.products.filter(products =>{
-				return products.prodName.includes(product.toLowerCase());
+				return products.prodName
+				.toLowerCase()
+				.includes(product.toLowerCase());
 			});
 		}
 

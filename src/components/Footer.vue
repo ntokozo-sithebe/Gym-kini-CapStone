@@ -66,6 +66,14 @@
 </script>
 
 <style scoped>
+*,
+*, ::before,
+* ::after{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
 .container-fluid{
     overflow: hidden;
 }

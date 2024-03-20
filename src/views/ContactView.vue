@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid">
-		<img class="honey img-fluid w-100" src="https://i.ibb.co/58Zb9rT/c6533b8c5a9dca582f1e51572e75f475.jpg" alt="">
-        <div class="overlay-form">
+		<!-- <img class="honey img-fluid w-100" src="https://i.ibb.co/58Zb9rT/c6533b8c5a9dca582f1e51572e75f475.jpg" alt=""> -->
+        <!-- <div class="overlay-form"> -->
         <div class="row" id="wrapper">
 			<h2 class="text-align-center m-3">Let's Connect</h2>
             <div class="col justify-content-center overlay_form text-black ">
@@ -22,7 +22,7 @@
                         <textarea input type="text" class="form-control" placeholder="Message" rows="2" >
                         </textarea>
                     </div>
-                    <button class="btn m-2 bg-white text-black text-align-center">
+                    <button>
                         Submit
                     </button>
                 </form>
@@ -31,8 +31,8 @@
             </div>
         </div>
     </div>
-
-    </div>
+<!-- 
+    </div> -->
 </template>
 
 <script>
@@ -49,42 +49,48 @@
 	padding: 0px;
 	box-sizing: border-box;
 }
-.honey{
+.container-fluid{
     /* height: 70vh ;
     width: 70%; */
-    /* background-image: url('https://i.ibb.co/58Zb9rT/c6533b8c5a9dca582f1e51572e75f475.jpg'); */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: 0% 40%;
-    background-attachment: fixed;
+    /* background-repeat: no-repeat; */
+    /* background-attachment: fixed; */
+	/* padding: 5rem;
     margin: auto;
-    opacity: 100%;
+    opacity: 100%; */
+    /* background-position: 0% 40%; */
 	
+    background-image: url('https://i.ibb.co/58Zb9rT/c6533b8c5a9dca582f1e51572e75f475.jpg');
+	background-position: 10% 70%; 
+	height: 70vh;
+    background-size: auto;
+	background-position: cover;
+	margin: 0rem;
+    padding: 5rem;
+ 
 }
 
-.overlay-form {
+/* .overlay-form {
     position: absolute;
     background-color: white;
     border-radius: 10px;
     top: 50% ;
     translate: middle;
     align-items: center;
-}
+} */
 
 #wrapper{
 	width: 333px;
 	padding: 2rem 1rem;
-	margin: 50px auto;
+	margin: auto;
 	background-color: white;
 	border-radius: 10px;
 	text-align: center;
-	margin-top: 50px;
 }
 
-.btn{
+button{
 	border-radius: 10px;
 	margin-top: 1.5rem;
-	width: 90%;
+	width: 50%;
 	cursor: pointer;
 	background-color: rgb(119, 214, 246);
 	padding: 2px;
@@ -93,7 +99,7 @@
 
 }
 
-.btn :hover{
+button :hover{
 	background-color: pink;
 }
 form input{
