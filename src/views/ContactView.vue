@@ -1,10 +1,9 @@
 <template>
     <div class="container-fluid">
-        <!-- <div>
-            <img class="img-fluid w-100" src="https://i.ibb.co/GpDpTGB/IMG-20240107-123230-833-1.webp" alt="bckImage" loading="lazy" id="contact">
-        </div> -->
+		<img class="honey img-fluid w-100" src="https://i.ibb.co/58Zb9rT/c6533b8c5a9dca582f1e51572e75f475.jpg" alt="">
         <div class="overlay-form">
-        <div class="row">
+        <div class="row" id="wrapper">
+			<h2 class="text-align-center m-3">Let's Connect</h2>
             <div class="col justify-content-center overlay_form text-black ">
                 <form action="" method="post">
                     <div class="input m-1">
@@ -43,17 +42,26 @@
 </script>
 
 <style scoped>
-.container-fluid{
-    height: 70vh ;
-    width: 70%;
-    background-image: url('https://i.ibb.co/GpDpTGB/IMG-20240107-123230-833-1.webp');
+*,
+*, ::before,
+* ::after{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+.honey{
+    /* height: 70vh ;
+    width: 70%; */
+    /* background-image: url('https://i.ibb.co/58Zb9rT/c6533b8c5a9dca582f1e51572e75f475.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0% 40%;
     background-attachment: fixed;
     margin: auto;
     opacity: 100%;
+	
 }
+
 .overlay-form {
     position: absolute;
     background-color: white;
@@ -63,6 +71,43 @@
     align-items: center;
 }
 
+#wrapper{
+	width: 333px;
+	padding: 2rem 1rem;
+	margin: 50px auto;
+	background-color: white;
+	border-radius: 10px;
+	text-align: center;
+	margin-top: 50px;
+}
+
+.btn{
+	border-radius: 10px;
+	margin-top: 1.5rem;
+	width: 90%;
+	cursor: pointer;
+	background-color: rgb(119, 214, 246);
+	padding: 2px;
+	border-radius: 3rem;
+	
+
+}
+
+.btn :hover{
+	background-color: pink;
+}
+form input{
+	padding: 10px 22px;
+	margin-top: 10px ;
+	margin-bottom: 10px;
+	width:90% ;
+	outline: none;
+	border:1px solid white ;
+	border-radius: 20px;
+	background: white;
+	justify-content: center;
+
+}
 
 
 

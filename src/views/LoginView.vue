@@ -1,7 +1,8 @@
 <template>
     <div class="container">
-        <div class="row">
+        <div class="row" id="wrapper">
             <div class="col">
+				<h2>Sign In</h2>
                 <div class="form-floating mb-3">
           <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
           <label for="floatingInput">Email address</label>
@@ -11,15 +12,20 @@
           <label for="floatingPassword">Password</label>
         </div>
         <div class="col justify-content-center">
+			<div class="termz">
+				<input type="checkbox" id="checkbox">
+				<label for="checkbox mt-2">  I gree to these <a href="#">Terms & Conditions</a> </label>
+			</div>
             <div>
-                <button @click="submitForm">
-                    <router-link :to="{name: 'login', params: {id: userEmail, userPassword}}">login</router-link>    
-                 </button>
+				<p class="loginText mt-1">Already a member ?
+                 <!-- @click="submitForm"> -->
+                    <router-link :to="{name: 'login', params: {id: userEmail, userPassword}}">Login</router-link>    
+				</p>
             </div>
             <!-- link the registerView -->
             <div>
                 <button @click="registerUser">
-                    register
+                    Register
                 </button>
             </div>
 
@@ -67,5 +73,67 @@
 </script>
 
 <style scoped>
+
+*,
+*, ::before,
+* ::after{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+.container{
+	background-image: url('https://i.ibb.co/58Zb9rT/c6533b8c5a9dca582f1e51572e75f475.jpg');
+
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: "Poppins",sans-serif
+}
+
+#wrapper{
+	width: 333px;
+	padding: 2rem 1rem;
+	margin: 50px auto;
+	background-color: white;
+	border-radius: 10px;
+	text-align: center;
+}
+
+button{
+	border: none;
+	border-radius: 10px;
+	font-size: 1rem;
+	margin-top: 1.5rem;
+	outline: none;
+	width: 90%;
+	cursor: pointer;
+	background-color: lightblue;
+	padding: 2px;
+	
+
+}
+
+button :hover{
+	background-color: darkblue;
+}
+
+h2{
+	font-size: 2rem ;
+	color: black;
+	margin-bottom: 1.5rem;
+}
+
+form input{
+	padding: 10px 22px;
+	margin-bottom: 10px;
+	width:90% ;
+	outline: none;
+	border:1px solid white ;
+	border-radius: 20px;
+	background: white;
+
+}
+
+
 
 </style>
