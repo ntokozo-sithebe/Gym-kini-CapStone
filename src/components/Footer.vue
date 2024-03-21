@@ -2,12 +2,12 @@
     <div class="container-fluid g-0 "  id="footer">
         <div class="row">
             <div class="col-md-3 d-block">
-                <h5 class="text-align-center text-black m-3 p-2" >
-                 Gym'kini &copy; {{ currDate }}
+                <h5 class="text-align-center text-white m-3 p-2 font-monospace fs-3" >
+                Believe in Better &copy;{{ currDate }}
                 </h5> 
             </div>
         </div>
-        <div class="row">
+        <div class="row text-dark">
             <div class="col d-block d-flex ">
                 <div class="svg m-3">
 					<a href="https://github.com/" target="_blank">
@@ -28,17 +28,17 @@
 </svg></a> Facebook
                  </div>
                 </div>
-            <div class="col">
-                <h1 >Join Our Running Community</h1>
-                <p> Designed for People by People </p>
-                <p> Gym'kini &copy; {{ currDate }}</p>
-                <p>
-                   We love GOOD SKIN, DON'T YOU ?
+            <div class="col d-block text-black">
+                <h1 class="text-white font-monospace">Join Our Running Community</h1>
+                <p class="p-2"> Designed for People by People </p>
+                <p class="text-white"> Believe in Better &copy; {{ currDate }}</p>
+                <p >
+                   We love GOOD SKIN <br> <span class="text-white"> DON'T YOU ?</span> 
                 </p>
                 <div>
                     <form action="post">
                         <input class="text p-3 rounded-pill" type="text" placeholder="Lets connect">
-                        <button class="rounded-pill d-block m-3" @click="register"> Register </button>
+                        <button class="rounded-pill m-3 p-2" @click="register"> Register </button>
                     </form>
 
                 </div>
@@ -60,7 +60,8 @@
         methods:{
             register(){
                 this.$router.push('/register')
-            }
+            },
+			
         }
     }
 </script>
@@ -73,9 +74,13 @@
 	padding: 0px;
 	box-sizing: border-box;
 }
+body{
+	overflow: hidden;
+}
 
 .container-fluid{
     overflow: hidden;
+	scroll-behavior: none ;
 }
 
 #footer{
@@ -92,6 +97,53 @@ text{
  border: none;
  border-radius: 10px;
  padding: 10px;
+}
+@media (min-width < 762px){
+	.col{
+		flex: 0 0 50%
+	}
+	.container{
+		justify-content: center;
+		position: relative;
+		display: block;
+		margin: 0px;
+		text-align: center;
+	}
+	body{
+		overflow: hidden;
+	}
+}
+
+@media (min-width < 992px){
+	.col{
+		flex: 0 0 33.333%
+	}
+	.container{
+		justify-content: center;
+		position: relative;
+		display: block;
+		margin: 0px;
+		text-align: center;
+	}
+	body{
+		overflow: hidden;
+	}
+}
+@media (min-width < 1500px  ){
+	.col{
+		flex: 0 0 25%
+	}
+	.container{
+		justify-content: center;
+		position: relative;
+		display: block;
+		margin: 0px;
+		padding: 1px;
+		text-align: center;
+	}
+	body{
+		overflow: hidden;
+	}
 }
 
 </style>

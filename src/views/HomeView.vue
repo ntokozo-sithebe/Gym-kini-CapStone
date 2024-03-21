@@ -3,13 +3,13 @@
         <div class="row" id="images">
           <div class="col position-absolute d-block d-flex m-0 p-0">
             <div>
-              <img class="img-fluid w-100" src="https://i.ibb.co/2v6rJNC/c249d88ccb5d1055652caa3510bd883c.jpg" alt="item1" loading="lazy">
+              <img class="img-fluid w-100" src="https://i.ibb.co/2v6rJNC/c249d88ccb5d1055652caa3510bd883c.jpg" alt="item" loading="lazy">
             </div>
             <div>
-              <img class="img-fluid w-100" src="https://i.ibb.co/2s2jW2w/8637b564-d2ac-447c-a194-1ab2fb38c90f.jpg" alt="item2" loading="lazy">
+              <img class="img-fluid w-100" src="https://i.ibb.co/2s2jW2w/8637b564-d2ac-447c-a194-1ab2fb38c90f.jpg" alt="item" loading="lazy">
             </div>
             <div>
-              <img class="img-fluid w-100" src="https://i.ibb.co/NsDB8pY/770122bd-a6e2-4112-b166-d4ec65a7c015.jpg" alt="item3" loading="lazy">
+              <img class="img-fluid w-100" src="https://i.ibb.co/NsDB8pY/770122bd-a6e2-4112-b166-d4ec65a7c015.jpg" alt="item" loading="lazy">
             </div>
               <button class="overlay_button btn btn-tertiary" @click="products"> Discover More </button>
             </div>
@@ -38,6 +38,8 @@ export default {
 }
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 *,
 * ::before,
 * ::after{
@@ -77,6 +79,17 @@ img{
 img:hover{
   transform: translate(-5%, 5%);
   
+}
+
+@media screen and (width < 360){
+	img [alt="sunset"]{
+    width: 100%;
+    aspect-ratio: 1/1;
+    height: 100%;
+	display: block;
+	margin: 0px;
+	position: relative;
+  }
 }
 
 /* body::-webkit-scrollbar{

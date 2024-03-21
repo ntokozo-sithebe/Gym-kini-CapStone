@@ -86,6 +86,8 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 *,
 *,
 ::before,
@@ -93,6 +95,10 @@ export default {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
+}
+
+body{
+	font-family: "Playfair Display", serif;
 }
 .container-fluid {
   background-image: url("https://i.ibb.co/yFtCGYW/Beauty-Kat-Borchart.jpg");

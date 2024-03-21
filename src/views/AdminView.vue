@@ -1,8 +1,8 @@
 <template>
   <!-- place as component so that you can use as an if/else statement to display the crud sytem for user and productsfor specific admin user -->
   <div class="container">
-	<div class="row">
-      <h2>Products Table</h2>
+	<div class="row"> 
+      <h2 class="fs-2 mt-2 text-white">Products Table</h2>
     </div>
 
     <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
@@ -121,7 +121,7 @@
           <th scope="col">Name</th>
           <th scope="col">Product</th>
           <th scope="col">Description</th>
-          <th scope="col">Amount</th>
+          <th scope="col">Category</th>
           <th scope="col">Price</th>
           <th scope="col">Action</th>
         </tr>
@@ -134,7 +134,7 @@
             <img class="img-fluid w-25" :src="product.prodUrl" alt="images" />
           </td>
           <td>{{ product.prodDesc }}</td>
-          <td>{{ product.prodQuantity }}</td>
+		<td>{{ product.prodCategory }}</td>
           <td>R {{ product.prodAmount }}</td>
           <td class="d=block">
             <!-- to update -->
@@ -159,7 +159,7 @@
 
   <div class="container">
     <div class="row">
-      <h2>Users Table</h2>
+      <h2 class="fs-2 mt-2 text-white">Users Table</h2>
     </div>
 
     <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
@@ -397,6 +397,11 @@ export default {
 // <!-- this.$route.params -->
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body{
+	font-family: "Playfair Display", serif;
+}
 .btn {
   display: block;
   margin: 3px;

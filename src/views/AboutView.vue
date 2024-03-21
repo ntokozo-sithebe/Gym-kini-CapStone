@@ -50,5 +50,50 @@ export default{
 
 </script>
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body{
+	font-family:"Playfair Display", serif;
+	background-color: white;
+}
+
+.container{
+	background-color: white;
+	scroll-behavior: none;
+}
+
+@media (min-width < 762px){
+	.col{
+		flex: 0 0 50%
+	}
+	.container{
+		justify-content: center;
+		position: relative;
+		display: block;
+		margin: 0px;
+		text-align: center;
+	}
+	.navbar-toggler-icon{
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+@media  (min-width <  992px){
+	.col{
+		flex: 0 0 33.333%
+	}
+	
+}
+
+@media (min-width < 1500px  ){
+	.col{
+		flex: 0 0 25%
+	}
+	.navbar-toggler-icon{
+		justify-content: center;
+		align-items: center;
+	}
+}
 
 </style>

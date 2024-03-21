@@ -9,6 +9,7 @@
                 <img class="img-fluid" id="bomb" :src="product.prodUrl" alt="productImages" loading="lazy">
                 <p>{{ product.prodDesc }}</p>
                 <p> R {{ product.prodAmount }}</p>
+				<p>{{ product.prodCategory }}</p>
                 <button  class="one">
                     <router-link :to="{ name: 'product', params: { id: product.prodID}}"> Add to Cart </router-link>
                 </button>
@@ -56,6 +57,13 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+body{
+	font-family: "Playfair Display", serif;
+	
+}
+
 #cardBody{
     justify-content: center;
     align-items: center;

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
 		<div>
-			<form @submit.prevent="filteredProducts" action="/product" method="get" class=" mx-3 ms-auto mt-3">
+			<form @submit.prevent="filteredProducts" action="/product" method="get" class=" mx-0 ms-auto mt-3">
 			<input type="text" class="rounded-pill p-3" placeholder="Search your Favorites" v-model="searchProduct"> 
 			<button class="filter m-2">Sort</button>
 		</form>
@@ -15,6 +15,7 @@
                 <img class="img-fluid" id="bomb" :src="product.prodUrl" alt="productImages" loading="lazy">
                 <p class="desc">{{ product.prodDesc }}</p>
                 <p> R {{ product.prodAmount }} </p>
+				<p>{{ product.prodCategory }}</p>
                 <button class="one">
 					<router-link :to="{ name: 'product', params: { id: product.prodID}}"> View More </router-link>
                 </button>
@@ -95,7 +96,9 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-
+body{
+	font-family: "Playfair Display", serif;
+}
 
 #cardBody{
     justify-content: center;

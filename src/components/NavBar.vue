@@ -1,8 +1,8 @@
 <template>
-    <nav class="navbar m-0 g-0 navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid sticky-top m-0">
+    <nav class="navbar m-0 g-0 navbar-expand-lg bg-body-tertiary" id="myNav">
+  <div class="container-fluid sticky-top m-0" >
 	<a href="/about">
-		<img class="img-fluid w-25 m-2" src="https://i.ibb.co/mCvzWr9/The-One.png" alt="logo" loading="lazy">
+		<img class="img-fluid w-25 mt-2 mb-1 ms-0" src="https://i.ibb.co/mCvzWr9/The-One.png" alt="logo" loading="lazy">
 	</a>
     <!-- <img class="img-fluid w-25 mx-auto ms-3" src="https://i.ibb.co/6DG4wtn/gymkini-text.png" alt="logo2"> -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,6 +79,6 @@
     }
 </script>
 
-<style scoped>
+<style src="@/assets/css/style.css">
 
 </style>
