@@ -1,6 +1,10 @@
 <template>
   <!-- place as component so that you can use as an if/else statement to display the crud sytem for user and productsfor specific admin user -->
   <div class="container">
+	<div class="row">
+      <h2>Products Table</h2>
+    </div>
+
     <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
       <button
         type="button"
@@ -140,8 +144,8 @@
             />
             <!-- delete  -->
             <button
-              class="btn btn-warning"
-              @click.prevent="deleteProduct(product.prodID)"
+              class="btn btn-warning deleteButton"
+              @click.prevent="deleteProduct(products.prodID)"
             >
               Delete
             </button>
@@ -172,13 +176,13 @@
         class="modal fade"
         id="userModal"
         tabindex="-1"
-        aria-labelledby="userModal"
+        aria-labelledby="userModalLabel"
         aria-hidden="true"
       >
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">New User</h1>
+              <h1 class="modal-title fs-5" id="userModalLabel">New User</h1>
               <button
                 type="button"
                 class="btn-close"
@@ -187,7 +191,7 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form method="post">
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
                     Name:</label
@@ -256,12 +260,12 @@
                   <label for="recipient-name" class="col-form-label">
                     Role:</label
                   >
-                  <input
+                  <textarea
                     type="text"
                     v-model="newUser.userRole"
                     class="form-control"
                     id="recipient-name"
-                  />
+                  ></textarea>
                 </div>
               </form>
             </div>
@@ -298,17 +302,17 @@
         </tr>
       </thead>
       <tbody v-if="users">
-        <tr v-for="users in users" :key="users.userID">
+        <tr v-for="user in users" :key="user.userID">
           <td scope="row">{{ users.userID }}</td>
-          <td>{{ users.firstName }}</td>
-          <td>{{ users.lastName }}</td>
-          <td>{{ users.gender }}</td>
-          <td>{{ users.userRole }}</td>
-          <td>{{ users.emailAddress }}</td>
+          <td>{{ user.firstName }}</td>
+          <td>{{ user.lastName }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.userRole }}</td>
+          <td>{{ user.emailAddress }}</td>
           <td class="d-block">
             <UpdateUser
               :userData="users"
-              :UpdateUserModal="`UpdateUserModal${users.userID}`"
+              :UpdateUserModal="`UpdateUserModal${user.userID}`"
             />
             <button
               class="btn btn-warning deleteButton"
@@ -354,8 +358,8 @@ export default {
         userAge: null,
         gender: null,
         email: null,
-        Password: null,
-        userRole: "",
+        userPassword: null,
+        userRole: "default",
       },
     };
   },
@@ -378,14 +382,14 @@ export default {
       this.$store.dispatch("addProduct", this.payload);
     },
     addingUser() {
-      this.$store.dispatch("addUser", this.newUser);
+      this.$store.dispatch("register", this.newUser);
     },
 
-    deleteProduct(userID) {
-      this.$store.dispatch("deleteProduct", userID);
+    deleteProduct(prodID) {
+      this.$store.dispatch("deleteProduct", prodID);
     },
-    deleteUser(prodID) {
-      this.$store.dispatch("deleteUser", prodID);
+    deleteUser(userID) {
+      this.$store.dispatch("deleteUser", userID);
     },
   },
 };
@@ -397,6 +401,10 @@ export default {
   display: block;
   margin: 3px;
   justify-content: center;
+}
+
+table{
+	border: 2px solid black;
 }
 </style>
 

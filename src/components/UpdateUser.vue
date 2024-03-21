@@ -20,7 +20,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+              <h1 class="modal-title fs-5" id="UpdateUserModal">
                 User information
               </h1>
               <button
@@ -124,7 +124,7 @@
                 class="btn btn-primary"
                 @click.prevent="updatingUser"
               >
-                Add User
+                Update User
               </button>
             </div>
           </div>
@@ -162,7 +162,7 @@ export default {
   },
   methods: {
     updatingUser() {
-      this.$store.dispatch("updateUsers", this.User);
+      this.$store.dispatch("updateUser", this.User);
     },
   },
 };

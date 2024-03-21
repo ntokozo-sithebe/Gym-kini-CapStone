@@ -1,11 +1,13 @@
 <template>
     <div class="container">
 		<div>
-			<input type="text" data-input placeholder="Search your Favorites" :onKeyup="filteringProducts"> 
-		</div>
-		<div>
+			<form @submit.prevent="filteredProducts" action="/product" method="get">
+			<input type="text" placeholder="Search your Favorites" v-model="searchProduct"> 
 			<button class="filter">Sort</button>
+		</form>
 		</div>
+		
+	
         <div class="row d-block d-flex" v-if="products">
             <Card class="col-md-4 justify-content-center" v-for="product in products" :key="product">
                 <template #cardHeader>
@@ -41,7 +43,7 @@ export default {
     data(){
         return{
             searchProduct : '',
-			fetchingProducts: this.productsData
+			// fetchingProducts: this.productsData
         }
     },
     
@@ -52,25 +54,40 @@ export default {
     computed: {
         products() {
             return this.$store.state.products;
-        }
+        },
+		filteredProducts() {
+      if (!this.searchProduct) return this.products;
+      return this.products.filter(product =>
+        product.prodName.toLowerCase().includes(this.searchProduct.toLowerCase())
+      );
+    
+  },
     },
     mounted() {
         this.$store.dispatch('fetchProducts');
     },
     methods:{
-		filteringProducts(product){
-			this.products = this.products.filter(products =>{
-				return products.prodName
-				.toLowerCase()
-				.includes(product.toLowerCase());
-			});
-		}
+		// filteringProducts(product){
+		// 	this.products = this.products.filter(products =>{
+		// 		return products.prodName
+		// 		.toLowerCase()
+		// 		.includes(product.toLowerCase());
+		// 	});
+		// }
 
 
         // toCart(){
         //         this.$router.push('/cart')
         //     
-    }
+    },
+	// search(productsData){
+	// 	if(productsData != null && productsData !== ''){
+	// 		this.products.find().filter(productsData).forEach(productsData =>{
+	// 			productsData.prodName
+
+	// 	})
+	// 	}
+	// }
    
 };
 

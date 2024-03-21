@@ -1,55 +1,65 @@
 <template>
  <div class="container-fluid">
 	<div class="row" id="wrapper">
+		<div class="col">
+			<h3 class="text m-1">Register</h3>
+			<form action="/login" :method="post">
         <div class="form-floating mb-3" >
-  <input type="firstName" v-model="newUser.firstName" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <input type="firstName" v-model="firstName" class="form-control" id="floatingInput" placeholder="First Name" required>
   <label for="floatingInput" >First Name</label>
 </div>
-<div class="form-floating">
-  <input type="lastName" v-model="newUser.lastName" class="form-control" id="floatingPassword" placeholder="Password">
+<div class="form-floating mb-3">
+  <input type="lastName" v-model="lastName" class="form-control" id="floatingPassword" placeholder="Last Name" required>
   <label for="floatingPassword">Last Name</label>
 </div>
-<div class="form-floating">
-  <input type="userAge" v-model="newUser.userAge" class="form-control" id="floatingPassword" placeholder="Password">
+<div class="form-floating mb-3">
+  <input type="userAge" v-model="userAge" class="form-control" id="floatingPassword" placeholder="Age" required>
   <label for="floatingPassword">Age</label>
 </div>
-<div class="form-floating">
-  <input type="gender" v-model="newUser.gender" class="form-control" id="floatingPassword" placeholder="Password">
+<div class="form-floating mb-3">
+  <input type="gender" v-model="gender" class="form-control" id="floatingPassword" placeholder="Gender" required>
   <label for="floatingPassword">Gender</label>
 </div>
-<div class="form-floating">
-  <input type="userEmail" v-model="newUser.email" class="form-control" id="floatingPassword" placeholder="Password">
+<div class="form-floating mb-3">
+  <input type="userEmail" v-model="emailAddress" class="form-control" id="floatingPassword" placeholder="Email" required>
   <label for="floatingPassword">Email</label>
 </div>
-<div class="form-floating">
-  <input type="userPassword" v-model="newUser.Password" class="form-control" id="floatingPassword" placeholder="Password">
+<div class="form-floating mb-3">
+  <input type="userPassword" v-model="userPassword" class="form-control" id="floatingPassword" placeholder="Password" required>
   <label for="floatingPassword">Password</label>
 </div>
 <div>
-    <button @click="submitForm"> Submit </button>
+	<a href="/login"> Cancel </a>
+    <button type="submit" @click.prevent="register" > 
+		Submit </button>
+	<!-- if submit is successful router to Home -->
+	<!-- <router-link :to="{ name: 'login '}" ></router-link> -->
 </div>
+</form>
  </div>
+</div>
     </div>
 </template>
 
 
 <script>
+import AuthenticateUser from '@/service/AuthenticateUser'
+
     export default {
-        name: 'AdminView',
+		name: 'AdminView',
         components:{
         },
         data() {
             return {
-              newUser:
-              {
+              
                 firstName: null,
                 lastName: null,
                 userAge:null,
                 gender: null,
-                email: null,
-                Password: null
+                emailAddress: null,
+                userPassword: null
 
-              }
+              
             }
         },
 
@@ -66,9 +76,33 @@
         // for the products
 
         methods:{
-            addingUser(){
-              this.$store.dispatch('addUser',this.newUser)
-            } ,
+			async register(){
+			try{
+					await AuthenticateUser({
+				firstName: this.firstName,
+                lastName: this.lastName,
+                userAge: this.userAge,
+                gender: this.gender,
+                emailAddress: this.emailAddress,
+                userPassword: this.userPassword
+					})
+				}catch(error){
+						error.response.data.error
+				}
+			}
+
+
+
+
+
+
+
+
+            // addingUser(){
+            //   this.$store.dispatch('addUser',this.).then(()=>{
+			// 	this.$router.replace('/');
+			// });
+            // } ,
   }
 }
 
@@ -84,6 +118,8 @@
         //         this.$router.push('/register')
         //     }
         //  } -->
+
+		
     
 </script>
 

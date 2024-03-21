@@ -34,13 +34,13 @@ export default createStore({
     },
   },
   actions: {
-    async addUser(context, payload) {
+    async register(context, payload) {
       try {
         let { msg } = (await axios.post(`${myURL}users/add`, payload)).data;
         if (msg) {
-          context.dispatch("fetchUsers");
+          context.dispatch("fetchUsers", payload);
           sweet({
-            title: "",
+            title: "Successfully registered, please login",
             text: msg,
             icon: "success",
             timer: 2000,
@@ -141,7 +141,7 @@ export default createStore({
     },
     async deleteUser(context, userID) {
       try {
-        alert(userID);
+        //  alert(userID);
         let { result } = (await axios.delete(`${myURL}users/user/${userID}`))
           .data;
         if (result) {
@@ -155,7 +155,7 @@ export default createStore({
           });
         }
       } catch (e) {
-		"A user was not deleted"
+        //"A user was not deleted"
         sweet({
           title: "Error",
           text: e.message,
@@ -250,12 +250,11 @@ export default createStore({
     },
     async deleteProduct(context, prodID) {
       try {
-        alert(prodID);
-        let response = await axios.delete(
-          `${myURL}/products/product/${prodID}`
-        );
-        if (response.data.result) {
-          context.commit("fetchProducts");
+        // alert(prodID);
+        let { result } = (await axios.delete(`${myURL}products/product/${prodID}`))
+          .data;
+        if (result) {
+          context.dispatch("setProduct");
         } else {
           sweet({
             title: "Deleting a single product",
@@ -293,7 +292,7 @@ export default createStore({
           AuthenticateUser.applyToken(token);
           sweet({
             title: msg,
-            text: `Welcome to Gym'kini ${result?.firstName} ${result?.lastName}`,
+            text: `Welcome to Believe in Better  ${result?.firstName} ${result?.lastName}`,
             icon: "success",
             timer: 2000,
           });
@@ -309,12 +308,14 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "Failed to login to Gym'kini",
+          text: "Failed to login to Believe in Better",
           icon: "error",
           timer: 2000,
         });
       }
     },
   },
-  modules: {},
+  modules: {
+    router,
+  },
 });
