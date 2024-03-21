@@ -6,10 +6,10 @@
               <img class="img-fluid w-100" src="https://i.ibb.co/2v6rJNC/c249d88ccb5d1055652caa3510bd883c.jpg" alt="item1" loading="lazy">
             </div>
             <div>
-              <img class="img-fluid w-100" src="https://i.ibb.co/2v6rJNC/c249d88ccb5d1055652caa3510bd883c.jpg" alt="item2" loading="lazy">
+              <img class="img-fluid w-100" src="https://i.ibb.co/2s2jW2w/8637b564-d2ac-447c-a194-1ab2fb38c90f.jpg" alt="item2" loading="lazy">
             </div>
             <div>
-              <img class="img-fluid w-100" src="https://i.ibb.co/2v6rJNC/c249d88ccb5d1055652caa3510bd883c.jpg" alt="item3" loading="lazy">
+              <img class="img-fluid w-100" src="https://i.ibb.co/NsDB8pY/770122bd-a6e2-4112-b166-d4ec65a7c015.jpg" alt="item3" loading="lazy">
             </div>
               <button class="overlay_button btn btn-tertiary" @click="products"> Discover More </button>
             </div>

@@ -1,26 +1,25 @@
 <template>
     <div class="container">
 		<div>
-			<form @submit.prevent="filteredProducts" action="/product" method="get">
-			<input type="text" placeholder="Search your Favorites" v-model="searchProduct"> 
-			<button class="filter">Sort</button>
+			<form @submit.prevent="filteredProducts" action="/product" method="get" class=" mx-3 ms-auto mt-3">
+			<input type="text" class="rounded-pill p-3" placeholder="Search your Favorites" v-model="searchProduct"> 
+			<button class="filter m-2">Sort</button>
 		</form>
 		</div>
-		
-	
         <div class="row d-block d-flex" v-if="products">
-            <Card class="col-md-4 justify-content-center" v-for="product in products" :key="product">
+            <Card class="col-md-4 justify-content-center" id="Card" v-for="product in products" :key="product">
                 <template #cardHeader>
-                <h2 class=""> {{ product.prodName }}</h2>
+                <h2 class="name"> {{ product.prodName }}</h2>
                 </template>
                 <template #cardBody>
-                <img class="img-fluid w-100" :src="product.prodUrl" alt="productImages" loading="lazy">
+                <img class="img-fluid" id="bomb" :src="product.prodUrl" alt="productImages" loading="lazy">
                 <p class="desc">{{ product.prodDesc }}</p>
                 <p> R {{ product.prodAmount }} </p>
-                <button>
+				<p>{{ product.prodID }}</p>
+                <button class="one">
                     <router-link :to="{ name: 'product', params: { id: product.prodID}}"> View More </router-link>
                 </button>
-                <button>
+                <button class="one">
                     Add to cart
                 </button>
             </template>
@@ -94,14 +93,49 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
 
 #cardBody{
     justify-content: center;
     align-items: center;
+	font-family: "Playfair Display", serif;
+	background-color: rgb(150, 126, 23);
+	border: 3px;
+
+}
+body{
+	justify-content: center;
+	text-align: center;
+	align-items: center;
 }
 
-.Card{
-    width: 25px;
+#Card{
+    width: 25rem;
+	text-align: center;
+	background-color: rgb(246, 225, 132);
+	margin: 1rem;
+	padding: 1rem;
 }
 
+#bomb{
+	height: 30rem;
+}
+.one{
+	border: 2px solid;
+	border-radius: 1rem;
+	background-color: white;
+	justify-content: center;
+	align-items: center;
+	padding: 0.3rem ;
+	margin: 3px;
+	background-color: white;
+}
+
+filter{
+	border-radius: 5px;
+	padding: 3px;
+	margin: 5px
+}
 </style>

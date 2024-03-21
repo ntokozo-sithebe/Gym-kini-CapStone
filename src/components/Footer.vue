@@ -79,7 +79,7 @@
 }
 
 #footer{
-    background-color: rgb(216, 151, 65);
+    background-color: rgb(141, 82, 6);
     margin: 15px;
     border: none;
     border-radius: 5px;
