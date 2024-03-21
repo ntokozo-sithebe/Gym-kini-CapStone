@@ -56,16 +56,15 @@ class Products{
     
             db.query(query,[prodID], (err)=>{
                 if(err){
-                    console.err('Error deleting product', err);
-                    return res.status(500).json({
+                    res.json({
                         msg: 'Failed to delete product'
                     })
                 }
                 res.json({
                     status: res.statusCode,
                     msg: 'Product was deleted'
-                })
-            })
+                });
+            });
         }
     }
 
@@ -82,7 +81,7 @@ class Products{
                 console.err('Error updating product', err)
                 return res.status(500).json({
                     msg:'Failed to update product'
-                })
+                });
                 
             }
             res.json({
