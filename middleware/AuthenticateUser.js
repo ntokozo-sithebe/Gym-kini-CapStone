@@ -21,9 +21,11 @@ function createToken(user){
 
 function verifyAToken(req, res, next){
     const token = req.headers['Authorization']
+	try{
     if(token){
         if(verify(token,  process.env.SECRET_KEY)){
-            next()
+            next();
+			
         }else{
             res?.json({
                 status: res.statusCode,
@@ -34,8 +36,14 @@ function verifyAToken(req, res, next){
         res.json({
             status: res.statusCode,
             msg:'Please login'
-        })
+        });
     }
+}catch(error){
+	res.json({
+		status: res.statusCode,
+		msg:'Internal error'
+	});
+}
 }
 
 export{
