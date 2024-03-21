@@ -15,13 +15,13 @@
                 <img class="img-fluid" id="bomb" :src="product.prodUrl" alt="productImages" loading="lazy">
                 <p class="desc">{{ product.prodDesc }}</p>
                 <p> R {{ product.prodAmount }} </p>
-				<p>{{ product.prodID }}</p>
                 <button class="one">
-                    <router-link :to="{ name: 'product', params: { id: product.prodID}}"> View More </router-link>
+					<router-link :to="{ name: 'product', params: { id: product.prodID}}"> View More </router-link>
                 </button>
                 <button class="one">
-                    Add to cart
+					Add to cart
                 </button>
+				<p class="mt-3">{{ product.prodID }}</p>
             </template>
             </Card>
          </div>
@@ -101,7 +101,7 @@ export default {
     justify-content: center;
     align-items: center;
 	font-family: "Playfair Display", serif;
-	background-color: rgb(150, 126, 23);
+	/* background-color: #f3cea9; */
 	border: 3px;
 
 }
@@ -114,7 +114,7 @@ body{
 #Card{
     width: 25rem;
 	text-align: center;
-	background-color: rgb(246, 225, 132);
+	background-color: #f3cea9;;
 	margin: 1rem;
 	padding: 1rem;
 }
@@ -131,6 +131,7 @@ body{
 	padding: 0.3rem ;
 	margin: 3px;
 	background-color: white;
+	color: black;
 }
 
 filter{
