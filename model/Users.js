@@ -24,10 +24,10 @@ class Users {
     const query = `
         SELECT userID, firstName, lastName, gender, emailAddress, userPassword, userRole
         FROM Users
-        WHERE userID = ${req.params.id};
+        WHERE userID = ?;
         `;
 
-    db.query(query, (err, result) => {
+    db.query(query, [req.params.id], (err, result) => {
       if (err) throw err;
       res.json({
         status: res.statusCode,
@@ -39,10 +39,13 @@ class Users {
 // adding a new user = payload = token 
 
   async createUser(req, res) {
+	try{
+
     // this is for the payload - from user
-    let data = req.body;
+    const data = req.body;
+	// hashing the password
     data.userPassword = await hash(data?.userPassword, 10);
-    let user = {
+    const user = {
       emailAddress: data.emailAddress,
       userPassword: data.userPassword,
     }
@@ -67,7 +70,14 @@ class Users {
         });
       }
     });
+  }catch(error){
+	// unexpected error response
+	res.status(500).json({
+		status: 500,
+		msg: 'Internal error'
+	})
   }
+}
 
   async updateUser(req, res) {
     // const userID = req.params.id
@@ -115,6 +125,13 @@ class Users {
 
   userLogin(req, res) {
     const { emailAddress, userPassword } = req.body;
+	if(!emailAddress || !userPassword)res.json({
+		status: res.statusCode,
+		msg: 'Error, Please enter your email and password'
+	});
+
+	else{
+
     const query = `
         SELECT  emailAddress, userPassword
         FROM Users
@@ -150,6 +167,7 @@ class Users {
         }
       }
     });
+}
   }
   
 

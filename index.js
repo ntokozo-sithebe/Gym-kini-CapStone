@@ -46,5 +46,5 @@ app.use(errorHandling)
 console.log( process.env.DB_HOST )
 
 app.listen(port, ()=>{
-    console.log(`Gym'kini server is running on port http://localhost:${port}`);
+    console.log(`Believe in Better server is running on port http://localhost:${port}`);
 })
