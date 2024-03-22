@@ -29,6 +29,9 @@
 
   #app main{
 	background-color: white;
+	scroll-behavior: none;
+	justify-content: center;
+	align-items: center;
   }
   #app button :hover{
 	background-color: grey;

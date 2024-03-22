@@ -1,14 +1,12 @@
 <template>
     <div class="container-fluid g-0 "  id="footer">
         <div class="row">
-            <div class="col-md-3 d-block">
                 <h5 class="text-align-center text-white m-3 p-2 font-monospace fs-3" >
                 Believe in Better &copy;{{ currDate }}
-                </h5> 
-            </div>
+                </h5>
         </div>
         <div class="row text-dark">
-            <div class="col d-block d-flex ">
+            <div class="col d-block d-flex mt-0">
                 <div class="svg m-3">
 					<a href="https://github.com/" target="_blank">
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-git" viewBox="0 0 16 16">
@@ -29,16 +27,23 @@
                  </div>
                 </div>
             <div class="col d-block text-black">
-                <h1 class="text-white font-monospace">Join Our Running Community</h1>
-                <p class="p-2"> Designed for People by People </p>
+				<a href="/products">
+			<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="black" class="bi bi-heart-arrow" viewBox="0 0 16 16">
+  <path d="M6.707 9h4.364c-.536 1.573 2.028 3.806 4.929-.5-2.9-4.306-5.465-2.073-4.929-.5H6.707L4.854 6.146a.5.5 0 1 0-.708.708L5.293 8h-.586L2.854 6.146a.5.5 0 1 0-.708.708L3.293 8h-.586L.854 6.146a.5.5 0 1 0-.708.708L1.793 8.5.146 10.146a.5.5 0 0 0 .708.708L2.707 9h.586l-1.147 1.146a.5.5 0 0 0 .708.708L4.707 9h.586l-1.147 1.146a.5.5 0 0 0 .708.708z"/>
+</svg></a>
+                <h1 class="text-black">Join Our Community</h1>
+                <p class="p-2"> Designed for Men & Women </p>
                 <p class="text-white"> Believe in Better &copy; {{ currDate }}</p>
                 <p >
                    We love GOOD SKIN <br> <span class="text-white"> DON'T YOU ?</span> 
                 </p>
                 <div>
-                    <form action="post">
-                        <input class="text p-3 rounded-pill" type="text" placeholder="Lets connect">
-                        <button class="rounded-pill m-3 p-2" @click="register"> Register </button>
+                    <form action="https://formspree.io/f/mnqenpjw" method="post">
+						<label>
+							<input class="text p-3 rounded-pill" type="text" placeholder="Lets connect">
+							<button class="rounded-pill m-3 p-2 " type="submit" @click="register"> Register </button>
+
+						</label>
                     </form>
 
                 </div>
