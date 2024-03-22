@@ -132,6 +132,11 @@ import AuthenticateUser from '@/service/AuthenticateUser'
 	padding: 0px;
 	box-sizing: border-box;
 }
+body{
+	scroll-behavior: none;
+	overflow: hidden;
+}
+
 
 .container-fluid{
 	background-image: url('https://i.ibb.co/XjDcFm7/Urban-Outfitters-Is-Launching-an-In-House-Beauty-Line.jpg');

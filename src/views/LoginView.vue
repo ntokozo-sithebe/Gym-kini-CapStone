@@ -99,6 +99,8 @@ export default {
 
 body{
 	font-family: "Playfair Display", serif;
+	overflow: hidden;
+	scroll-behavior: none
 }
 .container-fluid {
   background-image: url("https://i.ibb.co/yFtCGYW/Beauty-Kat-Borchart.jpg");

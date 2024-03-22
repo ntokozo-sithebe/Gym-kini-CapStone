@@ -111,4 +111,21 @@ filter{
 	padding: 3px;
 	margin: 5px
 }
+@media screen and (width < 360){
+	img [alt="productImages"]{
+    width: 100%;
+    aspect-ratio: 1/1;
+    height: 100%;
+	display: block;
+	margin: 0px;
+	position: relative;
+	margin: 2px
+
+}
+body{
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+}
+}
 </style>
