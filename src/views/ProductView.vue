@@ -3,7 +3,7 @@
         <div class="row d-block d-flex" v-if="product">
             <Card class="col-md-4 justify-content-center" id="Card">
                 <template #cardHeader>
-                <h2 class="name"> {{ product.prodName }}</h2>
+                <h2 class="name p-2"> {{ product.prodName }}</h2>
                 </template>
                 <template #cardBody>
                 <img class="img-fluid" id="bomb" :src="product.prodUrl" alt="productImages" loading="lazy">
@@ -61,6 +61,11 @@ export default {
 
 body{
 	font-family: "Playfair Display", serif;
+	scroll-behavior: none;
+	overflow: hidden;
+	justify-content: center;
+	text-align: center;
+	align-items: center;
 	
 }
 
@@ -72,11 +77,7 @@ body{
 	border: 3px;
 
 }
-body{
-	justify-content: center;
-	text-align: center;
-	align-items: center;
-}
+
 
 #Card{
     width: 25rem;
@@ -84,6 +85,8 @@ body{
 	background-color: #f3cea9;;
 	margin: 1rem;
 	padding: 1rem;
+	justify-content: center;
+	align-items: center;
 }
 
 #bomb{

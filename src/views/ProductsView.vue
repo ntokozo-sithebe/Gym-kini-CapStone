@@ -2,14 +2,14 @@
     <div class="container">
 		<div>
 			<form @submit.prevent="filteredProducts" action="/product" method="get" class=" mx-0 ms-auto mt-3">
-			<input type="text" class="rounded-pill p-3" placeholder="Search your Favorites" v-model="searchProduct"> 
-			<button class="filter m-2">Sort</button>
+			<input type="text" class="rounded p-3" placeholder="Search your Favorites" v-model="searchProduct"> 
+			<button class="filter m-2 rounded bg-success-subtle" @click.prevent="sorted">Sort</button>
 		</form>
 		</div>
         <div class="row d-block d-flex" v-if="products">
             <Card class="col-md-4 justify-content-center" id="Card" v-for="product in products" :key="product">
                 <template #cardHeader>
-                <h2 class="name"> {{ product.prodName }}</h2>
+                <h2 class="name p-2"> {{ product.prodName }}</h2>
                 </template>
                 <template #cardBody>
                 <img class="img-fluid" id="bomb" :src="product.prodUrl" alt="productImages" loading="lazy">
@@ -55,25 +55,30 @@ export default {
         products() {
             return this.$store.state.products;
         },
-		filteredProducts() {
+	
+    },
+    mounted() {
+        this.$store.dispatch('fetchProducts');
+    },
+    methods:{
+ sorted(){
+			try{
+                  this.products.sort((a,b)=>{
+					return a.prodAmount.localCompare(b.prodAmount)
+				});
+				this.displayProdName(this.sorted)
+			}catch(error){
+				console.log(error)
+			}
+		},
+	filteredProducts() {
       if (!this.searchProduct) return this.products;
       return this.products.filter(product =>
         product.prodName.toLowerCase().includes(this.searchProduct.toLowerCase())
       );
     
   },
-    },
-    mounted() {
-        this.$store.dispatch('fetchProducts');
-    },
-    methods:{
-		// filteringProducts(product){
-		// 	this.products = this.products.filter(products =>{
-		// 		return products.prodName
-		// 		.toLowerCase()
-		// 		.includes(product.toLowerCase());
-		// 	});
-		// }
+
 
 
         // toCart(){
@@ -101,7 +106,8 @@ body{
 	overflow: hidden;
 	justify-content: center;
 	align-items: center;
-	background-color: white
+	background-color: white;
+	scroll-behavior: none;
 }
 
 #cardBody{
@@ -120,6 +126,8 @@ body{
 	background-color: #f3cea9;;
 	margin: 1rem;
 	padding: 1rem;
+	justify-content: center;
+	align-items: center;
 }
 
 #bomb{
