@@ -6,17 +6,17 @@
       <th scope="col">#id</th>
       <th scope="col">Name</th>
       <th scope="col">Amount</th>
-      <th scope="col">Price</th>
+      <th scope="col">Total</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row"></th>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-  </tbody>
+        <tr v-for="(products, userID) in addingToCart()" :key="userID">
+          <td scope="row">{{ userID }}</td>
+          <td>{{ products.prodName }}</td>
+          <td>{{ products[0].prodPrice }}</td>
+          <td> R{{products[0].prodPrice * products.length  }}</td>
+         </tr>
+		</tbody>
 </table>
 
 <div>
@@ -46,10 +46,17 @@
 				alertVisible: false,
 				
       currDate: new Date().getFullYear(),
-    
+    Cart: [ ]
 
 			}
 		},
+
+		
+	// 	mounted() {
+    //     this.$store.dispatch('fetchProducts');
+	// 	this.$store.dispatch('fetchProducts');
+	// 	this.$store.dispatch('createOrder')
+    //   },
 
 		methods:{
         shopMore(){
@@ -61,7 +68,10 @@
 				// this.alertVisible = !this.alertVisible
 			},
 
-			
+	addingToCart(){
+this.$store.dispatch("createOrder", this.Cart)
+},
+
     }
     }
 </script>
@@ -89,5 +99,17 @@ button :hover{
 	background-color: lightgreen;
 
 }
+@media screens and (width < 360px ) {
+	table{
+		width: 100%;
+		grid-template-columns: 0 0 25%;
+		position: relative;
+		display: grid;
+	}
+	th, td{
+		padding: 7px;
+	}
+}
+
 
 </style>

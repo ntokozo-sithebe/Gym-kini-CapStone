@@ -137,7 +137,7 @@
 <script>
 export default {
   name: "UpdateUser",
-  props: ["userData", "UpdateUserModal"],
+  props: ['userData', 'UpdateUserModal'],
   data() {
     return {
       User: {
@@ -145,7 +145,7 @@ export default {
         lastName: this.userData.lastName,
         userAge: this.userData.userAge,
         gender: this.userData.gender,
-        email: this.userData.email,
+        emailAddress: this.userData.emailAddress,
         userPassword: this.userData.userPassword,
         userRole: this.userData.userRole,
       },
@@ -168,4 +168,5 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

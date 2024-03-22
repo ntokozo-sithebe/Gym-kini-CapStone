@@ -5,32 +5,32 @@
 			<h3 class="text m-1">Register</h3>
 			<form action="/login" :method="post">
         <div class="form-floating mb-3" >
-  <input type="firstName" v-model="firstName" class="form-control" id="floatingInput" placeholder="First Name" required>
+  <input type="firstName" v-model="payload.firstName" class="form-control" id="floatingInput" placeholder="First Name" required>
   <label for="floatingInput" >First Name</label>
 </div>
 <div class="form-floating mb-3">
-  <input type="lastName" v-model="lastName" class="form-control" id="floatingPassword" placeholder="Last Name" required>
+  <input type="lastName" v-model="payload.lastName" class="form-control" id="floatingPassword" placeholder="Last Name" required>
   <label for="floatingPassword">Last Name</label>
 </div>
 <div class="form-floating mb-3">
-  <input type="userAge" v-model="userAge" class="form-control" id="floatingPassword" placeholder="Age" required>
+  <input type="userAge" v-model="payload.userAge" class="form-control" id="floatingPassword" placeholder="Age" required>
   <label for="floatingPassword">Age</label>
 </div>
 <div class="form-floating mb-3">
-  <input type="gender" v-model="gender" class="form-control" id="floatingPassword" placeholder="Gender" required>
+  <input type="gender" v-model="payload.gender" class="form-control" id="floatingPassword" placeholder="Gender" required>
   <label for="floatingPassword">Gender</label>
 </div>
 <div class="form-floating mb-3">
-  <input type="userEmail" v-model="emailAddress" class="form-control" id="floatingPassword" placeholder="Email" required>
+  <input type="userEmail" v-model="payload.emailAddress" class="form-control" id="floatingPassword" placeholder="Email" required>
   <label for="floatingPassword">Email</label>
 </div>
 <div class="form-floating mb-3">
-  <input type="userPassword" v-model="userPassword" class="form-control" id="floatingPassword" placeholder="Password" required>
+  <input type="userPassword" v-model="payload.userPassword" class="form-control" id="floatingPassword" placeholder="Password" required>
   <label for="floatingPassword">Password</label>
 </div>
 <div>
 	<a href="/login"> Cancel </a>
-    <button type="submit" @click.prevent="register" > 
+    <button type="submit" @click.prevent="register()" > 
 		Submit </button>
 	<!-- if submit is successful router to Home -->
 	<!-- <router-link :to="{ name: 'login '}" ></router-link> -->
@@ -43,7 +43,6 @@
 
 
 <script>
-import AuthenticateUser from '@/service/AuthenticateUser'
 
     export default {
 		name: 'AdminView',
@@ -51,13 +50,14 @@ import AuthenticateUser from '@/service/AuthenticateUser'
         },
         data() {
             return {
-              
-                firstName: null,
-                lastName: null,
-                userAge:null,
-                gender: null,
-                emailAddress: null,
-                userPassword: null
+              payload:{
+		firstName: null,
+		lastName: null,
+		userAge:null,
+		gender: null,
+		emailAddress: null,
+		userPassword: null
+			}
 
               
             }
@@ -76,52 +76,14 @@ import AuthenticateUser from '@/service/AuthenticateUser'
         // for the products
 
         methods:{
-			async register(){
-			try{
-					await AuthenticateUser({
-				firstName: this.firstName,
-                lastName: this.lastName,
-                userAge: this.userAge,
-                gender: this.gender,
-                emailAddress: this.emailAddress,
-                userPassword: this.userPassword
-					})
-				}catch(error){
-						error.response.data.error
-				}
-			}
+			register(){
+this.$store.dispatch("register", this.payload)
+},
+		}
+			
 
-
-
-
-
-
-
-
-            // addingUser(){
-            //   this.$store.dispatch('addUser',this.).then(()=>{
-			// 	this.$router.replace('/');
-			// });
-            // } ,
-  }
-}
-
-// <!-- this.$route.params -->
-
-        // methods:{
-        //     submitForm(){
-        //         this.$store.dispatch('login', {
-        //             email: this.email, password: this.password
-        //         })
-        //     },
-        //     registerUser(){
-        //         this.$router.push('/register')
-        //     }
-        //  } -->
-
-		
-    
-</script>
+	}
+		</script>
 
 
 <style scoped>

@@ -2,7 +2,7 @@
     <div class="container">
 		<div>
 			<form @submit.prevent="filteredProducts" action="/product" method="get" class=" mx-0 ms-auto mt-3">
-			<input type="text" class="rounded p-3" placeholder="Search your Favorites" v-model="searchProduct"> 
+			<input type="text" class="rounded col-md-9 m-7 p-3" placeholder="Search your Favorites" v-model="searchProduct"> 
 			<button class="filter m-2 rounded bg-success-subtle" @click.prevent="sorted">Sort</button>
 		</form>
 		</div>
@@ -13,14 +13,15 @@
                 </template>
                 <template #cardBody>
                 <img class="img-fluid" id="bomb" :src="product.prodUrl" alt="productImages" loading="lazy">
-                <p class="desc">{{ product.prodDesc }}</p>
+                <p class="desc m-2">{{ product.prodDesc }}</p>
                 <p> R {{ product.prodAmount }} </p>
 				<p>{{ product.prodCategory }}</p>
                 <button class="one">
 					<router-link :to="{ name: 'product', params: { id: product.prodID}}" class="text-black"> View More </router-link>
                 </button>
                 <button class="one" >
-					<a href="checkout" class="text-black">Add to cart</a>
+					<!-- <CheckoutView/> -->
+					<a href="checkout" class="text-black" @click="addingToCart()" >Add to cart </a>
                 </button>
 				<p class="mt-3">{{ product.prodID }}</p>
             </template>
@@ -36,6 +37,7 @@
 <script>
 import Spinner from '@/components/Spinner.vue';
 import Card from '@/components/Card.vue';
+// import CheckoutView from './CheckoutView.vue';
 
 
 export default {
@@ -49,7 +51,9 @@ export default {
     
     components: {
         Spinner,
-        Card
+        Card,
+		// CheckoutView
+		
     },
     computed: {
         products() {
@@ -62,17 +66,17 @@ export default {
     },
     methods:{
  sorted(){
-			try{
-                  this.products.sort((a,b)=>{
+          this.products.sort((a,b)=>{
 					return a.prodAmount.localCompare(b.prodAmount)
 				});
 				this.displayProdName(this.sorted)
-			}catch(error){
-				console.log(error)
-			}
+			
 		},
 	filteredProducts() {
-      if (!this.searchProduct) return this.products;
+      if (this.searchProduct){
+		return [];
+	} 
+	
       return this.products.filter(product =>
         product.prodName.toLowerCase().includes(this.searchProduct.toLowerCase())
       );

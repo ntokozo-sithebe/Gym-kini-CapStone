@@ -4,7 +4,7 @@
       <div class="col">
         <h2>Sign In</h2>
         <div class="form-floating mb-3">
-          <input
+          <input v-model="payload.emailAddress"
             type="email"
             class="form-control"
             id="floatingInput"
@@ -13,7 +13,7 @@
           <label for="floatingInput">Email address</label>
         </div>
         <div class="form-floating">
-          <input
+          <input  v-model="payload.userPassword"
             type="password"
             class="form-control"
             id="floatingPassword"
@@ -22,16 +22,16 @@
           <label for="floatingPassword">Password</label>
         </div>
         <div class="col justify-content-center">
-          <div class="termz">
+          <!-- <div class="termz">
             <input type="checkbox" id="checkbox" />
             <label for="checkbox mt-2">
               I gree to these <a href="#">Terms & Conditions</a>
             </label>
-          </div>
+          </div> -->
           <div>
             <p class="loginText mt-1">
               Already a member ?
-              <button @click.prevent="submitForm">Login</button>
+              <button type="button" @click.prevent="Login">Login</button>
             </p>
             <!-- <router-link :to="{name: 'login', params: {id: userEmail, userPassword}}">Login</router-link>     -->
           </div>
@@ -48,36 +48,24 @@
 </template>
 
 <script>
+
+
 export default {
-//   props: ["userData"],
+  props: ["userData"],
   name: "LoginView",
   data() {
     return {
-      email: "",
-      password: "",
+		payload:{
+      emailAddress: "",
+      userPassword: "",
+		}
     };
   },
-  methods: {
-    submitForm() {
-      const payload = {
-        email: this.email,
-        password: this.password,
-      };
 
-      this.$store
-        .dispatch("login", payload)
-        .then(() => {
-          if (this.$cookies.get("LegitUser")) {
-            this.$router.push("/");
-          } else {
-            this.$router.push("/register");
-          }
-        })
-        .catch((error) => {
-          console.log("Login error", error);
-        });
-      // if the user exists theyll be sent to the home page if not they will register
-    },
+  methods: {
+Login(){
+this.$store.dispatch("login", this.payload)
+},
     registerUser() {
       this.$router.push("/register");
     },

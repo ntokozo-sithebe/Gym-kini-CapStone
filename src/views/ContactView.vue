@@ -8,19 +8,19 @@
                 <form action="https://formspree.io/f/mnqenpjw" method="post">
                 <label class="input m-1">
 					First Name
-                        <input type="text" class="form-control" rows="2" name="">
+                        <input type="text" class="form-control" rows="2" required name="firstName" >
 					</label>
                 <label class="input m-1">
 					LastName
-                        <input type="text" class="form-control" rows="2">
+                        <input type="text" class="form-control" rows="2" required name="lastName">
 			</label>
                     <label class="input m-1">
 						Email
-                        <input type="text" class="form-control" rows="2" >
+                        <input type="text" class="form-control" rows="2" required name="email">
 					</label>
                     <label class="input m-1">
 						Message
-                        <textarea input type="text" class="form-control" rows="2" >
+                        <textarea input type="text" class="form-control" rows="2" required name="message">
                         </textarea>
                     </label>
                     <button type="submit">

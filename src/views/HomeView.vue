@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
-        <div class="row" id="images">
-          <div class="col position-absolute d-block d-flex m-0 p-0">
+        <div class="row m-0 p-0" id="images">
+          <div class="col-md-0 d-block d-flex m-0 p-0">
             <div>
               <img class="img-fluid w-100" src="https://i.ibb.co/2v6rJNC/c249d88ccb5d1055652caa3510bd883c.jpg" alt="item" loading="lazy">
             </div>
@@ -47,21 +47,29 @@ export default {
   padding: 0px;
   box-sizing: border-box;
 }
-
-.container-fluid{
-  overflow: hidden;
-  background-color: lightblue;
+body{
+	justify-content: center;
+	overflow: hidden;
+	scroll-behavior: none;
+	margin: 0px;
+	padding: 0px;
+	background-color: white;
 }
+.container-fluid{
+	background-color: white;
+}
+
+
 
 .overlay_button{
   position: absolute;
-  top: 50%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 12px 30px;
-  background-color: lightblue;
-  color: white;
+  color: black;
   border: none;
+  background-color: white;
   border-radius: 5px;
   cursor: pointer;
 
@@ -72,7 +80,11 @@ export default {
 }
 
 img{
-  height: 50em;
+  height: 45em;
+  margin: 0px;
+  padding: 0px;
+
+
 }
 
 
@@ -85,11 +97,17 @@ img:hover{
 	img [alt="item"]{
     width: 100%;
     aspect-ratio: 1/1;
-    height: 100%;
-	display: block;
+    height: 10em;
+	display: flex;
 	margin: 0px;
 	position: relative;
   }
+  body{
+	margin: 0px;
+	padding:0px;
+	scroll-behavior: none;
+  }
+
 }
 
 /* body::-webkit-scrollbar{

@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar m-0 g-0 navbar-expand-lg bg-body-tertiary" id="myNav">
   <div class="container-fluid sticky-top m-0" >
-	<a href="/about">
+	<a href="/">
 		<img class="img-fluid w-25 mt-2 mb-1 ms-0" src="https://i.ibb.co/mCvzWr9/The-One.png" alt="logo" loading="lazy">
 	</a>
     <!-- <img class="img-fluid w-25 mx-auto ms-3" src="https://i.ibb.co/6DG4wtn/gymkini-text.png" alt="logo2"> -->

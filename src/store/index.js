@@ -251,8 +251,9 @@ export default createStore({
     async deleteProduct(context, prodID) {
       try {
         // alert(prodID);
-        let { result } = (await axios.delete(`${myURL}products/product/${prodID}`))
-          .data;
+        let { result } = (
+          await axios.delete(`${myURL}products/product/${prodID}`)
+        ).data;
         if (result) {
           context.dispatch("setProduct");
         } else {
@@ -296,7 +297,7 @@ export default createStore({
             icon: "success",
             timer: 2000,
           });
-          router.push({ name: "Home" });
+          router.push({ name: "home" });
         } else {
           sweet({
             title: "Try Again",
@@ -308,13 +309,35 @@ export default createStore({
       } catch (e) {
         sweet({
           title: "Error",
-          text: "Failed to login to Believe in Better",
+          text: e.message,
           icon: "error",
           timer: 2000,
         });
       }
     },
   },
+  async createOrder(context, userID) {
+    try {
+      let { msg } = (await axios.post(`${myURL}products/${userID}/cart/${userID}`)).data;
+
+      context.dispatch("setCart");
+
+      sweet({
+        title: "Added a product to cart",
+        text: msg,
+        icon: "success",
+        timer: 2000,
+      });
+    } catch (e) {
+      sweet({
+        title: "",
+        text: e.message,
+        icon: "error",
+        timer: 2000,
+      });
+    }
+  },
+
   modules: {
     router,
   },

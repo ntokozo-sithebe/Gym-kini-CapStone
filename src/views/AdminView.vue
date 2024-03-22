@@ -5,7 +5,7 @@
       <h2 class="fs-2 mt-2 text-black">Products Table</h2>
     </div>
 
-    <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
+    <div class="col-md-6 position-relative justify-content-end">
       <button
         type="button"
         class="btn btn-primary"
@@ -145,7 +145,7 @@
             <!-- delete  -->
             <button
               class="btn btn-warning deleteButton"
-              @click.prevent="deleteProduct(products.prodID)"
+              @click.prevent="deleteProd()"
             >
               Delete
             </button>
@@ -182,7 +182,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="userModalLabel">New User</h1>
+              <h1 class="modal-title fs-5" id="userModalLabel"> New User</h1>
               <button
                 type="button"
                 class="btn-close"
@@ -191,7 +191,7 @@
               ></button>
             </div>
             <div class="modal-body">
-              <form method="post">
+              <form>
                 <div class="mb-3">
                   <label for="recipient-name" class="col-form-label">
                     Name:</label
@@ -385,7 +385,7 @@ export default {
       this.$store.dispatch("register", this.newUser);
     },
 
-    deleteProduct(prodID) {
+    deleteProd(prodID) {
       this.$store.dispatch("deleteProduct", prodID);
     },
     deleteUser(userID) {
