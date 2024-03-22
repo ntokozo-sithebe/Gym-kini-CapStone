@@ -125,11 +125,11 @@ class Users {
   userLogin(req, res) {
     const { emailAddress, userPassword } = req.body;
     const query = `
-		SELECT  emailAddress, userPassword
+		SELECT  firstName, lastName, userAge, gender, emailAddress, userPassword
 		FROM Users
 		WHERE emailAddress = '${emailAddress}';`;
 
-    db.query(query, async (err, result) => {
+    db.query(query, [], async (err, result) => {
       if (err) throw err;
       if (!result?.length) {
         res.json({
