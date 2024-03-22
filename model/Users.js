@@ -2,7 +2,6 @@ import { connection as db } from "../config/config.js";
 import { hash, compare } from "bcrypt"; // for the password encryption
 import { createToken } from "../middleware/AuthenticateUser.js";
 
-
 class Users {
   fetchUsers(req, res) {
     const query = `SELECT userID, firstName, lastName,gender, emailAddress, userRole
@@ -17,7 +16,7 @@ class Users {
     });
   }
 
-  // fetching an individual user 
+  // fetching an individual user
   // using re.params.id --- number at the end of (the end point -- specifies/ targets)
 
   fetchUser(req, res) {
@@ -36,48 +35,47 @@ class Users {
     });
   }
 
-// adding a new user = payload = token 
+  // adding a new user = payload = token
 
   async createUser(req, res) {
-	try{
+    try {
+      // this is for the payload - from user
+      const data = req.body;
+      // hashing the password
+      data.userPassword = await hash(data?.userPassword, 10);
+      const user = {
+        emailAddress: data.emailAddress,
+        userPassword: data.userPassword,
+      };
 
-    // this is for the payload - from user
-    const data = req.body;
-	// hashing the password
-    data.userPassword = await hash(data?.userPassword, 10);
-    const user = {
-      emailAddress: data.emailAddress,
-      userPassword: data.userPassword,
-    }
-
-    const query = `
+      const query = `
     INSERT INTO Users
         SET ?;`;
 
-    db.query(query, [data], (err) => {
-      if (err) {
-        res.json({
-          status: res.statusCode,
-          msg: "Email address already exists, use another one",
-        });
-      } else {
-        // creates the user token 
-        let token = createToken(user);
-        res.json({
-          status: res.statusCode,
-          token,
-          msg: "You're registered",
-        });
-      }
-    });
-  }catch(error){
-	// unexpected error response
-	res.status(500).json({
-		status: 500,
-		msg: 'Internal error'
-	})
+      db.query(query, [data], (err) => {
+        if (err) {
+          res.json({
+            status: res.statusCode,
+            msg: "Email address already exists, use another one",
+          });
+        } else {
+          // creates the user token
+          let token = createToken(user);
+          res.json({
+            status: res.statusCode,
+            token,
+            msg: "You're registered",
+          });
+        }
+      });
+    } catch (error) {
+      // unexpected error response
+      res.status(500).json({
+        status: 500,
+        msg: "Internal error",
+      });
+    }
   }
-}
 
   async updateUser(req, res) {
     // const userID = req.params.id
@@ -91,11 +89,11 @@ class Users {
         WHERE userID = ${req.params.id}`;
 
     db.query(query, [data], (err) => {
-      if(err) throw err
+      if (err) throw err;
       res.json({
-          status: res.statusCode,
-          msg: "The user information is updated",
-        });
+        status: res.statusCode,
+        msg: "The user information is updated",
+      });
     });
   }
 
@@ -111,10 +109,11 @@ class Users {
           WHERE userID = ?;`;
 
       db.query(query, [userID], (err) => {
-        if (err){ 
-        res.json({
-          msg: 'Failed to delete the User'
-        })}
+        if (err) {
+          res.json({
+            msg: "Failed to delete the User",
+          });
+        }
         res.json({
           status: res.statusCode,
           msg: `User information has been removed`,
@@ -125,20 +124,13 @@ class Users {
 
   userLogin(req, res) {
     const { emailAddress, userPassword } = req.body;
-	if(!emailAddress || !userPassword)res.json({
-		status: res.statusCode,
-		msg: 'Error, Please enter your email and password'
-	});
-
-	else{
-
     const query = `
-        SELECT  emailAddress, userPassword
-        FROM Users
-        WHERE emailAddress = '${emailAddress}';`
+		SELECT  emailAddress, userPassword
+		FROM Users
+		WHERE emailAddress = '${emailAddress}';`;
 
-    db.query(query, [req.body], async(err, result) => {
-      if (err) throw err
+    db.query(query, async (err, result) => {
+      if (err) throw err;
       if (!result?.length) {
         res.json({
           status: res.statusCode,
@@ -158,8 +150,7 @@ class Users {
             token,
             result: result[0],
           });
-        }else{
-
+        } else {
           res.json({
             status: res.statusCode,
             msg: "Please provide the correct password",
@@ -167,16 +158,7 @@ class Users {
         }
       }
     });
-}
   }
-  
-
-
-
-
 }
 
-export { 
-  Users,
-
- };
+export { Users };
