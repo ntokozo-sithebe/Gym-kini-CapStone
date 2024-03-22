@@ -129,8 +129,9 @@ button {
   padding: 2px;
 }
 
-button :hover {
-  background-color: darkblue;
+button:hover{
+  background-color: black;
+  color: white;
 }
 
 h2 {

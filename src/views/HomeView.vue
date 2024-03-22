@@ -82,7 +82,7 @@ img:hover{
 }
 
 @media screen and (width < 360){
-	img [alt="sunset"]{
+	img [alt="item"]{
     width: 100%;
     aspect-ratio: 1/1;
     height: 100%;

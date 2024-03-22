@@ -100,6 +100,11 @@ body{
 	background-color: white;
 	color: black;
 }
+.one :hover{
+  background-color: black;
+  color: white;
+}
+
 
 filter{
 	border-radius: 5px;

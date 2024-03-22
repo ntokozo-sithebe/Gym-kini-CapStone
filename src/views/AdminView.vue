@@ -401,6 +401,7 @@ export default {
 
 body{
 	font-family: "Playfair Display", serif;
+	overflow: hidden;
 }
 .btn {
   display: block;
@@ -408,9 +409,45 @@ body{
   justify-content: center;
 }
 
+.btn :hover{
+	background-color: white
+}
+
+button :hover{
+	background-color: white
+}
 table{
 	border: 2px solid black;
 }
+@media screen and (width < 360){
+	table {
+    width: 50%;
+    aspect-ratio: 1/1;
+    height: 100%;
+	display: block;
+	margin: 0px;
+	position: relative;
+  }
+  body{
+	overflow: hidden;
+	margin: 0px;
+	justify-content: center;
+	scroll-behavior: none;
+
+  }
+}
+@media screens and (width < 360px ) {
+	table{
+		width: 100%;
+		grid-template-columns: 0 0 25%;
+		position: relative;
+		display: grid;
+	}
+	th, td{
+		padding: 7px;
+	}
+}
+
 </style>
 
 <!-- youll be able to perform crud system from admin - it wont be a seen on the navbar and only the admin can perfom the crud sytem 

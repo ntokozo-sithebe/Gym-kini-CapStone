@@ -5,24 +5,25 @@
         <div class="row" id="wrapper">
 			<h2 class="text-align-center m-3">Let's Connect</h2>
             <div class="col justify-content-center overlay_form text-black ">
-                <form action="" method="post">
-                    <div class="input m-1">
-                        <textarea input type="text" class="form-control" placeholder="Name" rows="2" cols="10" >
+                <form action="https://formspree.io/f/mnqenpjw" method="post">
+                <label class="input m-1">
+					First Name
+                        <input type="text" class="form-control" rows="2" name="">
+					</label>
+                <label class="input m-1">
+					LastName
+                        <input type="text" class="form-control" rows="2">
+			</label>
+                    <label class="input m-1">
+						Email
+                        <input type="text" class="form-control" rows="2" >
+					</label>
+                    <label class="input m-1">
+						Message
+                        <textarea input type="text" class="form-control" rows="2" >
                         </textarea>
-                    </div>
-                    <div class="input m-1">
-                        <textarea input type="text" class="form-control" placeholder="LastName" rows="2">
-                        </textarea>
-                    </div>
-                    <div class="input m-1">
-                        <textarea input type="text" class="form-control" placeholder="Email" rows="2" >
-                        </textarea>
-                    </div>
-                    <div class="input m-1">
-                        <textarea input type="text" class="form-control" placeholder="Message" rows="2" >
-                        </textarea>
-                    </div>
-                    <button>
+                    </label>
+                    <button type="submit">
                         Submit
                     </button>
                 </form>
@@ -61,7 +62,7 @@
 	
     background-image: url('https://i.ibb.co/58Zb9rT/c6533b8c5a9dca582f1e51572e75f475.jpg');
 	background-position: 10% 70%; 
-	height: 70vh;
+	height: 90vh;
     background-size: auto;
 	background-position: cover;
 	margin: 0rem;
