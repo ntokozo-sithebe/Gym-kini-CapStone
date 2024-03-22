@@ -15,6 +15,8 @@ const cartRouter = express.Router()
 userRouter.get('/',(req,res)=>{
     try{
         users.fetchUsers(req,res)
+           res.json({
+            msg: 'User has been Logged in'
     }catch(e){
         res.json({
             status: res.statusCode,
