@@ -13,7 +13,7 @@
                 <button  class="one">
                     <router-link :to="{ name: 'product', params: { id: product.prodID}}"> Add to Cart </router-link>
                 </button>
-                <button  class="one" @click="backHome">
+                <button  class="one text-black" @click="backHome">
                     Go Back
                 </button>
             </template>

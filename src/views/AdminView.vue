@@ -2,7 +2,7 @@
   <!-- place as component so that you can use as an if/else statement to display the crud sytem for user and productsfor specific admin user -->
   <div class="container">
 	<div class="row"> 
-      <h2 class="fs-2 mt-2 text-white">Products Table</h2>
+      <h2 class="fs-2 mt-2 text-black">Products Table</h2>
     </div>
 
     <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
@@ -136,7 +136,7 @@
           <td>{{ product.prodDesc }}</td>
 		<td>{{ product.prodCategory }}</td>
           <td>R {{ product.prodAmount }}</td>
-          <td class="d=block">
+          <td class="d=block align-items-center">
             <!-- to update -->
             <UpdateProduct
               :productData="product"
@@ -159,7 +159,7 @@
 
   <div class="container">
     <div class="row">
-      <h2 class="fs-2 mt-2 text-white">Users Table</h2>
+      <h2 class="fs-2 mt-2 text-black">Users Table</h2>
     </div>
 
     <div class="col-md-6 me-0 mb-2 mt-2 mb-lg-0 mx-0 justify-content-end">
@@ -303,13 +303,13 @@
       </thead>
       <tbody v-if="users">
         <tr v-for="user in users" :key="user.userID">
-          <td scope="row">{{ users.userID }}</td>
+          <td scope="row">{{ user.userID }}</td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.gender }}</td>
           <td>{{ user.userRole }}</td>
           <td>{{ user.emailAddress }}</td>
-          <td class="d-block">
+          <td class="d-block align-items-center">
             <UpdateUser
               :userData="users"
               :UpdateUserModal="`UpdateUserModal${user.userID}`"

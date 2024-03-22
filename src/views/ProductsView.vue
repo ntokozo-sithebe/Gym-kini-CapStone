@@ -17,10 +17,10 @@
                 <p> R {{ product.prodAmount }} </p>
 				<p>{{ product.prodCategory }}</p>
                 <button class="one">
-					<router-link :to="{ name: 'product', params: { id: product.prodID}}"> View More </router-link>
+					<router-link :to="{ name: 'product', params: { id: product.prodID}}" class="text-black"> View More </router-link>
                 </button>
-                <button class="one">
-					Add to cart
+                <button class="one" >
+					<a href="checkout" class="text-black">Add to cart</a>
                 </button>
 				<p class="mt-3">{{ product.prodID }}</p>
             </template>
@@ -131,7 +131,7 @@ body{
 	background-color: white;
 	justify-content: center;
 	align-items: center;
-	padding: 0.3rem ;
+	padding: 10px;
 	margin: 3px;
 	background-color: white;
 	color: black;
