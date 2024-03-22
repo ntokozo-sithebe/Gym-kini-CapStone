@@ -318,9 +318,51 @@ export default createStore({
   },
   async createOrder(context, userID) {
     try {
-      let { msg } = (await axios.post(`${myURL}products/${userID}/cart/${userID}`)).data;
+      let { msg } = (await axios.post(`${myURL}products/${userID.id}/cart/${userID}`)).data;
 
       context.dispatch("setCart");
+
+      sweet({
+        title: "Added a product to cart",
+        text: msg,
+        icon: "success",
+        timer: 2000,
+      });
+    } catch (e) {
+      sweet({
+        title: "",
+        text: e.message,
+        icon: "error",
+        timer: 2000,
+      });
+    }
+  },
+  async deleteOrder(context, userID) {
+    try {
+      let { msg } = (await axios.delete(`${myURL}products/${userID.id}/cart/${userID.id}`)).data;
+
+      context.dispatch("setCart");
+
+      sweet({
+        title: "Added a product to cart",
+        text: msg,
+        icon: "success",
+        timer: 2000,
+      });
+    } catch (e) {
+      sweet({
+        title: "",
+        text: e.message,
+        icon: "error",
+        timer: 2000,
+      });
+    }
+  },
+  async fetchOrders(context, userID) {
+    try {
+      let { msg } = (await axios.get(`${myURL}products/${userID.id}/cart/${userID}`)).data;
+
+      context.dispatch("setCarts");
 
       sweet({
         title: "Added a product to cart",

@@ -29,14 +29,16 @@
             </label>
           </div> -->
           <div>
-            <p class="loginText mt-1">
-              Already a member ?
+            <p class="loginText mt-2 text-black">
+              Already a member ? <br>
+			
               <button type="button" @click.prevent="Login">Login</button>
             </p>
             <!-- <router-link :to="{name: 'login', params: {id: userEmail, userPassword}}">Login</router-link>     -->
           </div>
           <!-- link the registerView -->
           <div>
+			
             <button @click="registerUser">Register</button>
           </div>
         </div>

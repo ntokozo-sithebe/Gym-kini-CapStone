@@ -1,12 +1,12 @@
 <template>
     <div class="container">
-        <div class="row d-block d-flex" v-if="product">
-            <Card class="col-md-4 justify-content-center" id="Card">
+        <div class="row  align-items-center" v-if="product">
+            <Card class="col-md-6  mx-auto p-2 justify-content-center" id="Card">
                 <template #cardHeader>
                 <h2 class="name p-2"> {{ product.prodName }}</h2>
                 </template>
                 <template #cardBody>
-                <img class="img-fluid" id="bomb" :src="product.prodUrl" alt="productImages" loading="lazy">
+                <img class="img-fluid " id="bomb" :src="product.prodUrl" alt="productImages" loading="lazy">
                 <p>{{ product.prodDesc }}</p>
                 <p> R {{ product.prodAmount }}</p>
 				<p>{{ product.prodCategory }}</p>
@@ -75,6 +75,7 @@ body{
 	font-family: "Playfair Display", serif;
 	/* background-color: #f3cea9; */
 	border: 3px;
+	
 
 }
 
@@ -87,6 +88,7 @@ body{
 	padding: 1rem;
 	justify-content: center;
 	align-items: center;
+	
 }
 
 #bomb{
