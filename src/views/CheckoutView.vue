@@ -57,9 +57,7 @@
             },
 			showAlert(){
 				window.alert(`Thank you for shopping with us !
-			       
-				
-				Believe in Better`)
+			       Believe in Better`)
 				// this.alertVisible = !this.alertVisible
 			},
 
