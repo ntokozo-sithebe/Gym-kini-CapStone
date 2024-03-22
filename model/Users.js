@@ -147,7 +147,7 @@ class Users {
       } else {
         // to validate the password
         const properPass = await compare(userPassword, result[0].userPassword);
-        if (validPassword) {
+        if (properPass) {
           const token = createToken({
             emailAddress,
             userPassword,
