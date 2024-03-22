@@ -81,7 +81,7 @@ userRouter.delete('/user/:id', bodyParser.json(),(req,res)=>{
 // login for user
 userRouter.post('/login', bodyParser.json(), (req,res)=>{
     try{
-        users.login(req,res)
+        users.userLogin(req,res)
     }catch(e){
         res.json({
             status:res.statusCode,
