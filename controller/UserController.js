@@ -15,8 +15,7 @@ const cartRouter = express.Router()
 userRouter.get('/',(req,res)=>{
     try{
         users.fetchUsers(req,res)
-           res.json({
-            msg: 'User has been Logged in'
+       
     }catch(e){
         res.json({
             status: res.statusCode,
@@ -84,6 +83,9 @@ userRouter.delete('/user/:id', bodyParser.json(),(req,res)=>{
 userRouter.post('/login', bodyParser.json(), (req,res)=>{
     try{
         users.userLogin(req,res)
+            res.json({
+            msg: 'User has been Logged in'
+            })
     }catch(e){
         res.json({
             status:res.statusCode,
