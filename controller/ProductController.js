@@ -1,7 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
 import { products } from '../model/index.js'
-import { cart } from '../model/index.js';
+// import { cart } from '../model/index.js';
 
 
 const productRouter = express.Router();
@@ -95,46 +95,60 @@ productRouter.delete('/product/:id', bodyParser.json(), (req,res)=>{
 
 // adding to cart
 
-productRouter.post('/cart/:id',(req,res)=>{
-    try{
-        const cID = req.params.id
-         cart.createOrder(req,res)
-        res.json({msg:'Item has been added'})
-    }catch(e){
-        res.json({
-            status: res.statusCode,
-            msg: 'Failed to add product from Cart'
-        })
-    }
-})
+// productRouter.post('/cart/:id',(req,res)=>{
+//     try{
+//         const cID = req.params.id
+//          cart.createOrder(req,res)
+//         res.json({msg:'Item has been added'})
+//     }catch(e){
+//         res.json({
+//             status: res.statusCode,
+//             msg: 'Failed to add product from Cart'
+//         })
+//     }
+// })
 
 // ability to delete from a cart
 
-productRouter.delete('/cart/:id',(req,res)=>{
-    try{
-        const cID = req.params.id
-         cart.deleteOrder(req,res)
-        res.json({msg:'Item has been removed'})
-    }catch(e){
-        res.json({
-            status: res.statusCode,
-            msg: 'Failed to delete product from Cart'
-        })
-    }
-})
+// productRouter.delete('/cart/:id',(req,res)=>{
+//     try{
+//         const cID = req.params.id
+//          cart.deleteOrder(req,res)
+//         res.json({msg:'Item has been removed'})
+//     }catch(e){
+//         res.json({
+//             status: res.statusCode,
+//             msg: 'Failed to delete product from Cart'
+//         })
+//     }
+// })
 
 // products in cart
 
-productRouter.get('/cart/:id',(req,res)=>{
-    try{
-        cart.fetchOrders(req,res)
-    }catch(e){
-        res.json({
-            status: res.statusCode,
-            msg: 'Failed to retrieve products from Cart'
-        })
-    }
-})
+// productRouter.get('/cart',(req,res)=>{
+//     try{
+//         cart.fetchOrders(req,res)
+//     }catch(e){
+//         res.json({
+//             status: res.statusCode,
+//             msg: 'Failed to retrieve products from Cart'
+//         })
+//     }
+// })
+
+// to get 1 product in a cart 
+// productRouter.get('/cart/:id',(req,res)=>{
+//     try{
+//         cart.fetchOrders(req,res)
+//     }catch(e){
+//         res.json({
+//             status: res.statusCode,
+//             msg: 'Failed to retrieve product from Cart'
+//         })
+//     }
+// })
+
+
 
 
 

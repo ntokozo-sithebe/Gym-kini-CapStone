@@ -94,31 +94,73 @@ userRouter.post('/login',verifyAToken, bodyParser.json(), (req,res)=>{
 
 // End-points for my Cart
 
-// userRouter.get('/:cID/cart',verifyAToken,(req,res)=>{
-//     try{
-//         cart.fetchOrders(req,res)
-//     }catch(e){
-//         res.json({
-//             status: res.statusCode,
-//             msg: 'Failed to retrieve products from Cart'
-//         })
-//     }
-// })
+// to get all items from cart
 
-// userRouter.delete('/:id/cart',(req,res)=>{
-//     try{
-//         const cID = req.params.id
-//          cart.deleteOrder(req,res)
-//         res.json({msg:'Item has been removed'})
-//     }catch(e){
-//         res.json({
-//             status: res.statusCode,
-//             msg: 'Failed to delete product from Cart'
-//         })
-//     }
-// })
+userRouter.get('/user/:id/carts',verifyAToken,(req,res)=>{
+    try{
+        cart.fetchOrders(req,res)
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to retrieve products from Cart'
+        })
+    }
+})
 
-// userRouter.patch('/update/:cID/cart',(req,res)=>{
+// to get an individual item
+
+userRouter.get('/user/:id/cart',verifyAToken,(req,res)=>{
+    try{
+        cart.fetchOrders(req,res)
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to retrieve products from Cart'
+        })
+    }
+})
+
+userRouter.patch('/user/:id/cart/:id',verifyAToken,(req,res)=>{
+    try{
+        cart.UpdateOrders(req,res)
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to retrieve products from Cart'
+        })
+    }
+})
+
+//adding to cart
+userRouter.post('/user/:id/cart/:id',(req,res)=>{
+    try{
+        const cID = req.params.id
+         cart.createOrder(req,res)
+        res.json({msg:'Item has been added to cart'})
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to add product to Cart'
+        })
+    }
+})
+
+//delete a single item
+
+userRouter.delete('/user/:id/cart/:id',(req,res)=>{
+    try{
+        const cID = req.params.id
+         cart.deleteOrder(req,res)
+        res.json({msg:'Item has been removed'})
+    }catch(e){
+        res.json({
+            status: res.statusCode,
+            msg: 'Failed to delete product from Cart'
+        })
+    }
+})
+
+// userRouter.patch('/user/id/cart/:id',(req,res)=>{
 //     try{
 //         const cID = req.params.id
 //         cart.fetchOrders(req,res)
